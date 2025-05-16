@@ -4,9 +4,17 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="Test_FileIO.cpp" />
+    <ClCompile Include="ArgManager.cpp" />
+    <ClCompile Include="ArgManager_test.cpp" />
+    <ClCompile Include="Ssd.h" />
+    <ClCompile Include="ReaderWriterTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArgManager.h" />
+    <ClInclude Include="ReaderWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileIO.h" />
