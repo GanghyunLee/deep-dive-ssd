@@ -1,11 +1,8 @@
+#include "TestShellApplication.h"
 #include "gmock/gmock.h"
 
 int main(void)
 {
-#ifdef _DEBUG
-	::testing::InitGoogleMock();
-	return RUN_ALL_TESTS();
-#elif
-	return 0;
-#endif
+	IoC ioc{};
+	return (true == TestShellApplication{ ioc }.Run());
 }

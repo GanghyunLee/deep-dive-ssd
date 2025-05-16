@@ -2,8 +2,61 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
+    <ClCompile Include="TestShellApplication.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommand.cpp">
+      <Filter>application\presentation\command</Filter>
+    </ClCompile>
+    <ClCompile Include="IView.cpp">
+      <Filter>application\presentation\view</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommandMapper.cpp">
+      <Filter>application\presentation\commandmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="IoC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="service">
+      <UniqueIdentifier>{07e83749-8171-4d3b-bf27-0e05b93e96ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{ea29fbd3-958e-4b6d-ba4c-67ae8cf6b00d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application">
+      <UniqueIdentifier>{0f2ef9c1-3ecd-4047-ac61-bcaaa8c54f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\presentation">
+      <UniqueIdentifier>{39b3ee06-bbb6-4acc-af1a-00bd0cf4ca0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\presentation\command">
+      <UniqueIdentifier>{26faa77e-8ba1-427a-ac52-28f29ec63be2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\presentation\view">
+      <UniqueIdentifier>{ff022160-4d9b-42dc-9e00-9552d8e03e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="application\presentation\commandmapper">
+      <UniqueIdentifier>{48c5dabd-3a16-420e-b9c9-a1005cfe794f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestShellApplication.h">
+      <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>application\presentation\command</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>application\presentation\view</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandMapper.h">
+      <Filter>application\presentation\commandmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="IoC.h" />
   </ItemGroup>
 </Project>
