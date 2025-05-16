@@ -2,8 +2,30 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SsdControlService.cpp">
+      <Filter>service</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadResult.cpp">
+      <Filter>service\dto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="service">
+      <UniqueIdentifier>{fe4802c4-540a-4934-b633-462216aa02b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="presentation">
+      <UniqueIdentifier>{c6461ffc-9844-4b5d-9d5b-5d44666a1db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="service\dto">
+      <UniqueIdentifier>{584baee4-d9a9-4ace-8235-f02ebb1c5d4d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SsdReadResult.h">
+      <Filter>service\dto</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

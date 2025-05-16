@@ -4,11 +4,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="ArgManager_test.cpp" />
+    <ClCompile Include="Ssd.h" />
+    <ClCompile Include="ReaderWriterTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />
+    <ClInclude Include="ReaderWriter.h" />
   </ItemGroup>
 </Project>
