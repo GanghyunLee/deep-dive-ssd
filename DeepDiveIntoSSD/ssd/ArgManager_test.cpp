@@ -90,7 +90,7 @@ TEST(ArgManager, isValid6) {
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_makeStruct1) {
+TEST(ArgManager, makeStruct1) {
 	ArgManager am;
 	Arg argExpected = { true, 3, "0x12345678" };
 	std::vector<std::string> args{ "W", "3", "0x12345678" };
@@ -100,7 +100,7 @@ TEST(ArgManager, DISABLED_makeStruct1) {
 	EXPECT_EQ(argExpected.value, am.makeStruct(args).value);
 }
 
-TEST(ArgManager, DISABLED_makeStruct2) {
+TEST(ArgManager, makeStruct2) {
 	ArgManager am;
 	Arg argExpected = { false, 3, "" };
 	std::vector<std::string> args{ "R", "3" };

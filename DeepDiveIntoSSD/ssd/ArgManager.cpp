@@ -38,5 +38,16 @@ bool ArgManager::isValid(const std::vector<std::string>& args) {
 Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
 	Arg arg;
 
+	if (args[0] == "R") {
+		arg.RWflag = false;
+		arg.index = stoi(args[1]);
+		arg.value = "";
+	}
+	else {
+		arg.RWflag = true;
+		arg.index = stoi(args[1]);
+		arg.value = args[2];
+	}
+
 	return arg;
 }
