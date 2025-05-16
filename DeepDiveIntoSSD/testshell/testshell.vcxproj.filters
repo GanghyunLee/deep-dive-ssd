@@ -4,78 +4,72 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
-    <ClCompile Include="TestShellApplication.cpp">
-      <Filter>application</Filter>
-    </ClCompile>
     <ClCompile Include="ICommand.cpp">
-      <Filter>application\presentation\command</Filter>
-    </ClCompile>
-    <ClCompile Include="IView.cpp">
-      <Filter>application\presentation\view</Filter>
+      <Filter>Application\Command</Filter>
     </ClCompile>
     <ClCompile Include="ICommandMapper.cpp">
-      <Filter>application\presentation\commandmapper</Filter>
+      <Filter>Application\CommandMapper</Filter>
     </ClCompile>
-    <ClCompile Include="IoC.cpp" />
+    <ClCompile Include="IoC.cpp">
+      <Filter>Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="IView.cpp">
+      <Filter>Application\View</Filter>
+    </ClCompile>
     <ClCompile Include="SsdControlService.cpp">
-      <Filter>service</Filter>
+      <Filter>Service\SSD</Filter>
     </ClCompile>
     <ClCompile Include="SsdReadResult.cpp">
-      <Filter>service\dto</Filter>
+      <Filter>Service\SSD</Filter>
     </ClCompile>
+    <ClCompile Include="TestShellApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ICommand.h">
+      <Filter>Application\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandMapper.h">
+      <Filter>Application\CommandMapper</Filter>
+    </ClInclude>
+    <ClInclude Include="IoC.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>Application\View</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadResult.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="TestShellApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="service">
-      <UniqueIdentifier>{07e83749-8171-4d3b-bf27-0e05b93e96ad}</UniqueIdentifier>
+    <Filter Include="Application">
+      <UniqueIdentifier>{9473193b-f236-4947-8a37-204a41efb24a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="config">
-      <UniqueIdentifier>{ea29fbd3-958e-4b6d-ba4c-67ae8cf6b00d}</UniqueIdentifier>
+    <Filter Include="Service">
+      <UniqueIdentifier>{bd1e2d79-ade9-4cb5-b19e-eb337927bdc7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="application">
-      <UniqueIdentifier>{0f2ef9c1-3ecd-4047-ac61-bcaaa8c54f92}</UniqueIdentifier>
+    <Filter Include="Application\Command">
+      <UniqueIdentifier>{787f988f-03a4-478d-a6d3-c49402e49f38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="application\presentation">
-      <UniqueIdentifier>{39b3ee06-bbb6-4acc-af1a-00bd0cf4ca0b}</UniqueIdentifier>
+    <Filter Include="Application\CommandMapper">
+      <UniqueIdentifier>{c98d6bf0-d8c5-42a6-88ee-157c70482d46}</UniqueIdentifier>
     </Filter>
-    <Filter Include="application\presentation\command">
-      <UniqueIdentifier>{26faa77e-8ba1-427a-ac52-28f29ec63be2}</UniqueIdentifier>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{53dabc4f-3fa6-4a51-8c2b-32fa3fbdf76f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="application\presentation\view">
-      <UniqueIdentifier>{ff022160-4d9b-42dc-9e00-9552d8e03e4c}</UniqueIdentifier>
+    <Filter Include="Application\View">
+      <UniqueIdentifier>{d6831d88-a48d-4c8d-b86e-d04af62f0b70}</UniqueIdentifier>
     </Filter>
-    <Filter Include="application\presentation\commandmapper">
-      <UniqueIdentifier>{48c5dabd-3a16-420e-b9c9-a1005cfe794f}</UniqueIdentifier>
+    <Filter Include="Service\SSD">
+      <UniqueIdentifier>{495f9007-a851-4873-98de-f7c67f733d72}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="TestShellApplication.h">
-      <Filter>application</Filter>
-    </ClInclude>
-    <ClInclude Include="ICommand.h">
-      <Filter>application\presentation\command</Filter>
-    </ClInclude>
-    <ClInclude Include="IView.h">
-      <Filter>application\presentation\view</Filter>
-    </ClInclude>
-    <ClInclude Include="ICommandMapper.h">
-      <Filter>application\presentation\commandmapper</Filter>
-    </ClInclude>
-    <ClInclude Include="IoC.h" />
-      <UniqueIdentifier>{fe4802c4-540a-4934-b633-462216aa02b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="presentation">
-      <UniqueIdentifier>{c6461ffc-9844-4b5d-9d5b-5d44666a1db2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="service\dto">
-      <UniqueIdentifier>{584baee4-d9a9-4ace-8235-f02ebb1c5d4d}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SsdReadResult.h">
-      <Filter>service\dto</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
