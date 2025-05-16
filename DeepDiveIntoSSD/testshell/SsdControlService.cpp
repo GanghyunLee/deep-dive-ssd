@@ -1,20 +1,30 @@
 #include <iosfwd>
 #include <string>
-#include "SsdReadResult.h"
 #include <sstream>
+#include <iostream>
+#include "SsdReadResult.h"
 
 using namespace std;
 
 class SsdControlService
 {
 public:
-
-public:
 	SsdReadResult Read(int lba)
 	{
 		std::stringstream ss;
-		ss << "ssd.exe " << std::to_string(lba) << std::endl;
-		system("ssd.exe ");
+		unsigned int value;
+		SsdReadResult result;
+
+		ss << "ssd.exe R " << to_string(lba) << endl;
+		system(ss.str().c_str());
+		cin >> hex >> value;
+		result.data = value;
 		return SsdReadResult{};
+	}
+	void Write(int lba, unsigned int value) {
+		stringstream ss;
+
+		ss << "ssd.exe W" << to_string(lba) << " " << to_string(value) << endl;
+		system(ss.str().c_str());
 	}
 };
