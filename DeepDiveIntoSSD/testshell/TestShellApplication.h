@@ -16,7 +16,7 @@ public:
 	std::vector<std::string> GetUserInput();
 
 private:
-	const std::string STR_SHELL_START = "Shell> ";
+	const std::string STR_SHELL_START = "Shell>";
 
 private:
 	IoC& _ioc;

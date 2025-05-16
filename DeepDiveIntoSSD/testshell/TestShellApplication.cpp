@@ -17,37 +17,46 @@ bool TestShellApplication::Run()
 			std::vector<std::string> userInputCommand = GetUserInput();
 
 			// 2. Parse Command
+			ICommand* command = nullptr;
 			for (auto& commandMapper : _ioc.GetCommandMappers())
 			{
 				if (false == commandMapper->IsSupport(userInputCommand))
 					continue;
 
-				// 3. Generate Command
-				ICommand* command = commandMapper->GenerateCommand(userInputCommand);
-				if (command == nullptr)
-					throw std::exception("UNKNOWN ERROR!");
-
-				// 4. Execute Command
-				IView* view = command->Execute();
-
-				// 5. Print Result
-				if (view)
-					view->Render(_oStream);
-				
-				return true;
+				command = commandMapper->GenerateCommand(userInputCommand);
 			}
 
-			// Failed to map command
-			throw std::exception{ "INVALID COMMAND!" };
-			return false;
+			// 3. Check if Failed to map command
+			if (command == nullptr)
+				throw std::exception{ "INVALID COMMAND" };
+
+			// 4. Execute Command
+			IView* view = command->Execute();
+
+			// 5. Print Result
+			if (view)
+				view->Render(_oStream);
+
+			// 6. Check If the command has quit command
+			bool needToExit = command->NeedToExitAfterExecute();
+
+			// 7. Delete Command
+			if (command)
+			{
+				delete command;
+				command = nullptr;
+			}
+
+			if (needToExit)
+				break;
 		}
 		catch (std::exception& ex)
 		{
 			_oStream << ex.what() << std::endl;
-			return false;
 		}
-		return false;
 	}
+
+	return true;
 }
 
 std::vector<std::string> TestShellApplication::GetUserInput()
