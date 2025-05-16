@@ -75,3 +75,14 @@ TEST_F(FileIOFixture, FileClose) {
 	EXPECT_FALSE(fileIO->isOpen());
 
 }
+
+TEST_F(FileIOFixture, readOneLine) {
+
+	FileIO* fileIO = new FileIO();
+
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+	std::string line = fileIO->readLine();
+
+	EXPECT_EQ("DeepDiveSSD", line);
+}
