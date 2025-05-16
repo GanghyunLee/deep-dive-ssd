@@ -1,12 +1,12 @@
 #pragma once
 #include <fstream>
-
 class FileIO {
 public:
 	const int READ_MODE = 1;
 	const int WRITE_MODE = 2;
 
 	FileIO() = default;
+
 	bool isInvalidArgument(const std::string& fileName, int mode);
 	void setArgument(const std::string& fileName, int mode);
 	int getMode() const;
@@ -15,6 +15,10 @@ public:
 	void openFile();
 	void closeFile();
 	bool isOpen();
+
+	std::string readLine();
+	void writeLine(const std::string&);
+
 
 private:
 	int mode;

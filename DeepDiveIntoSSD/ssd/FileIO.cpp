@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdexcept>
 #include "FileIO.h"
 
 bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
@@ -54,4 +55,16 @@ void FileIO::closeFile() {
 
 bool FileIO::isOpen() {
 	return file.is_open();
+}
+
+
+std::string FileIO::readLine() {
+	std::string a;
+	std::getline(file, a);
+	return a;
+}
+
+void FileIO::writeLine(const std::string&) {
+
+
 }
