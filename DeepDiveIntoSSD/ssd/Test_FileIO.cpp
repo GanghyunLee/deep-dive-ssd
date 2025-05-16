@@ -14,13 +14,16 @@ TEST(FileIO, GetArgumentForFileIO) {
 
 }
 
-TEST(FileIO, DISABLEDFileOpenSuccess) {
+TEST(FileIO, FileOpenSuccess) {
 
 	FileIO* fileIO = new FileIO();
+	const std::string fileName = "sdd_nand.txt";
+	int mode = fileIO->READ_MODE;
 
-	//fileIO->setArgument(fileName, mode);
-	//fileIO->openFile();
+	fileIO->setArgument(fileName, mode);
+	fileIO->openFile();
 
+	EXPECT_TRUE(fileIO->isOpen());
 }
 
 TEST(FileIO, MakeFileForHandlingNotFoundFileError) {

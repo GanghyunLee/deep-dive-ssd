@@ -17,7 +17,14 @@ std::string FileIO::getFileName() const {
 }
 
 void FileIO::openFile() {
+	
+	if (this->getMode() == READ_MODE) {
+		file.open(this->fileName, std::ios::in);
+		return;
+	}
 
+	file.open(this->fileName, std::ios::out);
+	return;
 }
 
 void FileIO::closeFile() {
@@ -25,6 +32,5 @@ void FileIO::closeFile() {
 }
 
 bool FileIO::isOpen() {
-
-	return true;
+	return file.is_open();
 }
