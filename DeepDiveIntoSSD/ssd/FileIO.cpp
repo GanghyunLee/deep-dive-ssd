@@ -28,7 +28,7 @@ void FileIO::openFile() {
 }
 
 void FileIO::closeFile() {
-
+	file.close();
 }
 
 bool FileIO::isOpen() {

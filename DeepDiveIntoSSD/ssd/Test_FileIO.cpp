@@ -49,3 +49,15 @@ TEST_F(FileIOFixture, FileOpenFailedByNotArgumentSetting) {
 
 
 }
+
+TEST_F(FileIOFixture, FileClose) {
+
+	FileIO* fileIO = new FileIO();
+
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+	EXPECT_TRUE(fileIO->isOpen());
+
+	fileIO->closeFile();
+	EXPECT_FALSE(fileIO->isOpen());
+}
