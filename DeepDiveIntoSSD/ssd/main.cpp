@@ -1,4 +1,5 @@
 #include "gmock/gmock.h"
+#include "Ssd.h"
 
 int main(void)
 {
