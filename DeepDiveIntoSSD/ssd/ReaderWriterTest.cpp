@@ -21,13 +21,18 @@ public:
 };
 
 TEST_F(SSDFixture, ReaderSuccess) {
-	EXPECT_CALL(reader, read).Times(1);
+	int index = 0;
+	
+	EXPECT_CALL(reader, read(index)).Times(1);
 
-	ssd->read(0);
+	ssd->read(index);
 }
 
 TEST_F(SSDFixture, WriterSuccess) {
-	EXPECT_CALL(writer, write).Times(1);
+	int index = 0;
+	std::string value = "0x12345678";
+	
+	EXPECT_CALL(writer, write(index, value)).Times(1);
 
-	ssd->write(0, "0x12345678");
+	ssd->write(index, value);
 }
