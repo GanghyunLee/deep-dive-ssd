@@ -1,4 +1,6 @@
 ﻿#include "TestShellApplication.h"
+
+#include <algorithm>
 #include <exception>
 #include <iostream>
 #include <sstream>
@@ -14,7 +16,7 @@ bool TestShellApplication::Run()
 		try
 		{
 			// 1. Get User Input
-			std::vector<std::string> userInputCommand = GetUserInput();
+			std::vector<std::string> userInputCommand = GetUserInputLowerStr();
 
 			// 2. Parse Command
 			ICommand* command = nullptr;
@@ -52,23 +54,30 @@ bool TestShellApplication::Run()
 		}
 		catch (std::exception& ex)
 		{
-			_oStream << ex.what() << std::endl;
+			_oStream << ex.what();
 		}
+		_oStream << std::endl;
 	}
 
 	return true;
 }
 
-std::vector<std::string> TestShellApplication::GetUserInput()
+std::vector<std::string> TestShellApplication::GetUserInputLowerStr()
 {
 	std::string userInput;
-	_oStream << STR_SHELL_START << " ";
+	if (_printShellPromptPrefix)
+		_oStream << STR_SHELL_START << " ";
 	std::getline(_iStream, userInput);
 
-	std::vector<std::string> splitedUserInput;
+	// 모든 문자를 소문자로 변환
+	std::transform(userInput.begin(), userInput.end(), userInput.begin(), [](unsigned char c) {
+		return std::tolower(c);
+	});
+
 	std::stringstream ss(userInput);  // 입력된 문자열을 stringstream으로 변환
 
 	// 공백을 기준으로 단어들을 하나씩 읽어 vector에 넣기
+	std::vector<std::string> splitedUserInput;
 	{
 		std::string word;
 		while (ss >> word) {
