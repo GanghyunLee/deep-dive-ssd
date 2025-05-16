@@ -1,10 +1,29 @@
 #pragma once
 
 #include "ReaderWriter.h"
+#include "ArgManager.h"
+#include <iostream>
 
 class SSD {
 public:
-	SSD(IReader* reader, IWriter* writer) : m_reader{ reader }, m_writer{ writer } {}
+	SSD(IReader* reader, IWriter* writer, ArgManager* argManager) : m_reader{ reader }, m_writer{ writer }, m_argManager{argManager} {}
+	
+	void run(int argc, char* argv[]) {
+		std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
+
+		if (!m_argManager->isValid(commands))
+			return;
+
+		Arg arg = m_argManager->makeStruct(commands);
+
+		if (arg.RWflag == true) {
+			write(arg.index, arg.value);
+		}
+		else {
+			read(arg.index);
+		}
+	}
+	
 	void read(int index) {
 		if (index < 0 || index > 99)
 			throw std::exception();
@@ -18,4 +37,5 @@ public:
 private:
 	IReader* m_reader;
 	IWriter* m_writer;
+	ArgManager* m_argManager;
 };
