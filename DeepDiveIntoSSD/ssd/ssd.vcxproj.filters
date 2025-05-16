@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="Test_FileIO.cpp" />
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="Ssd.h" />
@@ -13,5 +15,8 @@
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />
     <ClInclude Include="ReaderWriter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileIO.h" />
   </ItemGroup>
 </Project>
