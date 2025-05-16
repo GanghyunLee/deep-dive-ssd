@@ -60,11 +60,11 @@ class SsdControlServicHelp {
 public:
 	void Help() {
 		cout << "Team : DD(DeepDive)" << endl;
-		cout << "Writer : ÀÌ°­Çö, ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
+		cout << "writer : ÀÌ°­Çö, ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
 		cout << "write : ssd.exe W lba address" << endl;
 		cout << "read : ssd.exe R address" << endl;
-		cout << "ssd.exe fullwrite : ssd.exe fullwrite 0xABCDFFFF" << endl;
-		cout << "ssd.exe fullread : ssd.exe fullread 0xABCDFFFF" << endl;
+		cout << "fullwrite : ssd.exe fullwrite 0xABCDFFFF" << endl;
+		cout << "fullread : ssd.exe fullread 0xABCDFFFF" << endl;
 	}
 };
 
