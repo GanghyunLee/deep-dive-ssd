@@ -48,42 +48,42 @@ TEST(ArgManager, commandSplit4) {
 	EXPECT_EQ(argsExpect, am.commandSplit(3, input));
 }
 
-TEST(ArgManager, DISABLED_isValid1) {
+TEST(ArgManager, isValid1) {
 	ArgManager am;
 	std::vector<std::string> args{ "W", "3", "0x12345678" };
 
 	EXPECT_EQ(true, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_isValid2) {
+TEST(ArgManager, isValid2) {
 	ArgManager am;
 	std::vector<std::string> args{ "R", "3"};
 
 	EXPECT_EQ(true, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_isValid3) {
+TEST(ArgManager, isValid3) {
 	ArgManager am;
 	std::vector<std::string> args{ "R", "3", "0x12345678" };
 
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_isValid4) {
+TEST(ArgManager, isValid4) {
 	ArgManager am;
 	std::vector<std::string> args{ "RW", "3", "0x12345678" };
 
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_isValid5) {
+TEST(ArgManager, isValid5) {
 	ArgManager am;
 	std::vector<std::string> args{ "W", "103", "0x12345678" };
 
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST(ArgManager, DISABLED_isValid6) {
+TEST(ArgManager, isValid6) {
 	ArgManager am;
 	std::vector<std::string> args{ "W", "3", "0x123456788" };
 
