@@ -7,6 +7,7 @@ public:
 	const int WRITE_MODE = 2;
 
 	FileIO() = default;
+	bool isInvalidArgument(const std::string& fileName, int mode);
 	void setArgument(const std::string& fileName, int mode);
 	int getMode() const;
 	std::string getFileName() const;

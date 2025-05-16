@@ -3,7 +3,24 @@
 #include <string>
 #include "FileIO.h"
 
+bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
+
+	if ((fileName == "sdd_nand.txt") || (fileName == "sdd_output.txt")) {
+		return false;
+	}
+
+	if ((mode == READ_MODE) && (mode == WRITE_MODE)) {
+		return false;
+	}
+
+	return true;
+}
+
 void FileIO::setArgument(const std::string& fileName, int mode) {
+	if (isInvalidArgument(fileName, mode)) {
+		return;
+	}
+
 	this->fileName = fileName;
 	this->mode = mode;
 }

@@ -6,6 +6,7 @@ class FileIOFixture : public testing::Test {
 public:
 	const std::string OUTPUT_FILE = "sdd_output.txt";
 	const std::string INPUT_FILE = "sdd_nand.txt";
+	const std::string INVALID_FILE_NAME = "sdd_output234.txt";
 
 protected:
 	void SetUp() override {
@@ -42,6 +43,12 @@ TEST_F(FileIOFixture, MakeFileForHandlingNotFoundFileError) {
 
 TEST_F(FileIOFixture, FileOpenFailedByInvalidName) {
 
+	FileIO* fileIO = new FileIO();
+	EXPECT_TRUE(fileIO->isInvalidArgument(INVALID_FILE_NAME, fileIO->READ_MODE));
+	
+	fileIO->setArgument(INVALID_FILE_NAME, fileIO->READ_MODE);
+	fileIO->openFile();
+	EXPECT_FALSE(fileIO->isOpen());
 
 }
 
