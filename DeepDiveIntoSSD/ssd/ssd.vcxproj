@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArgManager.cpp" />
+    <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ReaderWriterTest.cpp" />
     <ClCompile Include="Ssd.h" />
@@ -135,6 +137,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArgManager.h" />
     <ClInclude Include="ReaderWriter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
