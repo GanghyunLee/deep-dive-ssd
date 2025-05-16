@@ -25,6 +25,9 @@
     <ClCompile Include="TestShellApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
+    <ClCompile Include="SsdControlServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">

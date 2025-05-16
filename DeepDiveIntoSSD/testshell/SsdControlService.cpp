@@ -28,9 +28,10 @@ public:
 		ss << "ssd.exe W " << to_string(lba) << " " << "0x" << hex << setw(8) << setfill('0') << value << endl;
 		system(ss.str().c_str());
 	}
-	void Exit() {
+	bool Exit() {
 		std::stringstream ss{ "exit" };
 		system(ss.str().c_str());
+		return true;
 	}
 	SsdReadResult FullRead()
 	{
@@ -58,13 +59,14 @@ public:
 
 class SsdControlServicHelp {
 public:
-	void Help() {
+	bool Help() {
 		cout << "Team : DD(DeepDive)" << endl;
 		cout << "writer : ÀÌ°­Çö, ±Ç°İ¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
 		cout << "write : ssd.exe W lba address" << endl;
 		cout << "read : ssd.exe R address" << endl;
 		cout << "fullwrite : ssd.exe fullwrite 0xABCDFFFF" << endl;
 		cout << "fullread : ssd.exe fullread 0xABCDFFFF" << endl;
+		return true;
 	}
 };
 
