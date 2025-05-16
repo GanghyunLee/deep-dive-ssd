@@ -45,7 +45,7 @@ void FileIO::openFile() {
 		return;
 	}
 
-	file.open(this->fileName, std::ios::out);
+	file.open(this->fileName, std::ios::out | std::ios::app);
 	return;
 }
 
@@ -59,12 +59,27 @@ bool FileIO::isOpen() {
 
 
 std::string FileIO::readLine() {
+	
+	if (mode != READ_MODE) {
+		throw std::exception();
+	}
+	if (!isOpen()) {
+		throw std::exception();
+	}
+	
 	std::string a;
 	std::getline(file, a);
 	return a;
 }
 
 void FileIO::writeLine(const std::string&) {
+
+	if (mode != WRITE_MODE) {
+		return;
+	}
+	if (!isOpen()) {
+		return;
+	}
 
 
 }
