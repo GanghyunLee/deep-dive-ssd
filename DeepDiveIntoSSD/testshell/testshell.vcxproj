@@ -141,6 +141,8 @@
     <ClCompile Include="IView.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestShellApplication.cpp" />
+    <ClCompile Include="SsdControlService.cpp" />
+    <ClCompile Include="SsdReadResult.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -151,6 +153,7 @@
     <ClInclude Include="IoC.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="TestShellApplication.h" />
+    <ClInclude Include="SsdReadResult.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

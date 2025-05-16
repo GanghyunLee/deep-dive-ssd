@@ -4,5 +4,5 @@
 int main(void)
 {
 	IoC ioc{};
-	return (true == TestShellApplication{ ioc }.Run());
+	return (true == TestShellApplication{ ioc, std::cin, std::cout }.Run());
 }
