@@ -28,6 +28,12 @@ TEST_F(SSDFixture, ReaderSuccess) {
 	ssd->read(index);
 }
 
+TEST_F(SSDFixture, ReaderFailedByIndex) {
+	int index = 100;
+
+	EXPECT_THROW(ssd->read(index), std::exception);
+}
+
 TEST_F(SSDFixture, WriterSuccess) {
 	int index = 0;
 	std::string value = "0x12345678";
@@ -35,4 +41,11 @@ TEST_F(SSDFixture, WriterSuccess) {
 	EXPECT_CALL(writer, write(index, value)).Times(1);
 
 	ssd->write(index, value);
+}
+
+TEST_F(SSDFixture, WriterFailedByIndex) {
+	int index = 100;
+	std::string value = "0x12345678";
+
+	EXPECT_THROW(ssd->write(index, value), std::exception);
 }
