@@ -1,42 +1,51 @@
 #include "gmock/gmock.h"
 #include "FileIO.h"
 
-TEST(FileIO, GetArgumentForFileIO) {
+class FileIOFixture : public testing::Test {
+
+public:
+	const std::string OUTPUT_FILE = "sdd_output.txt";
+	const std::string INPUT_FILE = "sdd_nand.txt";
+
+protected:
+	void SetUp() override {
+	}
+
+	void TearDown() override {
+	}
+};
+
+TEST_F(FileIOFixture, GetArgumentForFileIO) {
 
 	FileIO* fileIO = new FileIO();
-	const std::string fileName = "sdd_nand.txt";
-	int mode = fileIO->READ_MODE;
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
 
-	fileIO->setArgument(fileName, mode);
-
-	EXPECT_EQ(fileIO->getFileName(), fileName);
-	EXPECT_EQ(fileIO->getMode(), mode);
+	EXPECT_EQ(fileIO->getFileName(), INPUT_FILE);
+	EXPECT_EQ(fileIO->getMode(), fileIO->READ_MODE);
 
 }
 
-TEST(FileIO, FileOpenSuccess) {
+TEST_F(FileIOFixture, FileOpenSuccess) {
 
 	FileIO* fileIO = new FileIO();
-	const std::string fileName = "sdd_nand.txt";
-	int mode = fileIO->READ_MODE;
 
-	fileIO->setArgument(fileName, mode);
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
 	fileIO->openFile();
 
 	EXPECT_TRUE(fileIO->isOpen());
 }
 
-TEST(FileIO, MakeFileForHandlingNotFoundFileError) {
+TEST_F(FileIOFixture, MakeFileForHandlingNotFoundFileError) {
 
 
 }
 
-TEST(FileIO, FileOpenFailedByInvalidName) {
+TEST_F(FileIOFixture, FileOpenFailedByInvalidName) {
 
 
 }
 
-TEST(FileIO, FileOpenFailedByNotArgumentSetting) {
+TEST_F(FileIOFixture, FileOpenFailedByNotArgumentSetting) {
 
 
 }
