@@ -83,6 +83,41 @@ TEST_F(FileIOFixture, readOneLine) {
 	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
 	fileIO->openFile();
 	std::string line = fileIO->readLine();
+	fileIO->closeFile();
 
 	EXPECT_EQ("DeepDiveSSD", line);
+}
+
+TEST_F(FileIOFixture, readWithoutOpenedFile) {
+
+	FileIO* fileIO = new FileIO();
+
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+
+	try {
+		fileIO->readLine();
+		FAIL();
+	}
+	catch(std::exception &ex){
+		EXPECT_THAT(std::string{ ex.what() }, testing::Eq("파일이 열리지 않았습니다."));
+	}
+}
+
+TEST_F(FileIOFixture, readWithWriteModeFileIO) {
+
+	FileIO* fileIO = new FileIO();
+
+	fileIO->setArgument(INPUT_FILE, fileIO->WRITE_MODE);
+	fileIO->openFile();
+
+	try {
+		fileIO->readLine();
+		FAIL();
+	}
+	catch (std::exception& ex) {
+		EXPECT_THAT(std::string{ ex.what() }, testing::Eq("모드가 일치하지 않습니다."));
+	}
+
+	fileIO->closeFile();
+
 }

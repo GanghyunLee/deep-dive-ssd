@@ -61,10 +61,10 @@ bool FileIO::isOpen() {
 std::string FileIO::readLine() {
 	
 	if (mode != READ_MODE) {
-		throw std::exception();
+		throw std::exception("모드가 일치하지 않습니다.");
 	}
 	if (!isOpen()) {
-		throw std::exception();
+		throw std::exception("파일이 열리지 않았습니다.");
 	}
 	
 	std::string a;
