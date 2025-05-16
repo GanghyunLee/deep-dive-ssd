@@ -35,6 +35,10 @@ std::string FileIO::getFileName() const {
 
 void FileIO::openFile() {
 	
+	if (isInvalidArgument(fileName, mode)) {
+		return;
+	}
+
 	if (this->getMode() == READ_MODE) {
 		file.open(this->fileName, std::ios::in);
 		return;

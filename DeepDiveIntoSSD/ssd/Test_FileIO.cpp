@@ -48,13 +48,18 @@ TEST_F(FileIOFixture, FileOpenFailedByInvalidName) {
 	
 	fileIO->setArgument(INVALID_FILE_NAME, fileIO->READ_MODE);
 	fileIO->openFile();
+
 	EXPECT_FALSE(fileIO->isOpen());
 
 }
 
 TEST_F(FileIOFixture, FileOpenFailedByNotArgumentSetting) {
 
-
+	FileIO* fileIO = new FileIO();
+	
+	fileIO->openFile();
+	
+	EXPECT_FALSE(fileIO->isOpen());
 }
 
 TEST_F(FileIOFixture, FileClose) {
@@ -67,4 +72,5 @@ TEST_F(FileIOFixture, FileClose) {
 
 	fileIO->closeFile();
 	EXPECT_FALSE(fileIO->isOpen());
+
 }
