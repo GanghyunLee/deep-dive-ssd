@@ -121,3 +121,37 @@ TEST_F(FileIOFixture, readWithWriteModeFileIO) {
 	fileIO->closeFile();
 
 }
+
+TEST_F(FileIOFixture, writeWithoutOpenedFile) {
+
+	FileIO* fileIO = new FileIO();
+	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
+	fileIO->setArgument(INPUT_FILE, fileIO->WRITE_MODE);
+
+	try {
+		fileIO->writeLine(DUMMY_STRING);
+		FAIL();
+	}
+	catch (std::exception& ex) {
+		EXPECT_THAT(std::string{ ex.what() }, testing::Eq("파일이 열리지 않았습니다."));
+	}
+}
+
+TEST_F(FileIOFixture, writeWithReadModeFileIO) {
+
+	FileIO* fileIO = new FileIO();
+	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+
+	try {
+		fileIO->writeLine(DUMMY_STRING);
+		FAIL();
+	}
+	catch (std::exception& ex) {
+		EXPECT_THAT(std::string{ ex.what() }, testing::Eq("모드가 일치하지 않습니다."));
+	}
+
+	fileIO->closeFile();
+
+}

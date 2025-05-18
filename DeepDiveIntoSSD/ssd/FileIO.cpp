@@ -72,13 +72,13 @@ std::string FileIO::readLine() {
 	return a;
 }
 
-void FileIO::writeLine(const std::string&) {
+void FileIO::writeLine(const std::string &line) {
 
 	if (mode != WRITE_MODE) {
-		return;
+		throw std::exception("모드가 일치하지 않습니다.");
 	}
 	if (!isOpen()) {
-		return;
+		throw std::exception("파일이 열리지 않았습니다.");
 	}
 
 
