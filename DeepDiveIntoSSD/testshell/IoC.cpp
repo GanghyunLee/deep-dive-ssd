@@ -1,7 +1,9 @@
 #include "IoC.h"
+#include "ExitCommandMapper.h"
 
 std::vector<ICommandMapper*> IoC::GetCommandMappers()
 {
-	// TODO : Must Return actual result
-	return std::vector<ICommandMapper*>();
+	return std::vector<ICommandMapper*>{
+		_exitCommandMapper
+	};
 }

@@ -17,7 +17,8 @@ class SSDFixture : public Test {
 public:
 	ReaderMock reader;
 	WriterMock writer;
-	SSD* ssd = new SSD(&reader, &writer);
+	ArgManager argManager;
+	SSD* ssd = new SSD(&reader, &writer, &argManager);
 };
 
 TEST_F(SSDFixture, ReaderSuccess) {
