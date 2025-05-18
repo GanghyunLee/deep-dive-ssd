@@ -8,6 +8,6 @@ int main(void)
 	return RUN_ALL_TESTS();
 #else
 	IoC ioc{};
-	return (true == TestShellApplication{ ioc, std::cin, std::cout }.Run());
+	return (true == TestShellApplication{ ioc, std::cin, std::cout, true }.Run());
 #endif
 }

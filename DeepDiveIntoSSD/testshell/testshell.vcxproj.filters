@@ -25,8 +25,14 @@
     <ClCompile Include="TestShellApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="SsdControlServiceTest.cpp">
-      <Filter>Service\SSD</Filter>
+    <ClCompile Include="TestShellApplicationTest.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitCommand.cpp">
+      <Filter>Application\Command\ExitCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitCommandMapper.cpp">
+      <Filter>Application\CommandMapper\ExitCommand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +53,12 @@
     </ClInclude>
     <ClInclude Include="TestShellApplication.h">
       <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitCommand.h">
+      <Filter>Application\Command\ExitCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitCommandMapper.h">
+      <Filter>Application\CommandMapper\ExitCommand</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +85,12 @@
     </Filter>
     <Filter Include="Service\SSD">
       <UniqueIdentifier>{495f9007-a851-4873-98de-f7c67f733d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ExitCommand">
+      <UniqueIdentifier>{1426fe1c-1304-4941-83cb-abd612bdf30e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\ExitCommand">
+      <UniqueIdentifier>{b136bd51-0e60-422d-b647-6c7b50cd6e6a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
