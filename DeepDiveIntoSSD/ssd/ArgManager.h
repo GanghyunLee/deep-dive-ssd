@@ -12,6 +12,6 @@ public:
 class ArgManager {
 public:
 	std::vector<std::string> commandSplit(int argc, char* argv[]);
-	Arg makeStruct(std::vector<std::string>);
-	bool isValid(std::vector<std::string>);
+	Arg makeStruct(const std::vector<std::string>& args);
+	bool isValid(const std::vector<std::string>& args);
 };
