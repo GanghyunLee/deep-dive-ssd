@@ -88,7 +88,7 @@ class SsdControlServicHelp {
 public:
 	bool Help() {
 		cout << "Team : DD(DeepDive)" << endl;
-		cout << "writer : ÀÌ°­Çö, ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
+		cout << "writer : ÀÌ°­Çö(ÆÀÀå), ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
 		cout << "write : ssd.exe W lba address" << endl;
 		cout << "read : ssd.exe R address" << endl;
 		cout << "fullwrite : ssd.exe fullwrite 0xABCDFFFF" << endl;
