@@ -2,30 +2,19 @@
 #include <memory>
 #include <vector>
 
+#include "AbstractTestScriptService.h"
 #include "ISsdController.h"
 
-class FullWriteAndReadCompareTestScriptService
+class FullWriteAndReadCompareTestScriptService : public AbstractTestScriptService
 {
-	enum
-	{
-		MAX_LBA = 99
-	};
-
 public:
-	FullWriteAndReadCompareTestScriptService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
+	FullWriteAndReadCompareTestScriptService(std::shared_ptr<ISsdController> ssdController) : AbstractTestScriptService(ssdController)
 	{
 	}
 
-	virtual ~FullWriteAndReadCompareTestScriptService() = default;
+	~FullWriteAndReadCompareTestScriptService() override = default;
 
 public:
-	virtual bool Execute();
-
-protected:
-	bool WriteValueToLbaArea(int startLba, int endLba, unsigned int data);
-	bool ReadCompareToLbaArea(int startLba, int endLba, unsigned int data);
-
-protected:
-	std::shared_ptr<ISsdController> _ssdController;
+	bool Execute() override;
 };
 

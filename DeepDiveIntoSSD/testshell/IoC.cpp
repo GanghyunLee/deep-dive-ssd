@@ -5,6 +5,7 @@
 #include "FullWriteCommandMapper.h"
 #include "HelpCommand.h"
 #include "HelpCommandMapper.h"
+#include "PartialLBAWriteTestScriptCommandMapper.h"
 #include "ReadCommandMapper.h"
 #include "SsdController.h"
 #include "WriteCommand.h"
@@ -35,6 +36,9 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptCommandMapper> fullWriteAndReadCompareTestScriptCommandMapper =
 		std::make_shared<FullWriteAndReadCompareTestScriptCommandMapper>(GetFullWriteAndReadCompareTestScriptService());
 
+	static std::shared_ptr<PartialLBAWriteTestScriptCommandMapper> partialLBAWriteTestScriptCommandMapper =
+		std::make_shared<PartialLBAWriteTestScriptCommandMapper>(GetPartialLbaWriteTestScriptService());
+
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
@@ -44,6 +48,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		fullWriteCommandMapper,
 		fullReadCommandMapper,
 		fullWriteAndReadCompareTestScriptCommandMapper,
+		partialLBAWriteTestScriptCommandMapper,
 		helpCommandMapper,
 	};
 }
@@ -76,6 +81,13 @@ std::shared_ptr<FullWriteAndReadCompareTestScriptService> IoC::GetFullWriteAndRe
 {
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptService> ssdScriptService = 
 		std::make_shared<FullWriteAndReadCompareTestScriptService>(GetSsdController());
+	return ssdScriptService;
+}
+
+std::shared_ptr<PartialLbaWriteTestScriptService> IoC::GetPartialLbaWriteTestScriptService()
+{
+	static std::shared_ptr<PartialLbaWriteTestScriptService> ssdScriptService =
+		std::make_shared<PartialLbaWriteTestScriptService>(GetSsdController());
 	return ssdScriptService;
 }
 
