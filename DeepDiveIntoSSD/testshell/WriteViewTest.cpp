@@ -15,7 +15,7 @@ public:
 
 TEST_F(WriteViewTestFixture, SSDWritePassCaseTest)
 {
-	WriteCommandResultDto writeCommandResult = WriteCommandResultDto::From(true);
+	SsdWriteResult writeCommandResult = SsdWriteResult::From(true);
 	WriteView writeView{writeCommandResult};
 	writeView.Render(_ostream);
 
@@ -24,7 +24,7 @@ TEST_F(WriteViewTestFixture, SSDWritePassCaseTest)
 
 TEST_F(WriteViewTestFixture, SSDWriteFailCaseTest)
 {
-	WriteCommandResultDto writeCommandResult = WriteCommandResultDto::From(false);
+	SsdWriteResult writeCommandResult = SsdWriteResult::From(false);
 	WriteView writeView{ writeCommandResult };
 	writeView.Render(_ostream);
 

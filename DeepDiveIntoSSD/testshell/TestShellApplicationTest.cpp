@@ -13,7 +13,7 @@ public:
 
 public:
 	MOCK_METHOD(bool, IsSupport, (const std::vector<std::string>&), (override));
-	MOCK_METHOD(ICommand*, GenerateCommand, (const std::vector<std::string>&), (override));
+	MOCK_METHOD(std::shared_ptr<ICommand>, GenerateCommand, (const std::vector<std::string>&), (override));
 };
 
 class MockCommand : public ICommand
@@ -22,7 +22,7 @@ public:
 	~MockCommand() override = default;
 
 public:
-	MOCK_METHOD(IView*, Execute, (), (override));
+	MOCK_METHOD(std::shared_ptr<IView>, Execute, (), (override));
 };
 
 class MockView : public IView
@@ -39,42 +39,23 @@ class TestShellApplicationTestFixture : public Test
 protected:
 	void SetUp() override
 	{
-		sut = new TestShellApplication {
-			std::vector<ICommandMapper*> {&mockCommandMapper},
+		mockCommandMapper = std::make_shared<MockCommandMapper>();
+
+		sut = std::make_shared<TestShellApplication>(
+			std::vector<std::shared_ptr<ICommandMapper>> {mockCommandMapper},
 			istream, ostream, false
-		};
-	}
-
-	void TearDown() override
-	{
-		if (sut)
-		{
-			delete sut;
-			sut = nullptr;
-		}
-
-		if (mockCommand)
-		{
-			delete mockCommand;
-			mockCommand = nullptr;
-		}
-
-		if (mockView)
-		{
-			delete mockView;
-			mockView = nullptr;
-		}
+		);
 	}
 	
 public:
 	// Create This object only if it is required.
-	MockCommand* mockCommand = nullptr;
-	MockView* mockView = nullptr;
+	shared_ptr<MockCommand> mockCommand = nullptr;
+	shared_ptr<MockView> mockView = nullptr;
 
-	MockCommandMapper mockCommandMapper{};
+	std::shared_ptr<MockCommandMapper> mockCommandMapper;
 	std::istringstream istream;
 	std::ostringstream ostream;
-	TestShellApplication* sut = nullptr;
+	std::shared_ptr<TestShellApplication> sut = nullptr;
 
 	void EnqueueCommandWithExitCommand(const string& commandInput)
 	{
@@ -89,11 +70,11 @@ public:
 
 TEST_F(TestShellApplicationTestFixture, InvalidCommandMustPrintInvalidCommandError)
 {
-	EXPECT_CALL(mockCommandMapper, IsSupport(_))
+	EXPECT_CALL(*mockCommandMapper, IsSupport(_))
 		.Times(1)
 		.WillRepeatedly(Return(false));
 
-	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+	EXPECT_CALL(*mockCommandMapper, GenerateCommand(_))
 		.Times(0);
 
 	EnqueueCommandWithExitCommand(STR_DUMMY_COMMAND);
@@ -103,13 +84,13 @@ TEST_F(TestShellApplicationTestFixture, InvalidCommandMustPrintInvalidCommandErr
 
 TEST_F(TestShellApplicationTestFixture, SupportedCommandMustGenerateValidCommand)
 {
-	mockCommand = new MockCommand();
+	mockCommand = std::make_shared<MockCommand>();
 
-	EXPECT_CALL(mockCommandMapper, IsSupport(_))
+	EXPECT_CALL(*mockCommandMapper, IsSupport(_))
 		.Times(1)
 		.WillRepeatedly(Return(true));
 
-	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+	EXPECT_CALL(*mockCommandMapper, GenerateCommand(_))
 		.Times(1)
 		.WillRepeatedly(Return(mockCommand));
 
@@ -124,14 +105,14 @@ TEST_F(TestShellApplicationTestFixture, SupportedCommandMustGenerateValidCommand
 
 TEST_F(TestShellApplicationTestFixture, CommandWhichHasAViewMustGenerateValidCommandAndRender)
 {
-	mockCommand = new MockCommand();
-	mockView = new MockView();
+	mockCommand = std::shared_ptr<MockCommand>();
+	mockView = std::shared_ptr<MockView>();
 
-	EXPECT_CALL(mockCommandMapper, IsSupport(_))
+	EXPECT_CALL(*mockCommandMapper, IsSupport(_))
 		.Times(1)
 		.WillRepeatedly(Return(true));
 
-	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+	EXPECT_CALL(*mockCommandMapper, GenerateCommand(_))
 		.Times(1)
 		.WillRepeatedly(Return(mockCommand));
 

@@ -9,11 +9,10 @@ using namespace testing;
 class MockHelpCommand : public HelpCommand
 {
 public:
-	MockHelpCommand() : HelpCommand(nullptr) {}
 	~MockHelpCommand() override = default;
 
 public:
-	MOCK_METHOD(IView*, Execute, (), (override));
+	MOCK_METHOD(std::shared_ptr<IView>, Execute, (), (override));
 };
 
 class HelpCommandMapperTestFixture : public Test
@@ -21,22 +20,9 @@ class HelpCommandMapperTestFixture : public Test
 public:
 	~HelpCommandMapperTestFixture() override = default;
 
-protected:
-	void SetUp() override
-	{
-		mockHelpCommand = new MockHelpCommand();
-		helpCommandMapper = new HelpCommandMapper(mockHelpCommand);
-	}
-
-	void TearDown() override
-	{
-		delete mockHelpCommand; mockHelpCommand = nullptr;
-		delete helpCommandMapper; helpCommandMapper = nullptr;
-	}
-
 public:
-	MockHelpCommand* mockHelpCommand = nullptr;
-	HelpCommandMapper* helpCommandMapper = nullptr;
+	std::shared_ptr<MockHelpCommand> mockHelpCommand = nullptr;
+	std::shared_ptr<HelpCommandMapper> helpCommandMapper = nullptr;
 };
 
 TEST_F(HelpCommandMapperTestFixture, HelpCommandMapperValidArgumentTest)

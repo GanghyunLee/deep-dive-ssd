@@ -1,5 +1,4 @@
 ﻿#include "TestShellApplication.h"
-
 #include <algorithm>
 #include <exception>
 #include <sstream>
@@ -20,13 +19,14 @@ bool TestShellApplication::Run()
 			std::vector<std::string> userInputCommand = SplitUserInputCommand(userInput);
 
 			// 3. Parse Command
-			ICommand* command = nullptr;
+			std::shared_ptr<ICommand> command = nullptr;
 			for (auto& commandMapper : _commandMappers)
 			{
 				if (false == commandMapper->IsSupport(userInputCommand))
 					continue;
 
 				command = commandMapper->GenerateCommand(userInputCommand);
+				break;
 			}
 
 			// 4. Check if Failed to map command
@@ -34,7 +34,7 @@ bool TestShellApplication::Run()
 				throw std::exception{ "INVALID COMMAND" };
 
 			// 5. Execute Command
-			IView* view = command->Execute();
+			std::shared_ptr<IView> view = command->Execute();
 
 			// 6. Print Result
 			if (view)

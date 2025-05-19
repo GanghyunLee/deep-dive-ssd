@@ -1,16 +1,13 @@
 #include "IoC.h"
-
 #include "HelpCommand.h"
 #include "HelpCommandMapper.h"
-#include "HelpView.h"
 
-std::vector<ICommandMapper*> IoC::GetCommandMappers()
+std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 {
-	static HelpView helpView{};
-	static HelpCommand helpCommand{ &helpView };
-	static HelpCommandMapper helpCommandMapper{ &helpCommand };
+	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
+	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
-	return std::vector<ICommandMapper*>{
-		&helpCommandMapper,
+	return std::vector<std::shared_ptr<ICommandMapper>>{
+		helpCommandMapper,
 	};
 }

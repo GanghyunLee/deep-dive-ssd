@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <memory>
 #include "IView.h"
 
 class ICommand
@@ -8,6 +9,6 @@ public:
 
 public:
 	// nullptr로 리턴하면 아무것도 출력하지 않는다.
-	virtual IView* Execute() = 0;
+	virtual std::shared_ptr<IView> Execute() = 0;
 };
 
