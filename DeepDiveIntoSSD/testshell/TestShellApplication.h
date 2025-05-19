@@ -16,7 +16,7 @@ public:
 
 protected:
 	std::string GetUserInputLowerStr();
-	std::vector<std::string> SplitCommand(const std::string& input);
+	std::vector<std::string> SplitUserInputCommand(const std::string& input);
 
 private:
 	const std::string STR_SHELL_START = "Shell>";
