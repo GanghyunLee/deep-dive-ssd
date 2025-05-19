@@ -10,43 +10,54 @@ public:
 
 class WriterMock : public IWriter {
 public:
-	MOCK_METHOD(void, write, (int, std::string), (override));
+	MOCK_METHOD(void, write, (int, const std::string &), (override));
 };
 
 class SSDFixture : public Test {
 public:
-	ReaderMock reader;
-	WriterMock writer;
+	ReaderMock readerMock;
+	WriterMock writerMock;
 	ArgManager argManager;
-	SSD* ssd = new SSD(&reader, &writer, &argManager);
+	
+	Reader reader;
+	Writer writer;
+
+	SSD* ssdMock = new SSD(&readerMock, &writerMock, &argManager);
+	SSD* ssdReal = new SSD(&reader, &writer, &argManager);
 };
 
 TEST_F(SSDFixture, ReaderSuccess) {
 	int index = 0;
 	
-	EXPECT_CALL(reader, read(index)).Times(1);
+	EXPECT_CALL(readerMock, read(index)).Times(1);
 
-	ssd->read(index);
+	ssdMock->read(index);
 }
 
 TEST_F(SSDFixture, ReaderFailedByIndex) {
 	int index = 100;
 
-	EXPECT_THROW(ssd->read(index), std::exception);
+	EXPECT_THROW(ssdMock->read(index), std::exception);
 }
 
 TEST_F(SSDFixture, WriterSuccess) {
 	int index = 0;
 	std::string value = "0x12345678";
 	
-	EXPECT_CALL(writer, write(index, value)).Times(1);
+	EXPECT_CALL(writerMock, write(index, value)).Times(1);
 
-	ssd->write(index, value);
+	ssdMock->write(index, value);
 }
 
 TEST_F(SSDFixture, WriterFailedByIndex) {
 	int index = 100;
 	std::string value = "0x12345678";
 
-	EXPECT_THROW(ssd->write(index, value), std::exception);
+	EXPECT_THROW(ssdMock->write(index, value), std::exception);
+}
+
+TEST_F(SSDFixture, openFileForRead) {
+
+
+
 }
