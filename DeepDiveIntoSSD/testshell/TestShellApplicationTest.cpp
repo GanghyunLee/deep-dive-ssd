@@ -1,3 +1,4 @@
+#include "ICommand.h"
 #include "ICommandMapper.h"
 #include "TestShellApplication.h"
 #include "gmock/gmock.h"
@@ -8,8 +9,29 @@ using namespace testing;
 class MockCommandMapper : public ICommandMapper
 {
 public:
+	~MockCommandMapper() override = default;
+
+public:
 	MOCK_METHOD(bool, IsSupport, (const std::vector<std::string>&), (override));
 	MOCK_METHOD(ICommand*, GenerateCommand, (const std::vector<std::string>&), (override));
+};
+
+class MockCommand : public ICommand
+{
+public:
+	~MockCommand() override = default;
+
+public:
+	MOCK_METHOD(IView*, Execute, (), (override));
+};
+
+class MockView : public IView
+{
+public:
+	~MockView() override = default;
+
+public:
+	MOCK_METHOD(void, Render, (std::ostream& os), (override));
 };
 
 class TestShellApplicationTestFixture : public Test
@@ -33,6 +55,10 @@ protected:
 	}
 	
 public:
+	// Create This object only if it is required.
+	MockCommand* mockCommand = nullptr;
+	MockView* mockView = nullptr;
+
 	MockCommandMapper mockCommandMapper{};
 	std::istringstream istream;
 	std::ostringstream ostream;
@@ -45,6 +71,8 @@ public:
 		istream.str(ss.str());
 		sut->Run();
 	}
+
+	const std::string STR_DUMMY_COMMAND = "DUMMY";
 };
 
 TEST_F(TestShellApplicationTestFixture, InvalidCommandMustPrintInvalidCommandError)
@@ -53,7 +81,56 @@ TEST_F(TestShellApplicationTestFixture, InvalidCommandMustPrintInvalidCommandErr
 		.Times(1)
 		.WillRepeatedly(Return(false));
 
-	EnqueueCommandWithExitCommand("INVALID_CMD");
+	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+		.Times(0);
+
+	EnqueueCommandWithExitCommand(STR_DUMMY_COMMAND);
 
 	EXPECT_EQ(ostream.str(), "INVALID COMMAND\n");
+}
+
+TEST_F(TestShellApplicationTestFixture, SupportedCommandMustGenerateValidCommand)
+{
+	mockCommand = new MockCommand();
+
+	EXPECT_CALL(mockCommandMapper, IsSupport(_))
+		.Times(1)
+		.WillRepeatedly(Return(true));
+
+	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+		.Times(1)
+		.WillRepeatedly(Return(mockCommand));
+
+	EXPECT_CALL(*mockCommand, Execute)
+		.Times(1)
+		.WillRepeatedly(Return(nullptr));
+
+	EnqueueCommandWithExitCommand(STR_DUMMY_COMMAND);
+
+	EXPECT_EQ(ostream.str(), "\n");
+}
+
+TEST_F(TestShellApplicationTestFixture, CommandWhichHasAViewMustGenerateValidCommandAndRender)
+{
+	mockCommand = new MockCommand();
+	mockView = new MockView();
+
+	EXPECT_CALL(mockCommandMapper, IsSupport(_))
+		.Times(1)
+		.WillRepeatedly(Return(true));
+
+	EXPECT_CALL(mockCommandMapper, GenerateCommand(_))
+		.Times(1)
+		.WillRepeatedly(Return(mockCommand));
+
+	EXPECT_CALL(*mockCommand, Execute)
+		.Times(1)
+		.WillRepeatedly(Return(mockView));
+
+	EXPECT_CALL(*mockView, Render(_))
+		.Times(1);
+
+	EnqueueCommandWithExitCommand(STR_DUMMY_COMMAND);
+
+	EXPECT_EQ(ostream.str(), "\n");
 }
