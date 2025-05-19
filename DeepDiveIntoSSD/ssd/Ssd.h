@@ -14,6 +14,7 @@ public:
 	void write(int index, std::string value);
 	void readAllData();
 	void dumpData();
+	void dumpError();
 
 private:
 	IReader* m_reader;

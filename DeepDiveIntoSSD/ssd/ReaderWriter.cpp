@@ -37,9 +37,9 @@ int Reader::read(int index)  {
 
 void Reader::updateOutputFile(int index, int value) {
 
-	std::fstream file("ssd_output.txt", std::ios::out);
+	std::fstream file("ssd_output.txt", std::ios::out | std::ios::trunc);
 	file << "0x" << std::hex << std::setfill('0') << std::setw(10) << value;
-
+	file.close();
 	return;
 }
 

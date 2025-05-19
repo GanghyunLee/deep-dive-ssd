@@ -34,11 +34,11 @@ TEST_F(SSDFixture, ReaderSuccess) {
 	ssdMock->read(index);
 }
 
-TEST_F(SSDFixture, ReaderFailedByIndex) {
-	int index = 100;
-
-	EXPECT_THROW(ssdMock->read(index), std::exception);
-}
+//TEST_F(SSDFixture, ReaderFailedByIndex) {
+//	int index = 100;
+//
+//	EXPECT_THROW(ssdMock->read(index), std::exception);
+//}
 
 TEST_F(SSDFixture, WriterSuccess) {
 	int index = 0;
@@ -49,12 +49,12 @@ TEST_F(SSDFixture, WriterSuccess) {
 	ssdMock->write(index, value);
 }
 
-TEST_F(SSDFixture, WriterFailedByIndex) {
-	int index = 100;
-	std::string value = "0x12345678";
-
-	EXPECT_THROW(ssdMock->write(index, value), std::exception);
-}
+//TEST_F(SSDFixture, WriterFailedByIndex) {
+//	int index = 100;
+//	std::string value = "0x12345678";
+//
+//	EXPECT_THROW(ssdMock->write(index, value), std::exception);
+//}
 
 TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
@@ -94,5 +94,29 @@ TEST_F(SSDFixture, writeSSDNANDTextFile) {
 
 	std::getline(fp, line);
 	EXPECT_EQ("0x0000000033", line);
+
+}
+
+TEST_F(SSDFixture, writeInvalidAddressFile) {
+
+	ssdReal->write(100, "0x0000000033");
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("ERROR", line);
+
+}
+
+TEST_F(SSDFixture, readInvalidAddressFile) {
+
+	ssdReal->read(100);
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("ERROR", line);
 
 }
