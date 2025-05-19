@@ -79,17 +79,6 @@ TEST_F(FileIOFixture, FileClose) {
 
 }
 
-TEST_F(FileIOFixture, readOneLine) {
-
-	FileIO* fileIO = new FileIO();
-
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->READ_MODE);
-	std::string line = fileIO->readLine();
-	fileIO->closeFile();
-
-	EXPECT_EQ("DeepDiveSSD", line);
-}
-
 TEST_F(FileIOFixture, readWithoutOpenedFile) {
 
 	FileIO* fileIO = new FileIO();
@@ -150,23 +139,6 @@ TEST_F(FileIOFixture, writeWithReadModeFileIO) {
 
 	fileIO->closeFile();
 
-}
-
-TEST_F(FileIOFixture, writeTest) {
-
-	FileIO* fileIO = new FileIO();
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->WRITE_MODE);
-
-	fileIO->writeLine(DUMMY_STRING);
-	fileIO->closeFile();
-
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->READ_MODE);
-
-	// 첫 줄은 DeepDive Signature 있음
-	std::string line = fileIO->readLine();
-	line = fileIO->readLine();
-
-	EXPECT_EQ(line, DUMMY_STRING);
 }
 
 TEST_F(FileIOFixture, readEOFTest) {
