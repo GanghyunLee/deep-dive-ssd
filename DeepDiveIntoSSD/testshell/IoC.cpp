@@ -16,6 +16,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
 	return std::vector<std::shared_ptr<ICommandMapper>>{
+		writeCommandMapper,
 		helpCommandMapper,
 	};
 }
