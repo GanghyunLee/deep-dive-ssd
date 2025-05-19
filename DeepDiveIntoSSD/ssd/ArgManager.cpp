@@ -16,6 +16,7 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	
 	if (argc < 2) return false;
 
+	// args[1]의 값이 int로 바꿀 수 없는 값일 경우 invalid_argument exception 발생
 	index = stoi(args[1]);
 	if (index > 99 || index < 0) return false;
 	if (args[0] != "R" && args[0] != "r" && args[0] != "W" && args[0] != "w") return false;
