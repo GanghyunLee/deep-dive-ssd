@@ -56,8 +56,17 @@ TEST_F(SSDFixture, WriterFailedByIndex) {
 	EXPECT_THROW(ssdMock->write(index, value), std::exception);
 }
 
-TEST_F(SSDFixture, openFileForRead) {
+TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
+	ssdReal->initFile();
 
+	std::fstream fp("ssd_nand.txt", std::ios::in);
+	int lineNum = 0;
+	std::string line;
+	
+	while (std::getline(fp, line)) {
+		lineNum++;
+	}
 
+	EXPECT_EQ(lineNum, 100);
 }

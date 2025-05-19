@@ -3,6 +3,7 @@
 #include "ReaderWriter.h"
 #include "ArgManager.h"
 #include <iostream>
+#include <iomanip>
 
 class SSD {
 public:
@@ -32,6 +33,22 @@ public:
 			throw std::exception();
 		m_writer->write(index, value);
 	}
+
+	void initFile() {
+
+		std::fstream dataFile("ssd_nand.txt", std::ios::out);
+		
+		for (int i = 0; i < 100; i++) {
+			// 1. 정수 출력: 폭 2, 오른쪽 정렬, 공백 채움
+			dataFile << std::setw(2) << std::right << i << " ";
+
+			// 2. 16진수 출력: 폭 10, 0으로 채움, 소문자, 접두어 없음
+			dataFile << std::setw(10) << std::setfill('0') << std::hex << std::nouppercase << 0 << std::endl;
+		}
+
+		dataFile.close();
+	}
+
 private:
 	IReader* m_reader;
 	IWriter* m_writer;
