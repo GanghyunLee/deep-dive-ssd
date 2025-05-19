@@ -7,6 +7,7 @@ public:
 	const std::string OUTPUT_FILE = "sdd_output.txt";
 	const std::string INPUT_FILE = "sdd_nand.txt";
 	const std::string INVALID_FILE_NAME = "sdd_output234.txt";
+
 	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
 
 	void openFileWithArgument(FileIO *fileIO, const std::string fileName, int mode) {
@@ -167,4 +168,28 @@ TEST_F(FileIOFixture, writeTest) {
 	line = fileIO->readLine();
 
 	EXPECT_EQ(line, DUMMY_STRING);
+}
+
+TEST_F(FileIOFixture, readEOFTest) {
+
+	FileIO* fileIO = new FileIO();
+	openFileWithArgument(fileIO, INPUT_FILE, fileIO->READ_MODE);
+
+	std::string line; 
+
+	int idx = 0; 
+	while (true) {
+		line = fileIO->readLine();
+		if (line == "") break;
+		idx++;
+	}
+	fileIO->closeFile();
+
+	int line_num = 0;
+	std::fstream fp(INPUT_FILE, std::ios::in);
+	while (std::getline(fp, line)) {
+		line_num++;
+	}
+
+	EXPECT_EQ(idx, line_num);
 }
