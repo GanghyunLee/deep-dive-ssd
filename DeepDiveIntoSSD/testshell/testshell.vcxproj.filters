@@ -103,6 +103,21 @@
     <ClCompile Include="ReadCommandMapperTest.cpp">
       <Filter>Application\CommandMapper\Read</Filter>
     </ClCompile>
+    <ClCompile Include="SsdFullWriteService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteView.cpp">
+      <Filter>Application\View\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteCommand.cpp">
+      <Filter>Application\Command\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsingUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -168,6 +183,21 @@
     <ClInclude Include="ReadCommandMapper.h">
       <Filter>Application\CommandMapper\Read</Filter>
     </ClInclude>
+    <ClInclude Include="SsdFullWriteService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteView.h">
+      <Filter>Application\View\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteCommand.h">
+      <Filter>Application\Command\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteCommandMapper.h">
+      <Filter>Application\CommandMapper\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsingUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -229,6 +259,18 @@
     </Filter>
     <Filter Include="Application\Command\Read">
       <UniqueIdentifier>{8effdc6d-3ddd-4ecc-aa8b-c766711f4816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\FullWrite">
+      <UniqueIdentifier>{4989feee-d538-4a22-8a76-e49c2421f37c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\FullWrite">
+      <UniqueIdentifier>{bfaae2e5-7c4e-4de2-ac69-c208380a7de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullWrite">
+      <UniqueIdentifier>{8a060141-656e-4189-9311-9ba9b2793db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{516ec221-d6dc-4e7e-8b81-beea254c095a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

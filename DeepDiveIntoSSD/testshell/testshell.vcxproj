@@ -135,6 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FullWriteCommand.cpp" />
+    <ClCompile Include="FullWriteCommandMapper.cpp" />
+    <ClCompile Include="FullWriteView.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="HelpCommandMapper.cpp" />
     <ClCompile Include="HelpCommandMapperTest.cpp" />
@@ -148,6 +151,7 @@
     <ClCompile Include="main.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="ParsingUtil.cpp" />
     <ClCompile Include="ReadCommand.cpp" />
     <ClCompile Include="ReadCommandMapper.cpp" />
     <ClCompile Include="ReadCommandMapperTest.cpp" />
@@ -158,6 +162,7 @@
     <ClCompile Include="SsdControlServiceTest.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="SsdFullWriteService.cpp" />
     <ClCompile Include="SsdReadResult.cpp" />
     <ClCompile Include="SsdReadService.cpp" />
     <ClCompile Include="SsdReadServiceTest.cpp" />
@@ -180,6 +185,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FullWriteCommand.h" />
+    <ClInclude Include="FullWriteCommandMapper.h" />
+    <ClInclude Include="FullWriteView.h" />
     <ClInclude Include="HelpCommand.h" />
     <ClInclude Include="HelpCommandMapper.h" />
     <ClInclude Include="HelpView.h" />
@@ -189,10 +197,12 @@
     <ClInclude Include="ISsdController.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="MockSsdControler.h" />
+    <ClInclude Include="ParsingUtil.h" />
     <ClInclude Include="ReadCommand.h" />
     <ClInclude Include="ReadCommandMapper.h" />
     <ClInclude Include="ReadView.h" />
     <ClInclude Include="SsdController.h" />
+    <ClInclude Include="SsdFullWriteService.h" />
     <ClInclude Include="SsdReadResult.h" />
     <ClInclude Include="SsdReadService.h" />
     <ClInclude Include="SsdWriteService.h" />
