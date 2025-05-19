@@ -402,3 +402,7 @@ FodyWeavers.xsd
 DeepDiveIntoSSD/testshell/ssd.exe
 DeepDiveIntoSSD/testshell/ssd_nand.txt
 DeepDiveIntoSSD/testshell/ssd_output.txt
+DeepDiveIntoSSD/ssd/ssd_nand.txt
+DeepDiveIntoSSD/ssd/ssd_output.txt
+DeepDiveIntoSSD/ssd/ssd_nand.txt
+DeepDiveIntoSSD/ssd/ssd_output.txt
