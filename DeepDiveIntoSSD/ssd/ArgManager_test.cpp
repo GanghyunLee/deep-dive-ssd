@@ -118,32 +118,56 @@ TEST_F(ArgManagerFixture, isValid10) {
 	EXPECT_EQ(true, am.isValid(args));
 }
 
-TEST_F(ArgManagerFixture, isVali11) {
+TEST_F(ArgManagerFixture, isValid11) {
 	std::vector<std::string> args{ "r", "2" };
 
 	EXPECT_EQ(true, am.isValid(args));
 }
 
-TEST_F(ArgManagerFixture, isVali12) {
+TEST_F(ArgManagerFixture, isValid12) {
 	std::vector<std::string> args{ "w", "2", "0xabcdef", "123123", "agfef"};
 
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST_F(ArgManagerFixture, isVali13) {
+TEST_F(ArgManagerFixture, isValid13) {
 	std::vector<std::string> args{ "R", "2", "0xabcdef01" };
 
 	EXPECT_EQ(false, am.isValid(args));
 }
 
-TEST_F(ArgManagerFixture, isVali14) {
+TEST_F(ArgManagerFixture, isValid14) {
 	std::vector<std::string> args{ "W", "2", "0x0000abcd" };
 
 	EXPECT_EQ(true, am.isValid(args));
 }
 
-TEST_F(ArgManagerFixture, isVali15) {
+TEST_F(ArgManagerFixture, isValid15) {
 	std::vector<std::string> args{ "W", "2" };
+
+	EXPECT_EQ(false, am.isValid(args));
+}
+
+TEST_F(ArgManagerFixture, isValid16) {
+	std::vector<std::string> args{ "W", "acefs" };
+
+	EXPECT_THROW(am.isValid(args), std::invalid_argument);
+}
+
+TEST_F(ArgManagerFixture, isValid17) {
+	std::vector<std::string> args{ "W", "2", "qsefdse"};
+
+	EXPECT_EQ(false, am.isValid(args));
+}
+
+TEST_F(ArgManagerFixture, isValid18) {
+	std::vector<std::string> args;
+
+	EXPECT_EQ(false, am.isValid(args));
+}
+
+TEST_F(ArgManagerFixture, isValid19) {
+	std::vector<std::string> args{ "W" };
 
 	EXPECT_EQ(false, am.isValid(args));
 }
