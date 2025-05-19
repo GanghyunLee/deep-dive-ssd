@@ -135,6 +135,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HelpCommand.cpp" />
+    <ClCompile Include="HelpCommandMapper.cpp" />
+    <ClCompile Include="HelpCommandMapperTest.cpp" />
+    <ClCompile Include="HelpCommandTest.cpp" />
+    <ClCompile Include="HelpView.cpp" />
     <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="ICommandMapper.cpp" />
     <ClCompile Include="IoC.cpp" />
@@ -156,6 +161,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelpCommand.h" />
+    <ClInclude Include="HelpCommandMapper.h" />
+    <ClInclude Include="HelpView.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="ICommandMapper.h" />
     <ClInclude Include="IoC.h" />
