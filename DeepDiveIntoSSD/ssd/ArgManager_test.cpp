@@ -144,7 +144,7 @@ TEST_F(ArgManagerFixture, isValid15) {
 TEST_F(ArgManagerFixture, isValid16) {
 	std::vector<std::string> args{ "W", "acefs" };
 
-	EXPECT_THROW(am.isValid(args), std::invalid_argument);
+	EXPECT_EQ(false, am.isValid(args));
 }
 
 TEST_F(ArgManagerFixture, isValid17) {
