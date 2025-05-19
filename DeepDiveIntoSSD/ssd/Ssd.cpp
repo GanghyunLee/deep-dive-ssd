@@ -7,6 +7,10 @@
 
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
+	
+	if (commands.size() == 0)
+		return;
+	
 	if (!m_argManager->isValid(commands))
 		throw std::exception();
 
@@ -45,10 +49,10 @@ void SSD::initData() {
 
 		dataFile << " ";
 
-		// 16Áø¼ö: Æø 10, 0 Ã¤¿ò, ¼Ò¹®ÀÚ
+		// 16ì§„ìˆ˜: í­ 10, 0 ì±„ì›€, ì†Œë¬¸ìž
 		dataFile << std::hex << std::setfill('0') << std::setw(10) << std::nouppercase << 0;
 
-		// ´ÙÀ½ ÁÙ
+		// ë‹¤ìŒ ì¤„
 		dataFile << std::endl;
 	}
 	dataFile.close();
