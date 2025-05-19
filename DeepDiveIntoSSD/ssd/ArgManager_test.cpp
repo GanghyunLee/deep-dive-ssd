@@ -13,6 +13,9 @@ public:
 	char cArg0[20] = { 0 };
 	char cArg1[20] = { 0 };
 	char cArg2[20] = { 0 };
+	bool READ = false;
+	bool WRITE = true;
+	int INDEX = 3;
 
 	void makeInput(std::string arg0, std::string arg1, std::string arg2 = "") {
 		strcpy_s(cArg0, arg0.c_str());
@@ -146,40 +149,41 @@ TEST_F(ArgManagerFixture, isVali15) {
 }
 
 TEST_F(ArgManagerFixture, makeStruct1) {
-	Arg argExpected = { true, 3, "0x12345678" };
+	Arg argExpected = { WRITE, INDEX, "0x12345678" };
 	Arg argsResult = am.makeStruct({ "W", "3", "0x12345678" });
 
 	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.RWflag, argsResult.RWflag);
+	EXPECT_EQ(argExpected.isWrite, argsResult.isWrite);
 	EXPECT_EQ(argExpected.value, argsResult.value);
 }
 
 TEST_F(ArgManagerFixture, makeStruct2) {
-	Arg argExpected = { false, 3, "" };
+	Arg argExpected = { READ, INDEX, "" };
 	Arg argsResult = am.makeStruct({ "R", "3" });
 
 	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.RWflag, argsResult.RWflag);
+	EXPECT_EQ(argExpected.isWrite, argsResult.isWrite);
 	EXPECT_EQ(argExpected.value, argsResult.value);
 }
 
 TEST_F(ArgManagerFixture, makeStruct3) {
-	Arg argExpected = { true, 3, "0x0000abcd" };
+	Arg argExpected = { WRITE, INDEX, "0x0000abcd" };
 	Arg argsResult = am.makeStruct({ "W", "3", "0xabcd"});
 
 	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.RWflag, argsResult.RWflag);
+	EXPECT_EQ(argExpected.isWrite, argsResult.isWrite);
 	EXPECT_EQ(argExpected.value, argsResult.value);
 }
 
 TEST_F(ArgManagerFixture, fullTest) {
-	Arg argExpected = { true, 3, "0x000A5678" };
+	Arg argExpected = { WRITE, INDEX, "0x000A5678" };
 	makeInput("W", "3", "0xa5678");
 	std::vector<std::string> args = am.commandSplit(3, input);
 	am.isValid(args);
+
 	Arg argsResult = am.makeStruct(args);
 
 	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.RWflag, argsResult.RWflag);
+	EXPECT_EQ(argExpected.isWrite, argsResult.isWrite);
 	EXPECT_EQ(argExpected.value, argsResult.value);
 }

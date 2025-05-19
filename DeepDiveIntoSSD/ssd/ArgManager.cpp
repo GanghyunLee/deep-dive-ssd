@@ -42,12 +42,12 @@ Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
 	arg.index = stoi(args[1]);
 	
 	if (args[0] == "R" || args[0] == "r") {
-		arg.RWflag = false;
+		arg.isWrite = false;
 		arg.value = "";
 	}
 	else {
 		int digits = 10 - args[2].size();
-		arg.RWflag = true;
+		arg.isWrite = true;
 		arg.value = args[2];
 		for (int i = 0; i < digits; i++) {
 			arg.value.insert(2, "0");
