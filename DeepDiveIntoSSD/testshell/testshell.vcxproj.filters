@@ -139,6 +139,15 @@
     <ClCompile Include="AbstractTestScriptService.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
+    <ClCompile Include="PartialLbaWriteTestScriptService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp">
+      <Filter>Application\Command\PartialLBAWriteTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -246,6 +255,15 @@
     <ClInclude Include="AbstractTestScriptService.h">
       <Filter>Service\SSD</Filter>
     </ClInclude>
+    <ClInclude Include="PartialLbaWriteTestScriptService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLBAWriteTestScriptCommand.h">
+      <Filter>Application\Command\PartialLBAWriteTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -337,6 +355,12 @@
     </Filter>
     <Filter Include="Application\Command\FullWriteAndReadCompareTestScript">
       <UniqueIdentifier>{ac94b4e6-6bf7-4d66-8a58-4cb2851d465d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\PartialLBAWriteTestScript">
+      <UniqueIdentifier>{8cba221a-0b82-4599-b17a-b3250544da7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\PartialLBAWriteTestScript">
+      <UniqueIdentifier>{e9ffba2f-2027-4fc6-a249-92066913b208}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

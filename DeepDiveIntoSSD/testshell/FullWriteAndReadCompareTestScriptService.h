@@ -7,19 +7,14 @@
 
 class FullWriteAndReadCompareTestScriptService : public AbstractTestScriptService
 {
-	enum
-	{
-		MAX_LBA = 99
-	};
-
 public:
 	FullWriteAndReadCompareTestScriptService(std::shared_ptr<ISsdController> ssdController) : AbstractTestScriptService(ssdController)
 	{
 	}
 
-	virtual ~FullWriteAndReadCompareTestScriptService() = default;
+	~FullWriteAndReadCompareTestScriptService() override = default;
 
 public:
-	virtual bool Execute();
+	bool Execute() override;
 };
 
