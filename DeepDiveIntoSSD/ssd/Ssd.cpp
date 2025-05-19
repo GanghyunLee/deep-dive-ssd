@@ -43,17 +43,11 @@ void SSD::read(int index) {
 		return;
 	}
 
-	readAllData();
-	updateOutputFile(index, data[index]);
+	readAll();
+	dumpResult(index, data[index]);
 
 	// mock 
 	m_reader->read(index);
-}
-
-void SSD::updateOutputFile(int index, unsigned int value) {
-	std::fstream file("ssd_output.txt", std::ios::out | std::ios::trunc);
-	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
-	file.close();
 }
 
 void SSD::write(int index, std::string value) {
@@ -64,7 +58,7 @@ void SSD::write(int index, std::string value) {
 		return;
 	}
 
-	readAllData();
+	readAll();
 	updateData(index, std::stoul(value, nullptr, 16));
 	dumpData();
 	dumpSuccess();
@@ -73,13 +67,19 @@ void SSD::write(int index, std::string value) {
 
 }
 
+void SSD::dumpResult(int index, unsigned int value) {
+	std::fstream file(OUTPUT_FILE, std::ios::out | std::ios::trunc);
+	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
+	file.close();
+}
+
 void SSD::updateData(int index, unsigned int value) {
 	data[index] = value;
 }
 
-void SSD::readAllData() {
+void SSD::readAll() {
 
-	std::fstream dataFile("ssd_nand.txt", std::ios::in);
+	std::fstream dataFile(INPUT_FILE, std::ios::in);
 	std::string line;
 	while (std::getline(dataFile, line)) {
 		std::stringstream ss(line);

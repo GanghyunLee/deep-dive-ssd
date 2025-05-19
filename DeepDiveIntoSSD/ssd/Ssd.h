@@ -13,13 +13,16 @@ public:
 	SSD(IReader* reader, IWriter* writer, ArgManager* argManager) : m_reader{ reader }, m_writer{ writer }, m_argManager{argManager} {}
 	
 	void run(int argc, char* argv[]);
+	
 	void read(int index);
-	void updateOutputFile(int index, unsigned int value);
 	void write(int index, std::string value);
+	
 	void updateData(int index, unsigned int value);
-	void readAllData();
+	
+	void readAll();
 	void dumpData();
 	void dumpError();
+	void dumpResult(int index, unsigned int value);
 	void dumpSuccess();
 
 private:
