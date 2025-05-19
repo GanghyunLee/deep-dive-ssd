@@ -6,12 +6,14 @@
 class SsdWriteService
 {
 public:
-	SsdWriteService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
+	SsdWriteService( std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
 	{
 	}
 
+	virtual ~SsdWriteService() = default;
+
 public:
-	SsdWriteResult Write(int lba, unsigned int data);
+	virtual SsdWriteResult Write(int lba, unsigned int data);
 
 protected:
 	std::shared_ptr<ISsdController> _ssdController;
