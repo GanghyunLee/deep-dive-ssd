@@ -36,16 +36,19 @@ public:
 
 	void initFile() {
 
-		std::fstream dataFile("ssd_nand.txt", std::ios::out);
+		std::fstream dataFile("ssd_nand.txt");
 		
 		for (int i = 0; i < 100; i++) {
-			// 1. 정수 출력: 폭 2, 오른쪽 정렬, 공백 채움
-			dataFile << std::setw(2) << std::right << i << " ";
+			dataFile << std::dec << std::setfill('0') << std::setw(2) << i;
 
-			// 2. 16진수 출력: 폭 10, 0으로 채움, 소문자, 접두어 없음
-			dataFile << std::setw(10) << std::setfill('0') << std::hex << std::nouppercase << 0 << std::endl;
+			dataFile << " ";
+
+			// 16진수: 폭 10, 0 채움, 소문자
+			dataFile << std::hex << std::setfill('0') << std::setw(10) <<  std::nouppercase << 0;
+
+			// 다음 줄
+			dataFile << std::endl;
 		}
-
 		dataFile.close();
 	}
 
