@@ -14,7 +14,7 @@ public:
 			throw std::exception();
 
 		Arg arg = m_argManager->makeStruct(commands);
-		if (arg.RWflag == false) {
+		if (arg.RWflag) {
 			write(arg.index, arg.value);
 		}
 		else {
