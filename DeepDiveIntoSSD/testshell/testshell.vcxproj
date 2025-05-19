@@ -140,8 +140,6 @@
     <ClCompile Include="IoC.cpp" />
     <ClCompile Include="IView.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ExitCommand.cpp" />
-    <ClCompile Include="ExitCommandMapper.cpp" />
     <ClCompile Include="SsdControlServiceTest.cpp" />
     <ClCompile Include="TestShellApplication.cpp" />
     <ClCompile Include="SsdControlService.cpp" />
@@ -156,8 +154,6 @@
     <ClInclude Include="ICommandMapper.h" />
     <ClInclude Include="IoC.h" />
     <ClInclude Include="IView.h" />
-    <ClInclude Include="ExitCommand.h" />
-    <ClInclude Include="ExitCommandMapper.h" />
     <ClInclude Include="TestShellApplication.h" />
     <ClInclude Include="SsdReadResult.h" />
   </ItemGroup>
