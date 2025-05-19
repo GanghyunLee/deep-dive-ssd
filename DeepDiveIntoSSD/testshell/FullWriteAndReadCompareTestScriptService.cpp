@@ -7,7 +7,7 @@ bool FullWriteAndReadCompareTestScriptService::Execute()
 
 	while (startLBA < MAX_LBA)
 	{
-		unsigned int endLBA = startLBA + 4;
+		unsigned int endLBA = startLBA + 5;
 		if (endLBA >= MAX_LBA)
 			endLBA = MAX_LBA;
 
@@ -21,7 +21,7 @@ bool FullWriteAndReadCompareTestScriptService::Execute()
 			return false;
 
 		writtenValue++;
-		startLBA += 4;
+		startLBA += 5;
 	}
 
 	return true;
