@@ -32,10 +32,8 @@ std::string SsdController::ExecuteCommand(const std::string& cmd)
         result += buffer;
     }
 
-    // 출력에서 마지막의 '\n'을 제거
-    if (!result.empty() && result[result.length() - 1] == '\n') {
-        result.pop_back();
-    }
+    // 출력에서 모든 '\n'을 제거
+    result.erase(std::remove(result.begin(), result.end(), '\n'), result.end()); // '\n' 제거
 
     return result;
 }
@@ -58,7 +56,12 @@ std::string SsdController::ReadFileToString(const std::string& filename)
 
     std::stringstream buffer;
     buffer << file.rdbuf();  // 파일 내용을 문자열 스트림으로 읽기
-    return buffer.str();  // 문자열로 반환
+    std::string result =  buffer.str();  // 문자열로 반환
+    // 출력에서 모든 '\n'을 제거
+    result.erase(std::remove(result.begin(), result.end(), '\n'), result.end()); // '\n' 제거
+
+    return result;
+
 }
 
 unsigned int SsdController::With0xPrefixHexStringToUInt(const std::string& hexString)
