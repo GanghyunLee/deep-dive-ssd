@@ -76,7 +76,8 @@ void SSD::readAllData() {
 	while (std::getline(dataFile, line)) {
 		std::stringstream ss(line);
 		
-		int index, value;
+		int index;
+		unsigned int value;
 		ss >> std::dec >> index;
 		ss >> std::hex >> value;
 
