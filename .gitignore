@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+DeepDiveIntoSSD/testshell/ssd.exe
+DeepDiveIntoSSD/testshell/ssd_nand.txt
+DeepDiveIntoSSD/testshell/ssd_output.txt

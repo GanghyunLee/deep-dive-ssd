@@ -5,13 +5,9 @@
 class HelpCommand : public ICommand
 {
 public:
-	HelpCommand(HelpView* helpView) : _helpView(helpView) { }
 	~HelpCommand() override = default;
 
 public:
-	IView* Execute() override { return _helpView; }
-
-private:
-	HelpView* _helpView;
+	std::shared_ptr<IView> Execute() override { return std::make_shared<HelpView>(); }
 };
 
