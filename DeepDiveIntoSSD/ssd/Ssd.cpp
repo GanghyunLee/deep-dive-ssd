@@ -79,11 +79,19 @@ void SSD::updateData(int index, unsigned int value) {
 
 void SSD::readAll() {
 
-	std::fstream dataFile(INPUT_FILE, std::ios::in);
-	std::string line;
-	while (std::getline(dataFile, line)) {
-		std::stringstream ss(line);
+	fileIO = new FileIO();
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+
+	while (true) {
+
+		std::string line = fileIO->readLine();
 		
+		if (line == fileIO->EOF_STRING) {
+			break;
+		}
+
+		std::stringstream ss(line);
 		int index;
 		unsigned int value;
 		ss >> std::dec >> index;
@@ -92,7 +100,8 @@ void SSD::readAll() {
 		data[index] = value;
 	}
 	
-	dataFile.close();
+	fileIO->closeFile();
+	delete fileIO;
 }
 
 void SSD::dumpData() {
