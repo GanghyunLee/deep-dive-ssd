@@ -57,10 +57,10 @@ void SSD::write(int index, std::string value) {
 	}
 
 	readAllData();
-	data[index] = std::stoi(value, nullptr, 16);
+	data[index] = std::stoul(value, nullptr, 16);
 	dumpData();
 
-	m_writer->write(index, std::stoi(value, nullptr, 16));
+	m_writer->write(index, std::stoul(value, nullptr, 16));
 	fileIO = new FileIO();
 	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
 	fileIO->openFile();

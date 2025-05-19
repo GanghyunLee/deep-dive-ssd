@@ -6,18 +6,18 @@
 
 class IReader {
 public:
-	virtual int read(int index) = 0;
+	virtual unsigned int read(int index) = 0;
 };
 
 class IWriter {
 public:
-	virtual void write(int index, int value) = 0;
+	virtual void write(int index, unsigned int value) = 0;
 };
 
 class Reader : public IReader {
 public:
-	int read(int index) override;
-	void updateOutputFile(int index, int value);
+	unsigned int read(int index) override;
+	void updateOutputFile(int index, unsigned int value);
 
 private:
 	FileIO *fileIO;
@@ -26,7 +26,7 @@ private:
 
 class Writer : public IWriter {
 public:
-	void write(int index, int value) override;
+	void write(int index, unsigned int value) override;
 
 private:
 	FileIO *fileIO;
