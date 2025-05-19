@@ -8,6 +8,7 @@
     <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="Ssd.h" />
     <ClCompile Include="ReaderWriterTest.cpp" />
+    <ClCompile Include="SsdTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
