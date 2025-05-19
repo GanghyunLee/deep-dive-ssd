@@ -22,20 +22,24 @@ std::shared_ptr<ICommand> WriteCommandMapper::GenerateCommand(const std::vector<
 
 bool WriteCommandMapper::ContainsHexPrefix(const std::string& str)
 {
-	// "0x"°¡ ¹®ÀÚ¿­¿¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö Ã¼Å©
+	// "0x"ê°€ ë¬¸ìì—´ì— í¬í•¨ë˜ì–´ ìˆëŠ”ì§€ ì²´í¬
 	return str.find("0x") != std::string::npos;
 }
 
 unsigned int WriteCommandMapper::HexStringToDecimal(const std::string& hexStr)
 {
-	// "0x"°¡ ÀÖÀ¸¸é ÀÌ¸¦ Á¦°Å
+	// "0x"ê°€ ìˆìœ¼ë©´ ì´ë¥¼ ì œê±°
 	std::string cleanedStr = hexStr;
 
-	// "0x"°¡ ¹®ÀÚ¿­ÀÇ Ã³À½¿¡ ÀÖÀ¸¸é Á¦°Å
+	// "0x"ê°€ ë¬¸ìì—´ì˜ ì²˜ìŒì— ìˆìœ¼ë©´ ì œê±°
 	if (cleanedStr.substr(0, 2) == "0x" || cleanedStr.substr(0, 2) == "0X") {
 		cleanedStr = cleanedStr.substr(2);
 	}
-
-	// 16Áø¼ö ¹®ÀÚ¿­À» 10Áø¼ö·Î º¯È¯
+	for (char c : cleanedStr) {
+		if (!std::isxdigit(static_cast<unsigned char>(c))) {
+			throw std::exception{ "INVALID ARGUMENT" };
+		}
+	}
+	// 16ì§„ìˆ˜ ë¬¸ìì—´ì„ 10ì§„ìˆ˜ë¡œ ë³€í™˜
 	return  std::stoul(cleanedStr, nullptr, 16);
 }
