@@ -10,7 +10,7 @@ public:
 
 class WriterMock : public IWriter {
 public:
-	MOCK_METHOD(void, write, (int, std::string), (override));
+	MOCK_METHOD(void, write, (int, const std::string&), (override));
 };
 
 class SSDFixture : public Test {
@@ -49,4 +49,51 @@ TEST_F(SSDFixture, WriterFailedByIndex) {
 	std::string value = "0x12345678";
 
 	EXPECT_THROW(ssd->write(index, value), std::exception);
+}
+
+TEST_F(SSDFixture, RunWrite) {
+	char arg0[] = "W";
+	char arg1[] = "3";
+	char arg2[] = "0x12345678";
+	char* input[] = { arg0,arg1,arg2 };
+
+	EXPECT_CALL(writer, write).Times(1);
+
+	ssd->run(3, input);
+}
+
+TEST_F(SSDFixture, RunRead) {
+	char arg0[] = "R";
+	char arg1[] = "3";
+	char* input[] = { arg0,arg1 };
+
+	EXPECT_CALL(reader, read).Times(1);
+
+	ssd->run(2, input);
+}
+
+TEST_F(SSDFixture, RunInvalidCommandKeyword) {
+	char arg0[] = "RW";
+	char arg1[] = "3";
+	char arg2[] = "0x12345678";
+	char* input[] = { arg0,arg1,arg2 };
+
+	EXPECT_THROW(ssd->run(3, input), std::exception);
+}
+
+TEST_F(SSDFixture, RunInvalidCommandRangeOut) {
+	char arg0[] = "R";
+	char arg1[] = "103";
+	char* input[] = { arg0,arg1 };
+
+	EXPECT_THROW(ssd->run(2, input), std::exception);
+}
+
+TEST_F(SSDFixture, RunInvalidCommandParameterCount) {
+	char arg0[] = "R";
+	char arg1[] = "3";
+	char arg2[] = "0x12345678";
+	char* input[] = { arg0,arg1,arg2 };
+
+	EXPECT_THROW(ssd->run(3, input), std::exception);
 }
