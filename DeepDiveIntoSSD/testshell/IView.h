@@ -1,5 +1,6 @@
 #pragma once
 #include <iosfwd>
+#include <iostream>
 
 class IView
 {

@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 
+#include "FullWriteAndReadCompareTestScriptService.h"
 #include "ICommand.h"
 #include "SsdFullReadService.h"
 #include "SsdFullWriteService.h"
@@ -18,6 +19,7 @@ public:
 	std::shared_ptr<SsdReadService> GetSsdReadService();
 	std::shared_ptr<SsdFullWriteService> GetSsdFullWriteService();
 	std::shared_ptr<SsdFullReadService> GetSsdFullReadService();
+	std::shared_ptr<FullWriteAndReadCompareTestScriptService> GetFullWriteAndReadCompareTestScriptService();
 	
 	
 	std::shared_ptr<ISsdController> GetSsdController();

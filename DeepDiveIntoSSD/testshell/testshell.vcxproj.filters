@@ -130,6 +130,18 @@
     <ClCompile Include="FullReadCommandMapper.cpp">
       <Filter>Application\CommandMapper\FullRead</Filter>
     </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScriptView.cpp">
+      <Filter>Application\View\TestScriptView</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullWriteAndReadCompareTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp">
+      <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -222,6 +234,18 @@
     <ClInclude Include="FullReadCommandMapper.h">
       <Filter>Application\CommandMapper\FullRead</Filter>
     </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScriptView.h">
+      <Filter>Application\View\TestScriptView</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\FullWriteAndReadCompareTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h">
+      <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -304,6 +328,15 @@
     </Filter>
     <Filter Include="Application\CommandMapper\FullRead">
       <UniqueIdentifier>{4515563d-1865-46ce-a428-19ef66d87b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\TestScriptView">
+      <UniqueIdentifier>{f240b8ba-77bc-4bcc-819a-f22f8a24b285}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullWriteAndReadCompareTestScript">
+      <UniqueIdentifier>{5dc48cef-65a4-4598-9101-98d9c86e18d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\FullWriteAndReadCompareTestScript">
+      <UniqueIdentifier>{ac94b4e6-6bf7-4d66-8a58-4cb2851d465d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
