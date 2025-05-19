@@ -1,12 +1,16 @@
-#include "HelpView.h"
+ï»¿#include "HelpView.h"
 #include <iostream>
 
 void HelpView::Render(std::ostream& os)
 {
-	os << "Team : DD(DeepDive)" << std::endl;
-	os << "writer : ÀÌ°­Çö, ±Ç°æ¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << std::endl;
-	os << "write : ssd.exe W lba address" << std::endl;
-	os << "read : ssd.exe R address" << std::endl;
-	os << "fullwrite : ssd.exe fullwrite 0xABCDFFFF" << std::endl;
-	os << "fullread : ssd.exe fullread 0xABCDFFFF";
+	os << "* Team : DD(DeepDive)" << std::endl;
+	os << "* íŒ€ìž¥ : ì´ê°•í˜„, * íŒ€ì› : ê¶Œê²½ë¯¼, ê¹€ë¯¼ì„, ì´ë¬¸í˜•, ì´ìž¬ê·œ" << std::endl;
+	os << "* Command Usage" << std::endl;
+	os << "- write : ssd.exe W lba data (ex - ssd.exe W 3 0xABABABAB)" << std::endl;
+	os << "- read : ssd.exe R lba (ex - ssd.exe R 3)" << std::endl;
+	os << "- fullwrite : ssd.exe fullwrite data (ex - ssd.exe fullwrite 0xABABABAB)" << std::endl;
+	os << "- fullread : ssd.exe fullread (ex - ssd.exe fullread)" << std::endl;
+	os << "- 1_FullWriteAndReadCompare" << std::endl;
+	os << "- 2_PartialLBAWrite" << std::endl;
+	os << "- 3_WriteReadAging";
 }
