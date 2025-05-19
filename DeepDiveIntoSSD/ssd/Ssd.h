@@ -10,13 +10,11 @@ public:
 	
 	void run(int argc, char* argv[]) {
 		std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
-
 		if (!m_argManager->isValid(commands))
-			return;
+			throw std::exception();
 
 		Arg arg = m_argManager->makeStruct(commands);
-
-		if (arg.RWflag == true) {
+		if (arg.RWflag == false) {
 			write(arg.index, arg.value);
 		}
 		else {
