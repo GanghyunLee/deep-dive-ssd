@@ -34,6 +34,9 @@
     <ClCompile Include="ExitCommandMapper.cpp">
       <Filter>Application\CommandMapper\ExitCommand</Filter>
     </ClCompile>
+    <ClCompile Include="SsdControlServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
