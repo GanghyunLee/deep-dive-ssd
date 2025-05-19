@@ -16,8 +16,6 @@ public:
 		fileIO->openFile();
 	}
 
-
-
 protected:
 	void SetUp() override {
 	}
@@ -178,19 +176,20 @@ TEST_F(FileIOFixture, readEOFTest) {
 
 	std::string line; 
 
-	int idx = 0; 
+	int line_num_test = 0; 
 	while (true) {
 		line = fileIO->readLine();
 		if (line == EOF_STRING) break;
-		idx++;
+		line_num_test++;
 	}
 	fileIO->closeFile();
 
-	int line_num = 0;
+	int line_num_target = 0;
 	std::fstream fp(INPUT_FILE, std::ios::in);
 	while (std::getline(fp, line)) {
-		line_num++;
+		line_num_target++;
 	}
+	fp.close();
 
-	EXPECT_EQ(idx, line_num);
+	EXPECT_EQ(line_num_test, line_num_target);
 }
