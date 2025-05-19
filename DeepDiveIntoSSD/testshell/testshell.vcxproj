@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractTestScriptService.cpp" />
     <ClCompile Include="FullReadCommand.cpp" />
     <ClCompile Include="FullReadCommandMapper.cpp" />
     <ClCompile Include="FullReadView.cpp" />
@@ -166,9 +167,6 @@
     <ClCompile Include="ReadView.cpp" />
     <ClCompile Include="ReadViewTest.cpp" />
     <ClCompile Include="SsdController.cpp" />
-    <ClCompile Include="SsdControlServiceTest.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
     <ClCompile Include="SsdFullWriteService.cpp" />
     <ClCompile Include="SsdReadResult.cpp" />
     <ClCompile Include="SsdReadService.cpp" />
@@ -177,9 +175,6 @@
     <ClCompile Include="SsdWriteServiceTest.cpp" />
     <ClCompile Include="TestScriptView.cpp" />
     <ClCompile Include="TestShellApplication.cpp" />
-    <ClCompile Include="SsdControlService.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">  %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
     <ClCompile Include="TestShellApplicationTest.cpp" />
     <ClCompile Include="WriteCommand.cpp" />
     <ClCompile Include="SsdWriteResult.cpp" />
@@ -193,6 +188,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractTestScriptService.h" />
     <ClInclude Include="FullReadCommand.h" />
     <ClInclude Include="FullReadCommandMapper.h" />
     <ClInclude Include="FullReadView.h" />

@@ -2,9 +2,10 @@
 #include <memory>
 #include <vector>
 
+#include "AbstractTestScriptService.h"
 #include "ISsdController.h"
 
-class FullWriteAndReadCompareTestScriptService
+class FullWriteAndReadCompareTestScriptService : public AbstractTestScriptService
 {
 	enum
 	{
@@ -12,7 +13,7 @@ class FullWriteAndReadCompareTestScriptService
 	};
 
 public:
-	FullWriteAndReadCompareTestScriptService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
+	FullWriteAndReadCompareTestScriptService(std::shared_ptr<ISsdController> ssdController) : AbstractTestScriptService(ssdController)
 	{
 	}
 
@@ -20,12 +21,5 @@ public:
 
 public:
 	virtual bool Execute();
-
-protected:
-	bool WriteValueToLbaArea(int startLba, int endLba, unsigned int data);
-	bool ReadCompareToLbaArea(int startLba, int endLba, unsigned int data);
-
-protected:
-	std::shared_ptr<ISsdController> _ssdController;
 };
 

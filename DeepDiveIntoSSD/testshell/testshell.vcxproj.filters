@@ -16,17 +16,11 @@
     <ClCompile Include="IView.cpp">
       <Filter>Application\View</Filter>
     </ClCompile>
-    <ClCompile Include="SsdControlService.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
     <ClCompile Include="TestShellApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
     <ClCompile Include="TestShellApplicationTest.cpp">
       <Filter>Application</Filter>
-    </ClCompile>
-    <ClCompile Include="SsdControlServiceTest.cpp">
-      <Filter>Service\SSD</Filter>
     </ClCompile>
     <ClCompile Include="HelpCommand.cpp">
       <Filter>Application\Command\Help</Filter>
@@ -142,6 +136,9 @@
     <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp">
       <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
     </ClCompile>
+    <ClCompile Include="AbstractTestScriptService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -245,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h">
       <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTestScriptService.h">
+      <Filter>Service\SSD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
