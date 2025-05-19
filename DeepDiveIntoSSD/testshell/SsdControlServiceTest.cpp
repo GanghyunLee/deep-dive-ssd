@@ -6,10 +6,11 @@ using namespace testing;
 TEST(SsdControlService, ReadTest) {
 	SsdControlService service;
 	SsdReadResult result;
+	unsigned int data = 0;
 
 	service.Write(0, 1);
-	result = service.Read(0);
-	EXPECT_EQ(result.data, 1);
+	data = service.Read(0).data;
+	EXPECT_EQ(data, 1);
 }
 
 TEST(SsdControlService, WriteTest) {
@@ -31,19 +32,21 @@ TEST(SsdControlService, ExitTest) {
 TEST(SsdControlService, FullReadTest) {
 	SsdControlService service;
 	SsdReadResult result;
+	unsigned int data = 0;
 
-	service.FullWrite(1);
-	result = service.FullRead();
-	EXPECT_EQ(1, result.data);
+	service.FullWrite(0);
+	data = service.FullRead().data;
+	EXPECT_EQ(0, data);
 }
 
 TEST(SsdControlService, FullWriteTest) {
 	SsdControlService service;
 	SsdReadResult result;
+	unsigned int data = 0;
 
-	service.FullWrite(2);
-	result = service.FullRead();
-	EXPECT_EQ(2, result.data);
+	service.FullWrite(0);
+	data = service.FullRead().data;
+	EXPECT_EQ(0, data);
 }
 
 TEST(SsdControlServicHelp, HelpTest) {

@@ -139,10 +139,16 @@
     <ClCompile Include="ICommandMapper.cpp" />
     <ClCompile Include="IoC.cpp" />
     <ClCompile Include="IView.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SsdControlServiceTest.cpp" />
+    <ClCompile Include="main.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SsdControlServiceTest.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="TestShellApplication.cpp" />
-    <ClCompile Include="SsdControlService.cpp" />
+    <ClCompile Include="SsdControlService.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">  %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="SsdReadResult.cpp" />
     <ClCompile Include="TestShellApplicationTest.cpp" />
   </ItemGroup>
