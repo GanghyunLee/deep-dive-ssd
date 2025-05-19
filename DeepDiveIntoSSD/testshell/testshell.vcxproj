@@ -148,16 +148,25 @@
     <ClCompile Include="main.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="ReadCommand.cpp" />
+    <ClCompile Include="ReadCommandMapper.cpp" />
+    <ClCompile Include="ReadCommandMapperTest.cpp" />
+    <ClCompile Include="ReadCommandTest.cpp" />
+    <ClCompile Include="ReadView.cpp" />
+    <ClCompile Include="ReadViewTest.cpp" />
     <ClCompile Include="SsdController.cpp" />
     <ClCompile Include="SsdControlServiceTest.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="SsdReadResult.cpp" />
+    <ClCompile Include="SsdReadService.cpp" />
+    <ClCompile Include="SsdReadServiceTest.cpp" />
     <ClCompile Include="SsdWriteService.cpp" />
+    <ClCompile Include="SsdWriteServiceTest.cpp" />
     <ClCompile Include="TestShellApplication.cpp" />
     <ClCompile Include="SsdControlService.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">  %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="SsdReadResult.cpp" />
     <ClCompile Include="TestShellApplicationTest.cpp" />
     <ClCompile Include="WriteCommand.cpp" />
     <ClCompile Include="SsdWriteResult.cpp" />
@@ -179,10 +188,15 @@
     <ClInclude Include="IoC.h" />
     <ClInclude Include="ISsdController.h" />
     <ClInclude Include="IView.h" />
+    <ClInclude Include="MockSsdControler.h" />
+    <ClInclude Include="ReadCommand.h" />
+    <ClInclude Include="ReadCommandMapper.h" />
+    <ClInclude Include="ReadView.h" />
     <ClInclude Include="SsdController.h" />
+    <ClInclude Include="SsdReadResult.h" />
+    <ClInclude Include="SsdReadService.h" />
     <ClInclude Include="SsdWriteService.h" />
     <ClInclude Include="TestShellApplication.h" />
-    <ClInclude Include="SsdReadResult.h" />
     <ClInclude Include="WriteCommand.h" />
     <ClInclude Include="SsdWriteResult.h" />
     <ClInclude Include="WriteCommandMapper.h" />

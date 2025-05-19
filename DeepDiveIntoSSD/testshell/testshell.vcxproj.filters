@@ -19,9 +19,6 @@
     <ClCompile Include="SsdControlService.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
-    <ClCompile Include="SsdReadResult.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
     <ClCompile Include="TestShellApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
@@ -76,6 +73,36 @@
     <ClCompile Include="WriteCommandMapperTest.cpp">
       <Filter>Application\CommandMapper\Write</Filter>
     </ClCompile>
+    <ClCompile Include="SsdReadResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdWriteServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadView.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadViewTest.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommand.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandTest.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -89,9 +116,6 @@
     </ClInclude>
     <ClInclude Include="IView.h">
       <Filter>Application\View</Filter>
-    </ClInclude>
-    <ClInclude Include="SsdReadResult.h">
-      <Filter>Service\SSD</Filter>
     </ClInclude>
     <ClInclude Include="TestShellApplication.h">
       <Filter>Application</Filter>
@@ -125,6 +149,24 @@
     </ClInclude>
     <ClInclude Include="WriteCommandMapper.h">
       <Filter>Application\CommandMapper\Write</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="MockSsdControler.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadView.h">
+      <Filter>Application\View\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadCommand.h">
+      <Filter>Application\Command\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadCommandMapper.h">
+      <Filter>Application\CommandMapper\Read</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +220,15 @@
     </Filter>
     <Filter Include="Application\CommandMapper\Write">
       <UniqueIdentifier>{3e24ae52-f1d2-41ef-9cec-f1aeb4bde9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Read">
+      <UniqueIdentifier>{5ad30ef8-f6ac-4c27-b25e-effa6bca8fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Read">
+      <UniqueIdentifier>{656a81c2-8a14-4e98-864b-5f91015b9d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Read">
+      <UniqueIdentifier>{8effdc6d-3ddd-4ecc-aa8b-c766711f4816}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

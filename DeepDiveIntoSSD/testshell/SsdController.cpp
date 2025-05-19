@@ -15,6 +15,21 @@ SsdWriteResult SsdController::Write(int lba, unsigned int data)
 	return SsdWriteResult::From(input.empty());
 }
 
+SsdReadResult SsdController::Read(int lba)
+{
+    std::stringstream ss;
+    ss << STR_SSD_EXE_FILE_NAME << " r " << lba;
+
+    ExecuteCommand(ss.str());
+
+    std::string input = ReadFileToString("ssd_output.txt");
+    if (input == STR_ERROR_STRING_FROM_SSD)
+        return SsdReadResult::From(false);
+
+    unsigned int data = With0xPrefixHexStringToUInt(input);
+    return SsdReadResult::From(true, lba, data);
+}
+
 std::string SsdController::ExecuteCommand(const std::string& cmd)
 {
     char buffer[128];
