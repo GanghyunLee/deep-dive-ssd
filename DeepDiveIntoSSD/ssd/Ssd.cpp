@@ -75,7 +75,7 @@ void SSD::dumpData() {
 		dataFile << std::dec << std::setfill('0') << std::setw(2) << i;
 		dataFile << " ";
 		dataFile << std::hex << std::setfill('0') << std::setw(10) << std::nouppercase << data[i];
-		dataFile << std::endl;
+		ss << std::hex << std::setfill('0') << std::setw(8) << std::nouppercase << data[i];
 	}
 
 	dataFile.close();
