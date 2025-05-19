@@ -69,6 +69,10 @@ std::string FileIO::readLine() {
 	
 	std::string a;
 	std::getline(file, a);
+
+	if (a == EOF_STRING) 
+		return EOF_STRING;
+
 	return a;
 }
 

@@ -5,6 +5,8 @@ public:
 	const int READ_MODE = 1;
 	const int WRITE_MODE = 2;
 
+	const std::string EOF_STRING = "";
+
 	FileIO() = default;
 
 	bool isInvalidArgument(const std::string& fileName, int mode);
@@ -24,5 +26,4 @@ private:
 	int mode;
 	std::string fileName;
 	std::fstream file;
-
 };

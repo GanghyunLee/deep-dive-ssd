@@ -9,6 +9,7 @@ public:
 	const std::string INVALID_FILE_NAME = "sdd_output234.txt";
 
 	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
+	const std::string EOF_STRING = "";
 
 	void openFileWithArgument(FileIO *fileIO, const std::string fileName, int mode) {
 		fileIO->setArgument(fileName, mode);
@@ -180,7 +181,7 @@ TEST_F(FileIOFixture, readEOFTest) {
 	int idx = 0; 
 	while (true) {
 		line = fileIO->readLine();
-		if (line == "") break;
+		if (line == EOF_STRING) break;
 		idx++;
 	}
 	fileIO->closeFile();
