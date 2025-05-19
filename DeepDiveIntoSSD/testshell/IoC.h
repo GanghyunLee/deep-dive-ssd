@@ -9,6 +9,7 @@
 #include "SsdFullWriteService.h"
 #include "SsdReadService.h"
 #include "SsdWriteService.h"
+#include "WriteReadAgingTestScriptService.h"
 
 class ICommandMapper;
 
@@ -22,8 +23,8 @@ public:
 	std::shared_ptr<SsdFullReadService> GetSsdFullReadService();
 	std::shared_ptr<FullWriteAndReadCompareTestScriptService> GetFullWriteAndReadCompareTestScriptService();
 	std::shared_ptr<PartialLbaWriteTestScriptService> GetPartialLbaWriteTestScriptService();
-	
-	
+	std::shared_ptr<WriteReadAgingTestScriptService> GetWriteReadAgingTestScriptService();
+
 	std::shared_ptr<ISsdController> GetSsdController();
 };
 

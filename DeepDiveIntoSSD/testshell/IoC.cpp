@@ -10,6 +10,7 @@
 #include "SsdController.h"
 #include "WriteCommand.h"
 #include "WriteCommandMapper.h"
+#include "WriteReadAgingTestScriptCommandMapper.h"
 
 std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 {
@@ -39,6 +40,9 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 	static std::shared_ptr<PartialLBAWriteTestScriptCommandMapper> partialLBAWriteTestScriptCommandMapper =
 		std::make_shared<PartialLBAWriteTestScriptCommandMapper>(GetPartialLbaWriteTestScriptService());
 
+	static std::shared_ptr<WriteReadAgingTestScriptCommandMapper> writeReadAgingTestScriptCommandMapper =
+		std::make_shared<WriteReadAgingTestScriptCommandMapper>(GetWriteReadAgingTestScriptService());
+
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
@@ -49,6 +53,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		fullReadCommandMapper,
 		fullWriteAndReadCompareTestScriptCommandMapper,
 		partialLBAWriteTestScriptCommandMapper,
+		writeReadAgingTestScriptCommandMapper,
 		helpCommandMapper,
 	};
 }
@@ -88,6 +93,13 @@ std::shared_ptr<PartialLbaWriteTestScriptService> IoC::GetPartialLbaWriteTestScr
 {
 	static std::shared_ptr<PartialLbaWriteTestScriptService> ssdScriptService =
 		std::make_shared<PartialLbaWriteTestScriptService>(GetSsdController());
+	return ssdScriptService;
+}
+
+std::shared_ptr<WriteReadAgingTestScriptService> IoC::GetWriteReadAgingTestScriptService()
+{
+	static std::shared_ptr<WriteReadAgingTestScriptService> ssdScriptService =
+		std::make_shared<WriteReadAgingTestScriptService>(GetSsdController());
 	return ssdScriptService;
 }
 
