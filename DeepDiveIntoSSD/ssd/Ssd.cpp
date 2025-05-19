@@ -8,6 +8,10 @@
 
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
+	
+	if (commands.size() == 0)
+		return;
+	
 	if (!m_argManager->isValid(commands))
 		throw std::exception();
 

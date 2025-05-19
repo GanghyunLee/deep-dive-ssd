@@ -1,8 +1,8 @@
 #include "ArgManager.h"
+#include <stdexcept>
 
 std::vector<std::string> ArgManager::commandSplit(int argc, char* argv[]) {
 	std::vector<std::string> args;
-
 	for (int i = 0; i < argc; i++) {
 		args.push_back(std::string(argv[i]));
 	}
@@ -16,7 +16,14 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	
 	if (argc < 2) return false;
 
-	index = stoi(args[1]);
+	// args[1]의 값이 int로 바꿀 수 없는 값일 경우 invalid_argument exception 발생
+	try {
+		index = stoi(args[1]);
+	}
+	catch (const std::invalid_argument& e) {
+		return false;
+	}
+
 	if (index > 99 || index < 0) return false;
 	if (args[0] != "R" && args[0] != "r" && args[0] != "W" && args[0] != "w") return false;
 
