@@ -12,11 +12,13 @@ public:
 	void run(int argc, char* argv[]);
 	void read(int index);
 	void write(int index, std::string value);
-	void initData();
+	void readAllData();
+	void dumpData();
+	void dumpError();
 
 private:
 	IReader* m_reader;
 	IWriter* m_writer;
 	ArgManager* m_argManager;
-	int data[100];
+	int data[100] = { 0, };
 };

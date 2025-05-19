@@ -11,7 +11,7 @@ public:
 
 class IWriter {
 public:
-	virtual void write(int index, const std::string& value) = 0;
+	virtual void write(int index, int value) = 0;
 };
 
 class Reader : public IReader {
@@ -26,7 +26,7 @@ private:
 
 class Writer : public IWriter {
 public:
-	void write(int index, const std::string& value) override;
+	void write(int index, int value) override;
 
 private:
 	FileIO *fileIO;
