@@ -14,10 +14,13 @@ public:
 	
 	void run(int argc, char* argv[]);
 	void read(int index);
+	void updateOutputFile(int index, unsigned int value);
 	void write(int index, std::string value);
+	void updateData(int index, unsigned int value);
 	void readAllData();
 	void dumpData();
 	void dumpError();
+	void dumpSuccess();
 
 private:
 	IReader* m_reader;

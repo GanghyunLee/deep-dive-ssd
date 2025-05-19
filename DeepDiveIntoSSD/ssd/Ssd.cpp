@@ -44,8 +44,16 @@ void SSD::read(int index) {
 	}
 
 	readAllData();
-	int value = m_reader->read(index);
+	updateOutputFile(index, data[index]);
 
+	// mock 
+	m_reader->read(index);
+}
+
+void SSD::updateOutputFile(int index, unsigned int value) {
+	std::fstream file("ssd_output.txt", std::ios::out | std::ios::trunc);
+	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
+	file.close();
 }
 
 void SSD::write(int index, std::string value) {
@@ -57,16 +65,16 @@ void SSD::write(int index, std::string value) {
 	}
 
 	readAllData();
-	data[index] = std::stoul(value, nullptr, 16);
+	updateData(index, std::stoul(value, nullptr, 16));
 	dumpData();
+	dumpSuccess();
 
 	m_writer->write(index, std::stoul(value, nullptr, 16));
-	fileIO = new FileIO();
-	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
-	fileIO->openFile();
-	fileIO->writeLine("");
-	fileIO->closeFile();
-	delete fileIO;
+
+}
+
+void SSD::updateData(int index, unsigned int value) {
+	data[index] = value;
 }
 
 void SSD::readAllData() {
@@ -109,12 +117,19 @@ void SSD::dumpData() {
 }
 
 void SSD::dumpError() {
-
 	fileIO = new FileIO();
 	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
 	fileIO->openFile();
 	fileIO->writeLine("ERROR");
 	fileIO->closeFile();
 	return;
+}
 
+void SSD::dumpSuccess() {
+	fileIO = new FileIO();
+	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
+	fileIO->openFile();
+	fileIO->writeLine("");
+	fileIO->closeFile();
+	return;
 }
