@@ -17,7 +17,11 @@ public:
 		SsdReadResult result;
 
 		ss << "ssd.exe R " << to_string(lba) << endl;
+#ifdef _DEBUG
+		cout << ss.str() << endl;
+#else
 		system(ss.str().c_str());
+#endif
 		cin >> hex >> value;
 		result.data = value;
 		return SsdReadResult{};
@@ -26,11 +30,19 @@ public:
 		stringstream ss;
 
 		ss << "ssd.exe W " << to_string(lba) << " " << "0x" << hex << setw(8) << setfill('0') << value << endl;
+#ifdef _DEBUG
+		cout << ss.str() << endl;
+#else
 		system(ss.str().c_str());
+#endif
 	}
 	bool Exit() {
 		std::stringstream ss{ "exit" };
+#ifdef _DEBUG
+		cout << ss.str() << endl;
+#else
 		system(ss.str().c_str());
+#endif
 		return true;
 	}
 	SsdReadResult FullRead()
@@ -41,7 +53,11 @@ public:
 
 		for (int i = 0; i < 100; ++i) {
 			ss << "ssd.exe R " << to_string(i) << endl;
+#ifdef _DEBUG
+			cout << ss.str() << endl;
+#else
 			system(ss.str().c_str());
+#endif
 			cin >> hex >> value;
 			result.data = value;
 			return SsdReadResult{};
@@ -52,7 +68,11 @@ public:
 
 		for (int i = 0; i < 100; ++i) {
 			ss << "ssd.exe W " << to_string(i) << " " << to_string(value) << endl;
+#ifdef _DEBUG
+			cout << ss.str() << endl;
+#else
 			system(ss.str().c_str());
+#endif
 		}
 	}
 };
