@@ -10,7 +10,7 @@ bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
 		return false;
 	}
 
-	if ((mode == READ_MODE) && (mode == WRITE_MODE)) {
+	if ((mode == READ_MODE) && (mode == WRITE_TRUNC_MODE) && (mode == WRITE_APPEND_MODE)) {
 		return false;
 	}
 
@@ -45,7 +45,14 @@ void FileIO::openFile() {
 		return;
 	}
 
-	file.open(this->fileName, std::ios::out | std::ios::app);
+	if (this->getMode() == WRITE_APPEND_MODE) {
+		file.open(this->fileName, std::ios::out | std::ios::app);
+	}
+
+	if (this->getMode() == WRITE_TRUNC_MODE) {
+		file.open(this->fileName, std::ios::out | std::ios::trunc);
+	}
+
 	return;
 }
 
@@ -61,10 +68,10 @@ bool FileIO::isOpen() {
 std::string FileIO::readLine() {
 	
 	if (mode != READ_MODE) {
-		throw std::exception("¸ğµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+		throw std::exception("ëª¨ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	}
 	if (!isOpen()) {
-		throw std::exception("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù.");
+		throw std::exception("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 	}
 	
 	std::string a;
@@ -78,11 +85,12 @@ std::string FileIO::readLine() {
 
 void FileIO::writeLine(const std::string &line) {
 
-	if (mode != WRITE_MODE) {
-		throw std::exception("¸ğµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+	if ((mode != WRITE_APPEND_MODE) && (mode != WRITE_TRUNC_MODE)) {
+		throw std::exception("ëª¨ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	}
+
 	if (!isOpen()) {
-		throw std::exception("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù.");
+		throw std::exception("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 	}
 	
 	file << line << std::endl;
