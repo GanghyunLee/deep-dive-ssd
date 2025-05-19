@@ -67,12 +67,6 @@ void SSD::write(int index, std::string value) {
 
 }
 
-void SSD::dumpResult(int index, unsigned int value) {
-	std::fstream file(OUTPUT_FILE, std::ios::out | std::ios::trunc);
-	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
-	file.close();
-}
-
 void SSD::updateData(int index, unsigned int value) {
 	data[index] = value;
 }
@@ -132,6 +126,12 @@ void SSD::dumpError() {
 	fileIO->writeLine("ERROR");
 	fileIO->closeFile();
 	return;
+}
+
+void SSD::dumpResult(int index, unsigned int value) {
+	std::fstream file(OUTPUT_FILE, std::ios::out | std::ios::trunc);
+	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
+	file.close();
 }
 
 void SSD::dumpSuccess() {
