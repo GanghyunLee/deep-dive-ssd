@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <exception>
-#include <iostream>
 #include <sstream>
 #include <string>
 #include "ICommand.h"
@@ -40,19 +39,6 @@ bool TestShellApplication::Run()
 			// 6. Print Result
 			if (view)
 				view->Render(_oStream);
-
-			// 7. Delete Command & View Object
-			if (command)
-			{
-				delete command;
-				command = nullptr;
-			}
-
-			if (view)
-			{
-				delete view;
-				view = nullptr;
-			}
 		}
 		catch (std::exception& ex)
 		{
