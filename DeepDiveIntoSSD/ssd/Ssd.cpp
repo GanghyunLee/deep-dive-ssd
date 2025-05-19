@@ -26,7 +26,8 @@ void SSD::read(int index) {
 	// read here , update output.txt  
 	int value = m_reader->read(index);
 
-	// update nand.txt 
+	
+
 }
 
 void SSD::write(int index, std::string value) {

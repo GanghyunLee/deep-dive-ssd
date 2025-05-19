@@ -73,7 +73,13 @@ TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
 TEST_F(SSDFixture, readSSDNANDTextFile) {
 
-	ssdReal->read(10);
+	ssdReal->initData();
+	ssdReal->read(0);
 
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
 
+	std::getline(fp, line);
+	EXPECT_EQ("0x0000000000", line);
+	
 }

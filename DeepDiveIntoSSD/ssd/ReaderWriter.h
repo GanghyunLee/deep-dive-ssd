@@ -17,6 +17,8 @@ public:
 class Reader : public IReader {
 public:
 	int read(int index) override;
+	void updateOutputFile(int index, int value);
+
 private:
 	FileIO *fileIO;
 	const std::string INPUT_FILE = "ssd_nand.txt";
