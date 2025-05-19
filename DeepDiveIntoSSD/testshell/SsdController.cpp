@@ -7,10 +7,9 @@
 SsdWriteResult SsdController::Write(int lba, unsigned int data)
 {
 	std::stringstream ss;
-    ss << "ssd.exe write " << lba << " 0x" << ToUpperHex(data);
+    ss << STR_SSD_EXE_FILE_NAME << " write " << lba << " 0x" << ToUpperHex(data);
 
-    std::string cmd = ss.str();
-    ExecuteCommand(cmd);
+    ExecuteCommand(ss.str());
 
     std::string input = ReadFileToString("ssd_output.txt");
 	return SsdWriteResult::From(input.empty());
@@ -18,11 +17,10 @@ SsdWriteResult SsdController::Write(int lba, unsigned int data)
 
 std::string SsdController::ExecuteCommand(const std::string& cmd)
 {
-    // "cmd /c cd" 명령어를 사용하여 현재 디렉토리 경로를 가져옵니다.
     char buffer[128];
     std::string result = "";
 
-    // popen을 사용하여 "cmd /c cd" 명령을 실행하고 그 출력을 받음
+    // popen을 사용하여 명령을 실행하고 그 출력을 받음
     std::shared_ptr<FILE> pipe(_popen(cmd.c_str(), "r"), _pclose);
 
     if (!pipe) {
