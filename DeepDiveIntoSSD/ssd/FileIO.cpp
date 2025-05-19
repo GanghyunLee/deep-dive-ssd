@@ -6,7 +6,7 @@
 
 bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
 
-	if ((fileName == "sdd_nand.txt") || (fileName == "sdd_output.txt")) {
+	if ((fileName == "ssd_nand.txt") || (fileName == "ssd_output.txt")) {
 		return false;
 	}
 

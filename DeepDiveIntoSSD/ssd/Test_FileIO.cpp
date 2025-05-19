@@ -4,9 +4,9 @@
 class FileIOFixture : public testing::Test {
 
 public:
-	const std::string OUTPUT_FILE = "sdd_output.txt";
-	const std::string INPUT_FILE = "sdd_nand.txt";
-	const std::string INVALID_FILE_NAME = "sdd_output234.txt";
+	const std::string OUTPUT_FILE = "ssd_output.txt";
+	const std::string INPUT_FILE = "ssd_nand.txt";
+	const std::string INVALID_FILE_NAME = "ssd_output234.txt";
 
 	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
 	const std::string EOF_STRING = "";

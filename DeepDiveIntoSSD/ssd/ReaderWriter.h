@@ -29,7 +29,7 @@ public:
 	}
 private:
 	FileIO fileIO;
-	const std::string INPUT_FILE = "sdd_nand.txt";
+	const std::string INPUT_FILE = "ssd_nand.txt";
 };
 
 class Writer : public IWriter {
@@ -46,5 +46,5 @@ public:
 	}
 private:
 	FileIO fileIO;
-	const std::string OUTPUT_FILE = "sdd_output.txt";
+	const std::string OUTPUT_FILE = "ssd_output.txt";
 };
