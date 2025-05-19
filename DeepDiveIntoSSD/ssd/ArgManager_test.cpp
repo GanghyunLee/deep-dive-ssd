@@ -10,50 +10,43 @@ public:
 	ArgManager am;
 	std::vector<std::string> argsExpect;
 	char* input[3];
-	char cArg0[20] = { 0 };
-	char cArg1[20] = { 0 };
-	char cArg2[20] = { 0 };
+	char cArgs[3][20] = { 0 };
 	bool READ = false;
 	bool WRITE = true;
 	int INDEX = 3;
 
-	void makeInput(std::string arg0, std::string arg1, std::string arg2 = "") {
-		strcpy_s(cArg0, arg0.c_str());
-		strcpy_s(cArg1, arg1.c_str());
-		input[0] = cArg0;
-		input[1] = cArg1;
-		
-		if (arg2 != "") {
-			strcpy_s(cArg2, arg2.c_str());
-			input[2] = cArg2;
+	void makeInput(std::vector<std::string> args) {
+		for (int i = 0; i < args.size(); i++) {
+			strcpy_s(cArgs[i], args[i].c_str());
+			input[i] = cArgs[i];
 		}
 	}
 };
 
 TEST_F(ArgManagerFixture, commandSplit1) {
 	argsExpect = { "R", "3"};
-	makeInput("R", "3");
+	makeInput({ "R", "3" });
 
 	EXPECT_EQ(argsExpect, am.commandSplit(2, input));
 }
 
 TEST_F(ArgManagerFixture, commandSplit2) {
 	argsExpect = { "W", "3", "0x12345678" };
-	makeInput("W", "3", "0x12345678");
+	makeInput({ "W", "3", "0x12345678" });
 
 	EXPECT_EQ(argsExpect, am.commandSplit(3, input));
 }
 
 TEST_F(ArgManagerFixture, commandSplit3) {
 	argsExpect = { "R", "3", "0x12345678" };
-	makeInput("R", "3", "0x12345678");
+	makeInput({ "R", "3", "0x12345678" });
 
 	EXPECT_EQ(argsExpect, am.commandSplit(3, input));
 }
 
 TEST_F(ArgManagerFixture, commandSplit4) {
 	argsExpect = { "RW", "3", "0x12345678" };
-	makeInput("RW", "3", "0x12345678");
+	makeInput({ "RW", "3", "0x12345678" });
 
 	EXPECT_EQ(argsExpect, am.commandSplit(3, input));
 }
@@ -201,7 +194,7 @@ TEST_F(ArgManagerFixture, makeStruct3) {
 
 TEST_F(ArgManagerFixture, fullTest) {
 	Arg argExpected = { WRITE, INDEX, "0x000A5678" };
-	makeInput("W", "3", "0xa5678");
+	makeInput({ "W", "3", "0xa5678" });
 	std::vector<std::string> args = am.commandSplit(3, input);
 	am.isValid(args);
 
