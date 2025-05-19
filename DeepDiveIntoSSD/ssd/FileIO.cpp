@@ -80,6 +80,7 @@ void FileIO::writeLine(const std::string &line) {
 	if (!isOpen()) {
 		throw std::exception("파일이 열리지 않았습니다.");
 	}
-
-
+	
+	file << line << std::endl;
+	return;
 }

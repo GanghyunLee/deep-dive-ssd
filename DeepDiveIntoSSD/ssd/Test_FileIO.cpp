@@ -155,3 +155,24 @@ TEST_F(FileIOFixture, writeWithReadModeFileIO) {
 	fileIO->closeFile();
 
 }
+
+TEST_F(FileIOFixture, writeTest) {
+
+	FileIO* fileIO = new FileIO();
+	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
+	fileIO->setArgument(INPUT_FILE, fileIO->WRITE_MODE);
+	fileIO->openFile();
+	fileIO->writeLine(DUMMY_STRING);
+	fileIO->closeFile();
+
+
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+
+	// 첫 줄은 DeepDive Signature 있음
+	std::string line = fileIO->readLine();
+	line = fileIO->readLine();
+
+
+	EXPECT_EQ(line, DUMMY_STRING);
+}
