@@ -16,5 +16,9 @@ public:
 	std::shared_ptr<ICommand> GenerateCommand(const std::vector<std::string>& userInputCommand) override;
 
 protected:
+	bool ContainsHexPrefix(const std::string& str);
+	unsigned int HexStringToDecimal(const std::string& hexStr);
+
+protected:
 	WriteCommandFactory _writeCommandFactory;
 };

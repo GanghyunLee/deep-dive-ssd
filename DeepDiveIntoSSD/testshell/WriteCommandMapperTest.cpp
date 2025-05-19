@@ -10,7 +10,7 @@ using namespace testing;
 class MockWriteCommand : public WriteCommand
 {
 public:
-	MockWriteCommand() : WriteCommand(nullptr, 0, 0) {}
+	MockWriteCommand(int lba, unsigned int data) : WriteCommand(nullptr, lba, data) {}
 	~MockWriteCommand() override = default;
 
 public:
@@ -27,7 +27,7 @@ public:
 	{
 		writeCommandMapper = std::make_shared<WriteCommandMapper>([&](int lba, unsigned int data)
 		{
-			return make_shared<MockWriteCommand>();
+			return make_shared<MockWriteCommand>(lba, data);
 		});
 	}
 
@@ -37,24 +37,30 @@ public:
 
 TEST_F(WriteCommandMapperTestFixture, ValidArgumentTest)
 {
-	std::vector<std::string> validArgument{ "w", "3", "0xAAAABBBB" };
+	std::vector<std::string> validArgument{ "write", "3", "0xAAAABBBB" };
 	EXPECT_TRUE(writeCommandMapper->IsSupport(validArgument));
+
+	shared_ptr<WriteCommand> cmd = dynamic_pointer_cast<WriteCommand>(writeCommandMapper->GenerateCommand(validArgument));
+	EXPECT_TRUE(cmd != nullptr);
+
+	EXPECT_EQ(cmd->GetLba(), 3);
+	EXPECT_EQ(cmd->GetData(), 2863315899);
 }
 
 TEST_F(WriteCommandMapperTestFixture, MissingLbaCaseTest)
 {
-	std::vector<std::string> invalidArgument{ "w", "0xAAAABBBB" };
-	EXPECT_TRUE(writeCommandMapper->IsSupport(invalidArgument));
+	std::vector<std::string> invalidArgument{ "write", "0xAAAABBBB" };
+	EXPECT_FALSE(writeCommandMapper->IsSupport(invalidArgument));
 }
 
 TEST_F(WriteCommandMapperTestFixture, MissingDataTest)
 {
-	std::vector<std::string> invalidArgument{ "w", "2" };
-	EXPECT_TRUE(writeCommandMapper->IsSupport(invalidArgument));
+	std::vector<std::string> invalidArgument{ "write", "2" };
+	EXPECT_FALSE(writeCommandMapper->IsSupport(invalidArgument));
 }
 
 TEST_F(WriteCommandMapperTestFixture, MissingAllParametersTest)
 {
-	std::vector<std::string> invalidArgument{ "w" };
-	EXPECT_TRUE(writeCommandMapper->IsSupport(invalidArgument));
+	std::vector<std::string> invalidArgument{ "write" };
+	EXPECT_FALSE(writeCommandMapper->IsSupport(invalidArgument));
 }

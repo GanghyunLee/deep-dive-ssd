@@ -13,6 +13,9 @@ public:
 
 	std::shared_ptr<IView> Execute() override;
 
+	int GetLba() { return _lba; }
+	unsigned int GetData() { return _data; }
+
 protected:
 	std::shared_ptr<SsdWriteService> _ssdWriteService;
 	int _lba = 0;
