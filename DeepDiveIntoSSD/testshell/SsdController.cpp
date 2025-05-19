@@ -58,6 +58,16 @@ std::string SsdController::ReadFileToString(const std::string& filename)
 
     std::stringstream buffer;
     buffer << file.rdbuf();  // 파일 내용을 문자열 스트림으로 읽기
-
     return buffer.str();  // 문자열로 반환
+}
+
+unsigned int SsdController::With0xPrefixHexStringToUInt(const std::string& hexString)
+{
+    std::string localRet = hexString;
+    if (localRet.find("0x") == 0)
+    {
+        localRet = localRet.substr(2);
+    }
+
+    return std::stoul(localRet, nullptr, 16); // 16진수로 변환
 }
