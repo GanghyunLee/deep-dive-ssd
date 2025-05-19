@@ -11,12 +11,14 @@
 
 bool TestShellApplication::Run()
 {
-	while (true)
+	// 1. Get User Input
+	std::string userInput;
+	while ((EXIT_STRING) != (userInput = GetUserInputLowerStr()))
 	{
 		try
 		{
-			// 1. Get User Input
-			std::vector<std::string> userInputCommand = GetUserInputLowerStr();
+			// 2. Split User Input Command String
+			std::vector<std::string> userInputCommand = SplitUserInputCommand(userInput);
 
 			// 2. Parse Command
 			ICommand* command = nullptr;
@@ -62,7 +64,7 @@ bool TestShellApplication::Run()
 	return true;
 }
 
-std::vector<std::string> TestShellApplication::GetUserInputLowerStr()
+std::string TestShellApplication::GetUserInputLowerStr()
 {
 	std::string userInput;
 	if (_printShellPromptPrefix)
@@ -72,9 +74,14 @@ std::vector<std::string> TestShellApplication::GetUserInputLowerStr()
 	// 모든 문자를 소문자로 변환
 	std::transform(userInput.begin(), userInput.end(), userInput.begin(), [](unsigned char c) {
 		return std::tolower(c);
-	});
+		});
 
-	std::stringstream ss(userInput);  // 입력된 문자열을 stringstream으로 변환
+	return userInput;
+}
+
+std::vector<std::string> TestShellApplication::SplitUserInputCommand(const std::string& input)
+{
+	std::stringstream ss(input);  // 입력된 문자열을 stringstream으로 변환
 
 	// 공백을 기준으로 단어들을 하나씩 읽어 vector에 넣기
 	std::vector<std::string> splitedUserInput;

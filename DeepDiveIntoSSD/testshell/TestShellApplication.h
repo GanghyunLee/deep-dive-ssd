@@ -15,10 +15,12 @@ public:
 	bool Run();
 
 protected:
-	std::vector<std::string> GetUserInputLowerStr();
+	std::string GetUserInputLowerStr();
+	std::vector<std::string> SplitUserInputCommand(const std::string& input);
 
 private:
 	const std::string STR_SHELL_START = "Shell>";
+	const std::string EXIT_STRING = "exit";
 
 private:
 	IoC& _ioc;
