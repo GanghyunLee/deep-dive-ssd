@@ -19,6 +19,14 @@ void SSD::run(int argc, char* argv[]) {
 	}
 
 	Arg arg = m_argManager->makeStruct(commands);
+
+	std::fstream file(INPUT_FILE, std::ios::in);
+	if (!file.is_open()) {
+		dumpData();
+	}
+	file.close();
+
+
 	if (arg.isWrite) {
 		write(arg.index, arg.value);
 	}
@@ -51,8 +59,14 @@ void SSD::write(int index, std::string value) {
 	readAllData();
 	data[index] = std::stoi(value, nullptr, 16);
 	dumpData();
-	m_writer->write(index, std::stoi(value, nullptr, 16));
 
+	m_writer->write(index, std::stoi(value, nullptr, 16));
+	fileIO = new FileIO();
+	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
+	fileIO->openFile();
+	fileIO->writeLine("");
+	fileIO->closeFile();
+	delete fileIO;
 }
 
 void SSD::readAllData() {
