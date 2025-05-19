@@ -183,6 +183,18 @@ TEST_F(ArgManagerFixture, isValid22) {
 	EXPECT_EQ(false, am.isValid(args));
 }
 
+TEST_F(ArgManagerFixture, isValid23) {
+	std::vector<std::string> args{ "W", "3", "0x-2345678" };
+
+	EXPECT_EQ(false, am.isValid(args));
+}
+
+TEST_F(ArgManagerFixture, isValid24) {
+	std::vector<std::string> args{ "W", "3", "0x-+*/" };
+
+	EXPECT_EQ(false, am.isValid(args));
+}
+
 TEST_F(ArgManagerFixture, makeStruct1) {
 	Arg argExpected = { WRITE, INDEX, "0x12345678" };
 	Arg argsResult = am.makeStruct({ "W", "3", "0x12345678" });
