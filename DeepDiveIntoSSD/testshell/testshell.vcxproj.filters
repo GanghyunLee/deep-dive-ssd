@@ -97,6 +97,12 @@
     <ClCompile Include="ReadCommandTest.cpp">
       <Filter>Application\Command\Read</Filter>
     </ClCompile>
+    <ClCompile Include="ReadCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -158,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="ReadCommand.h">
       <Filter>Application\Command\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadCommandMapper.h">
+      <Filter>Application\CommandMapper\Read</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
