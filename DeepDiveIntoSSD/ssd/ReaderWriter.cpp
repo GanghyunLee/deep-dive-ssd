@@ -43,7 +43,7 @@ void Reader::updateOutputFile(int index, int value) {
 	return;
 }
 
-
-void Writer::write(int index, const std::string& value) {
+void Writer::write(int index, int value) {
+	
 	return;
 }

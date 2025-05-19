@@ -10,7 +10,7 @@ public:
 
 class WriterMock : public IWriter {
 public:
-	MOCK_METHOD(void, write, (int, const std::string &), (override));
+	MOCK_METHOD(void, write, (int, int), (override));
 };
 
 class SSDFixture : public Test {
@@ -43,8 +43,8 @@ TEST_F(SSDFixture, ReaderFailedByIndex) {
 TEST_F(SSDFixture, WriterSuccess) {
 	int index = 0;
 	std::string value = "0x12345678";
-	
-	EXPECT_CALL(writerMock, write(index, value)).Times(1);
+
+	EXPECT_CALL(writerMock, write(index, _)).Times(1);
 
 	ssdMock->write(index, value);
 }
@@ -58,7 +58,7 @@ TEST_F(SSDFixture, WriterFailedByIndex) {
 
 TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
-	ssdReal->initData();
+	ssdReal->dumpData();
 
 	std::fstream fp("ssd_nand.txt", std::ios::in);
 	int lineNum = 0;
@@ -71,9 +71,9 @@ TEST_F(SSDFixture, initSDSNANDTXTfile) {
 	EXPECT_EQ(lineNum, 100);
 }
 
-TEST_F(SSDFixture, readSSDNANDTextFile) {
+TEST_F(SSDFixture, readSSDNANDTextFileAfterInit) {
 
-	ssdReal->initData();
+	ssdReal->dumpData();
 	ssdReal->read(0);
 
 	std::fstream fp("ssd_output.txt", std::ios::in);
@@ -82,4 +82,17 @@ TEST_F(SSDFixture, readSSDNANDTextFile) {
 	std::getline(fp, line);
 	EXPECT_EQ("0x0000000000", line);
 	
+}
+
+TEST_F(SSDFixture, writeSSDNANDTextFile) {
+
+	ssdReal->write(40, "0x0000000033");
+	ssdReal->read(40);
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("0x0000000033", line);
+
 }
