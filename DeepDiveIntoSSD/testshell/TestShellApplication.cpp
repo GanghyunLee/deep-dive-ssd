@@ -22,7 +22,7 @@ bool TestShellApplication::Run()
 
 			// 2. Parse Command
 			ICommand* command = nullptr;
-			for (auto& commandMapper : _ioc.GetCommandMappers())
+			for (auto& commandMapper : _commandMappers)
 			{
 				if (false == commandMapper->IsSupport(userInputCommand))
 					continue;

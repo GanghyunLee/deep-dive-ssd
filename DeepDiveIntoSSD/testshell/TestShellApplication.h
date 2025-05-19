@@ -8,8 +8,8 @@
 class TestShellApplication
 {
 public:
-	TestShellApplication(IoC& ioc, std::istream& iStream, std::ostream& oStream, bool printShellPromptPrefix = false) :
-		_ioc(ioc), _iStream(iStream), _oStream(oStream), _printShellPromptPrefix(printShellPromptPrefix) { }
+	TestShellApplication(std::vector<ICommandMapper*> commandMappers, std::istream& iStream, std::ostream& oStream, bool printShellPromptPrefix = true) :
+		_commandMappers(commandMappers), _iStream(iStream), _oStream(oStream), _printShellPromptPrefix(printShellPromptPrefix) { }
 
 public:
 	bool Run();
@@ -23,7 +23,7 @@ private:
 	const std::string EXIT_STRING = "exit";
 
 private:
-	IoC& _ioc;
+	std::vector<ICommandMapper*> _commandMappers;
 	std::istream& _iStream;
 	std::ostream& _oStream;
 	bool _printShellPromptPrefix;
