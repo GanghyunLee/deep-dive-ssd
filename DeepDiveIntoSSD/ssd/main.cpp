@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 	Writer writer;
 	ArgManager argManager;
 	SSD ssd(&reader, &writer, &argManager);
-	ssd.run(argc, argv);
+	ssd.run(argc - 1, argv + 1);
 	return 0;
 #endif
 }
