@@ -23,7 +23,6 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	catch (const std::invalid_argument& e) {
 		return false;
 	}
-
 	if (index > 99 || index < 0) return false;
 	if (args[0] != "R" && args[0] != "r" && args[0] != "W" && args[0] != "w") return false;
 
@@ -33,7 +32,7 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	}
 
 	if (argc != 3) return false;
-	if (args[2].size() > 10) return false;
+	if (args[2].size() > 10 || args[2].size() < 3) return false;
 	if (args[2][0] != '0' && args[2][1] != 'x') return false;
 
 	for (int i = 2; i < args[2].size(); i++) {
