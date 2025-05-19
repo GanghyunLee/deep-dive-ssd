@@ -24,5 +24,5 @@ private:
 	IWriter* m_writer;
 	ArgManager* m_argManager;
 	FileIO* fileIO;
-	int data[100] = { 0, };
+	unsigned int data[100] = { 0, };
 };

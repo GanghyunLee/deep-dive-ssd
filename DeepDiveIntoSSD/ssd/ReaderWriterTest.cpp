@@ -5,12 +5,12 @@ using namespace testing;
 
 class ReaderMock : public IReader {
 public:
-	MOCK_METHOD(int, read, (int), (override));
+	MOCK_METHOD(unsigned int, read, (int), (override));
 };
 
 class WriterMock : public IWriter {
 public:
-	MOCK_METHOD(void, write, (int, int), (override));
+	MOCK_METHOD(void, write, (int, unsigned int), (override));
 };
 
 class SSDFixture : public Test {

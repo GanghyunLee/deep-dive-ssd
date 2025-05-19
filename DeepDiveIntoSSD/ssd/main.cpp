@@ -3,6 +3,7 @@
 
 int main(int argc, char* argv[])
 {
+
 #ifdef _DEBUG
 	::testing::InitGoogleMock();
 	return RUN_ALL_TESTS();
