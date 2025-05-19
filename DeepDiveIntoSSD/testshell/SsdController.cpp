@@ -7,7 +7,7 @@
 SsdWriteResult SsdController::Write(int lba, unsigned int data)
 {
 	std::stringstream ss;
-    ss << STR_SSD_EXE_FILE_NAME << " write " << lba << " 0x" << ToUpperHex(data);
+    ss << STR_SSD_EXE_FILE_NAME << " w " << lba << " 0x" << ToUpperHex(data);
 
     ExecuteCommand(ss.str());
 
