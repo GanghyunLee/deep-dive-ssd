@@ -22,7 +22,11 @@ void SSD::run(int argc, char* argv[]) {
 void SSD::read(int index) {
 	if (index < 0 || index > 99)
 		throw std::exception();
-	m_reader->read(index);
+	
+	// read here , update output.txt  
+	int value = m_reader->read(index);
+
+	// update nand.txt 
 }
 
 void SSD::write(int index, std::string value) {
@@ -31,7 +35,7 @@ void SSD::write(int index, std::string value) {
 	m_writer->write(index, value);
 }
 
-void SSD::initFile() {
+void SSD::initData() {
 
 	std::fstream dataFile("ssd_nand.txt");
 

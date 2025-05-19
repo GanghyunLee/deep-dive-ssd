@@ -6,7 +6,7 @@
 
 class IReader {
 public:
-	virtual void read(int index) = 0;
+	virtual int read(int index) = 0;
 };
 
 class IWriter {
@@ -16,35 +16,17 @@ public:
 
 class Reader : public IReader {
 public:
-	void read(int index) override {
-		if (fileIO.isInvalidArgument(INPUT_FILE, fileIO.READ_MODE))
-			return;
-		fileIO.setArgument(INPUT_FILE, fileIO.READ_MODE);
-		fileIO.openFile();
-		if (!fileIO.isOpen())
-			return;
-		fileIO.readLine();
-
-		return;
-	}
+	int read(int index) override;
 private:
-	FileIO fileIO;
+	FileIO *fileIO;
 	const std::string INPUT_FILE = "ssd_nand.txt";
 };
 
 class Writer : public IWriter {
 public:
-	void write(int index, const std::string& value) override {
-		if (fileIO.isInvalidArgument(OUTPUT_FILE, fileIO.WRITE_MODE))
-			return;
-		fileIO.setArgument(OUTPUT_FILE, fileIO.WRITE_MODE);
-		fileIO.openFile();
-		if (!fileIO.isOpen())
-			return;
-		fileIO.writeLine(value);
-		return;
-	}
+	void write(int index, const std::string& value) override;
+
 private:
-	FileIO fileIO;
+	FileIO *fileIO;
 	const std::string OUTPUT_FILE = "ssd_output.txt";
 };

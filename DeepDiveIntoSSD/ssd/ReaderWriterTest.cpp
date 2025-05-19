@@ -5,7 +5,7 @@ using namespace testing;
 
 class ReaderMock : public IReader {
 public:
-	MOCK_METHOD(void, read, (int), (override));
+	MOCK_METHOD(int, read, (int), (override));
 };
 
 class WriterMock : public IWriter {
@@ -58,7 +58,7 @@ TEST_F(SSDFixture, WriterFailedByIndex) {
 
 TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
-	ssdReal->initFile();
+	ssdReal->initData();
 
 	std::fstream fp("ssd_nand.txt", std::ios::in);
 	int lineNum = 0;
@@ -69,4 +69,11 @@ TEST_F(SSDFixture, initSDSNANDTXTfile) {
 	}
 
 	EXPECT_EQ(lineNum, 100);
+}
+
+TEST_F(SSDFixture, readSSDNANDTextFile) {
+
+	ssdReal->read(10);
+
+
 }

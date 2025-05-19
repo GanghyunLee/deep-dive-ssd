@@ -12,10 +12,11 @@ public:
 	void run(int argc, char* argv[]);
 	void read(int index);
 	void write(int index, std::string value);
-	void initFile();
+	void initData();
 
 private:
 	IReader* m_reader;
 	IWriter* m_writer;
 	ArgManager* m_argManager;
+	int data[100];
 };
