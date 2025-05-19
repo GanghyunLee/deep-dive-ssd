@@ -40,6 +40,12 @@
     <ClCompile Include="HelpView.cpp">
       <Filter>Application\View\Help</Filter>
     </ClCompile>
+    <ClCompile Include="HelpCommandTest.cpp">
+      <Filter>Application\Command\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">

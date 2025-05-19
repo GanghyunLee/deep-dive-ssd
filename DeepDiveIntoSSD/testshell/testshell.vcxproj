@@ -137,6 +137,8 @@
   <ItemGroup>
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="HelpCommandMapper.cpp" />
+    <ClCompile Include="HelpCommandMapperTest.cpp" />
+    <ClCompile Include="HelpCommandTest.cpp" />
     <ClCompile Include="HelpView.cpp" />
     <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="ICommandMapper.cpp" />
