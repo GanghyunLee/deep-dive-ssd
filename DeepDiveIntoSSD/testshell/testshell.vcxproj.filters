@@ -148,6 +148,15 @@
     <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp">
       <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
     </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptCommand.cpp">
+      <Filter>Application\Command\WriteReadAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -264,6 +273,15 @@
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h">
       <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
     </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptCommand.h">
+      <Filter>Application\Command\WriteReadAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -361,6 +379,12 @@
     </Filter>
     <Filter Include="Application\CommandMapper\PartialLBAWriteTestScript">
       <UniqueIdentifier>{e9ffba2f-2027-4fc6-a249-92066913b208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\WriteReadAgingTestScript">
+      <UniqueIdentifier>{aacfc940-9b9c-425a-a3d6-262c4aa4f8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\WriteReadAgingTestScript">
+      <UniqueIdentifier>{8ad85a66-60b8-4230-820c-94e5f6cd3b43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -184,6 +184,9 @@
     <ClCompile Include="WriteCommandMapper.cpp" />
     <ClCompile Include="WriteCommandMapperTest.cpp" />
     <ClCompile Include="WriteCommandTest.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptCommandMapper.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptService.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptCommand.cpp" />
     <ClCompile Include="WriteView.cpp" />
     <ClCompile Include="WriteViewTest.cpp" />
   </ItemGroup>
@@ -228,6 +231,9 @@
     <ClInclude Include="WriteCommand.h" />
     <ClInclude Include="SsdWriteResult.h" />
     <ClInclude Include="WriteCommandMapper.h" />
+    <ClInclude Include="WriteReadAgingTestScriptCommandMapper.h" />
+    <ClInclude Include="WriteReadAgingTestScriptService.h" />
+    <ClInclude Include="WriteReadAgingTestScriptCommand.h" />
     <ClInclude Include="WriteView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
