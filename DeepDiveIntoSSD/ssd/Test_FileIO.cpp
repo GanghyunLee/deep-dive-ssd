@@ -1,4 +1,4 @@
-﻿#include "gmock/gmock.h"
+#include "gmock/gmock.h"
 #include "FileIO.h"
 
 class FileIOFixture : public testing::Test {
@@ -96,7 +96,7 @@ TEST_F(FileIOFixture, readWithoutOpenedFile) {
 TEST_F(FileIOFixture, readWithWriteModeFileIO) {
 
 	FileIO* fileIO = new FileIO();
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->WRITE_MODE);
+	openFileWithArgument(fileIO, INPUT_FILE, fileIO->WRITE_TRUNC_MODE);
 
 	try {
 		fileIO->readLine();
@@ -113,7 +113,7 @@ TEST_F(FileIOFixture, readWithWriteModeFileIO) {
 TEST_F(FileIOFixture, writeWithoutOpenedFile) {
 
 	FileIO* fileIO = new FileIO();
-	fileIO->setArgument(INPUT_FILE, fileIO->WRITE_MODE);
+	fileIO->setArgument(INPUT_FILE, fileIO->WRITE_TRUNC_MODE);
 
 	try {
 		fileIO->writeLine(DUMMY_STRING);

@@ -3,7 +3,8 @@
 class FileIO {
 public:
 	const int READ_MODE = 1;
-	const int WRITE_MODE = 2;
+	const int WRITE_APPEND_MODE = 2;
+	const int WRITE_TRUNC_MODE = 3;
 
 	const std::string EOF_STRING = "";
 
