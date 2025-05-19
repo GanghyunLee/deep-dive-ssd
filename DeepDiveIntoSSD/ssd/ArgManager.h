@@ -4,7 +4,7 @@
 
 struct Arg {
 public:
-	bool RWflag;
+	bool isWrite;
 	int index;
 	std::string value;
 };

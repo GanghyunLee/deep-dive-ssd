@@ -6,7 +6,7 @@
 
 bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
 
-	if ((fileName == "sdd_nand.txt") || (fileName == "sdd_output.txt")) {
+	if ((fileName == "ssd_nand.txt") || (fileName == "ssd_output.txt")) {
 		return false;
 	}
 
@@ -69,6 +69,10 @@ std::string FileIO::readLine() {
 	
 	std::string a;
 	std::getline(file, a);
+
+	if (a == EOF_STRING) 
+		return EOF_STRING;
+
 	return a;
 }
 

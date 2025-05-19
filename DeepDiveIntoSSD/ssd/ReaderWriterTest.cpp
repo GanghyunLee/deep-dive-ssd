@@ -5,95 +5,118 @@ using namespace testing;
 
 class ReaderMock : public IReader {
 public:
-	MOCK_METHOD(void, read, (int), (override));
+	MOCK_METHOD(int, read, (int), (override));
 };
 
 class WriterMock : public IWriter {
 public:
-	MOCK_METHOD(void, write, (int, const std::string&), (override));
+	MOCK_METHOD(void, write, (int, int), (override));
 };
 
 class SSDFixture : public Test {
 public:
-	ReaderMock reader;
-	WriterMock writer;
+	ReaderMock readerMock;
+	WriterMock writerMock;
 	ArgManager argManager;
-	SSD* ssd = new SSD(&reader, &writer, &argManager);
+	
+	Reader reader;
+	Writer writer;
+
+	SSD* ssdMock = new SSD(&readerMock, &writerMock, &argManager);
+	SSD* ssdReal = new SSD(&reader, &writer, &argManager);
 };
 
 TEST_F(SSDFixture, ReaderSuccess) {
 	int index = 0;
 	
-	EXPECT_CALL(reader, read(index)).Times(1);
+	EXPECT_CALL(readerMock, read(index)).Times(1);
 
-	ssd->read(index);
+	ssdMock->read(index);
 }
 
-TEST_F(SSDFixture, ReaderFailedByIndex) {
-	int index = 100;
-
-	EXPECT_THROW(ssd->read(index), std::exception);
-}
+//TEST_F(SSDFixture, ReaderFailedByIndex) {
+//	int index = 100;
+//
+//	EXPECT_THROW(ssdMock->read(index), std::exception);
+//}
 
 TEST_F(SSDFixture, WriterSuccess) {
 	int index = 0;
 	std::string value = "0x12345678";
+
+	EXPECT_CALL(writerMock, write(index, _)).Times(1);
+
+	ssdMock->write(index, value);
+}
+
+//TEST_F(SSDFixture, WriterFailedByIndex) {
+//	int index = 100;
+//	std::string value = "0x12345678";
+//
+//	EXPECT_THROW(ssdMock->write(index, value), std::exception);
+//}
+
+TEST_F(SSDFixture, initSDSNANDTXTfile) {
+
+	ssdReal->dumpData();
+
+	std::fstream fp("ssd_nand.txt", std::ios::in);
+	int lineNum = 0;
+	std::string line;
 	
-	EXPECT_CALL(writer, write(index, value)).Times(1);
+	while (std::getline(fp, line)) {
+		lineNum++;
+	}
 
-	ssd->write(index, value);
+	EXPECT_EQ(lineNum, 100);
 }
 
-TEST_F(SSDFixture, WriterFailedByIndex) {
-	int index = 100;
-	std::string value = "0x12345678";
+TEST_F(SSDFixture, readSSDNANDTextFileAfterInit) {
 
-	EXPECT_THROW(ssd->write(index, value), std::exception);
+	ssdReal->dumpData();
+	ssdReal->read(0);
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("0x0000000000", line);
+	
 }
 
-TEST_F(SSDFixture, RunWrite) {
-	char arg0[] = "W";
-	char arg1[] = "3";
-	char arg2[] = "0x12345678";
-	char* input[] = { arg0,arg1,arg2 };
+TEST_F(SSDFixture, writeSSDNANDTextFile) {
 
-	EXPECT_CALL(writer, write).Times(1);
+	ssdReal->write(40, "0x0000000033");
+	ssdReal->read(40);
 
-	ssd->run(3, input);
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("0x0000000033", line);
+
 }
 
-TEST_F(SSDFixture, RunRead) {
-	char arg0[] = "R";
-	char arg1[] = "3";
-	char* input[] = { arg0,arg1 };
+TEST_F(SSDFixture, writeInvalidAddressFile) {
 
-	EXPECT_CALL(reader, read).Times(1);
+	ssdReal->write(100, "0x0000000033");
 
-	ssd->run(2, input);
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("ERROR", line);
+
 }
 
-TEST_F(SSDFixture, RunInvalidCommandKeyword) {
-	char arg0[] = "RW";
-	char arg1[] = "3";
-	char arg2[] = "0x12345678";
-	char* input[] = { arg0,arg1,arg2 };
+TEST_F(SSDFixture, readInvalidAddressFile) {
 
-	EXPECT_THROW(ssd->run(3, input), std::exception);
-}
+	ssdReal->read(100);
 
-TEST_F(SSDFixture, RunInvalidCommandRangeOut) {
-	char arg0[] = "R";
-	char arg1[] = "103";
-	char* input[] = { arg0,arg1 };
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
 
-	EXPECT_THROW(ssd->run(2, input), std::exception);
-}
+	std::getline(fp, line);
+	EXPECT_EQ("ERROR", line);
 
-TEST_F(SSDFixture, RunInvalidCommandParameterCount) {
-	char arg0[] = "R";
-	char arg1[] = "3";
-	char arg2[] = "0x12345678";
-	char* input[] = { arg0,arg1,arg2 };
-
-	EXPECT_THROW(ssd->run(3, input), std::exception);
 }

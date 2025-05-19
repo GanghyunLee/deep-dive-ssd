@@ -4,17 +4,17 @@
 class FileIOFixture : public testing::Test {
 
 public:
-	const std::string OUTPUT_FILE = "sdd_output.txt";
-	const std::string INPUT_FILE = "sdd_nand.txt";
-	const std::string INVALID_FILE_NAME = "sdd_output234.txt";
+	const std::string OUTPUT_FILE = "ssd_output.txt";
+	const std::string INPUT_FILE = "ssd_nand.txt";
+	const std::string INVALID_FILE_NAME = "ssd_output234.txt";
+
 	const std::string DUMMY_STRING = "DEEPDIVE SSD TEST STRING";
+	const std::string EOF_STRING = "";
 
 	void openFileWithArgument(FileIO *fileIO, const std::string fileName, int mode) {
 		fileIO->setArgument(fileName, mode);
 		fileIO->openFile();
 	}
-
-
 
 protected:
 	void SetUp() override {
@@ -79,17 +79,6 @@ TEST_F(FileIOFixture, FileClose) {
 
 }
 
-TEST_F(FileIOFixture, readOneLine) {
-
-	FileIO* fileIO = new FileIO();
-
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->READ_MODE);
-	std::string line = fileIO->readLine();
-	fileIO->closeFile();
-
-	EXPECT_EQ("DeepDiveSSD", line);
-}
-
 TEST_F(FileIOFixture, readWithoutOpenedFile) {
 
 	FileIO* fileIO = new FileIO();
@@ -152,19 +141,27 @@ TEST_F(FileIOFixture, writeWithReadModeFileIO) {
 
 }
 
-TEST_F(FileIOFixture, writeTest) {
+TEST_F(FileIOFixture, readEOFTest) {
 
 	FileIO* fileIO = new FileIO();
-	openFileWithArgument(fileIO, INPUT_FILE, fileIO->WRITE_MODE);
-
-	fileIO->writeLine(DUMMY_STRING);
-	fileIO->closeFile();
-
 	openFileWithArgument(fileIO, INPUT_FILE, fileIO->READ_MODE);
 
-	// 첫 줄은 DeepDive Signature 있음
-	std::string line = fileIO->readLine();
-	line = fileIO->readLine();
+	std::string line; 
 
-	EXPECT_EQ(line, DUMMY_STRING);
+	int line_num_test = 0; 
+	while (true) {
+		line = fileIO->readLine();
+		if (line == EOF_STRING) break;
+		line_num_test++;
+	}
+	fileIO->closeFile();
+
+	int line_num_target = 0;
+	std::fstream fp(INPUT_FILE, std::ios::in);
+	while (std::getline(fp, line)) {
+		line_num_target++;
+	}
+	fp.close();
+
+	EXPECT_EQ(line_num_test, line_num_target);
 }

@@ -10,6 +10,8 @@
     <ClCompile Include="ReaderWriterTest.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
+    <ClCompile Include="Ssd.cpp" />
+    <ClCompile Include="ReaderWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
