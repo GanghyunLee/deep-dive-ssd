@@ -148,6 +148,8 @@
     <ClCompile Include="main.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="ReadCommand.cpp" />
+    <ClCompile Include="ReadCommandTest.cpp" />
     <ClCompile Include="ReadView.cpp" />
     <ClCompile Include="ReadViewTest.cpp" />
     <ClCompile Include="SsdController.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="ISsdController.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="MockSsdControler.h" />
+    <ClInclude Include="ReadCommand.h" />
     <ClInclude Include="ReadView.h" />
     <ClInclude Include="SsdController.h" />
     <ClInclude Include="SsdReadResult.h" />

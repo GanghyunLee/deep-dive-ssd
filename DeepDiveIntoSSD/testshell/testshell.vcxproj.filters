@@ -91,6 +91,12 @@
     <ClCompile Include="ReadViewTest.cpp">
       <Filter>Application\View\Read</Filter>
     </ClCompile>
+    <ClCompile Include="ReadCommand.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandTest.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -150,6 +156,9 @@
     <ClInclude Include="ReadView.h">
       <Filter>Application\View\Read</Filter>
     </ClInclude>
+    <ClInclude Include="ReadCommand.h">
+      <Filter>Application\Command\Read</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -205,6 +214,12 @@
     </Filter>
     <Filter Include="Application\View\Read">
       <UniqueIdentifier>{5ad30ef8-f6ac-4c27-b25e-effa6bca8fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Read">
+      <UniqueIdentifier>{656a81c2-8a14-4e98-864b-5f91015b9d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Read">
+      <UniqueIdentifier>{8effdc6d-3ddd-4ecc-aa8b-c766711f4816}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
