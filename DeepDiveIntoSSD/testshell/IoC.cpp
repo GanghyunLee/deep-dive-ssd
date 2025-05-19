@@ -1,6 +1,7 @@
 #include "IoC.h"
 
 #include "FullReadCommandMapper.h"
+#include "FullWriteAndReadCompareTestScriptCommandMapper.h"
 #include "FullWriteCommandMapper.h"
 #include "HelpCommand.h"
 #include "HelpCommandMapper.h"
@@ -31,6 +32,9 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 			return std::make_shared<FullReadCommand>(GetSsdFullReadService());
 		});
 
+	static std::shared_ptr<FullWriteAndReadCompareTestScriptCommandMapper> fullWriteAndReadCompareTestScriptCommandMapper =
+		std::make_shared<FullWriteAndReadCompareTestScriptCommandMapper>(GetFullWriteAndReadCompareTestScriptService());
+
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
@@ -39,6 +43,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		readCommandMapper,
 		fullWriteCommandMapper,
 		fullReadCommandMapper,
+		fullWriteAndReadCompareTestScriptCommandMapper,
 		helpCommandMapper,
 	};
 }
@@ -65,6 +70,13 @@ std::shared_ptr<SsdFullReadService> IoC::GetSsdFullReadService()
 {
 	static std::shared_ptr<SsdFullReadService> ssdFullReadService = std::make_shared<SsdFullReadService>(GetSsdController());
 	return ssdFullReadService;
+}
+
+std::shared_ptr<FullWriteAndReadCompareTestScriptService> IoC::GetFullWriteAndReadCompareTestScriptService()
+{
+	static std::shared_ptr<FullWriteAndReadCompareTestScriptService> ssdScriptService = 
+		std::make_shared<FullWriteAndReadCompareTestScriptService>(GetSsdController());
+	return ssdScriptService;
 }
 
 std::shared_ptr<ISsdController> IoC::GetSsdController()

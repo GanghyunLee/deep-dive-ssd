@@ -138,6 +138,9 @@
     <ClCompile Include="FullReadCommand.cpp" />
     <ClCompile Include="FullReadCommandMapper.cpp" />
     <ClCompile Include="FullReadView.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommandMapper.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp" />
     <ClCompile Include="SsdFullReadService.cpp" />
     <ClCompile Include="FullWriteCommand.cpp" />
     <ClCompile Include="FullWriteCommandMapper.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="SsdReadServiceTest.cpp" />
     <ClCompile Include="SsdWriteService.cpp" />
     <ClCompile Include="SsdWriteServiceTest.cpp" />
+    <ClCompile Include="TestScriptView.cpp" />
     <ClCompile Include="TestShellApplication.cpp" />
     <ClCompile Include="SsdControlService.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">  %(AdditionalOptions)</AdditionalOptions>
@@ -192,6 +196,9 @@
     <ClInclude Include="FullReadCommand.h" />
     <ClInclude Include="FullReadCommandMapper.h" />
     <ClInclude Include="FullReadView.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h" />
     <ClInclude Include="SsdFullReadService.h" />
     <ClInclude Include="FullWriteCommand.h" />
     <ClInclude Include="FullWriteCommandMapper.h" />
@@ -214,6 +221,7 @@
     <ClInclude Include="SsdReadResult.h" />
     <ClInclude Include="SsdReadService.h" />
     <ClInclude Include="SsdWriteService.h" />
+    <ClInclude Include="TestScriptView.h" />
     <ClInclude Include="TestShellApplication.h" />
     <ClInclude Include="WriteCommand.h" />
     <ClInclude Include="SsdWriteResult.h" />
