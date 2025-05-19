@@ -52,6 +52,18 @@ protected:
 			delete sut;
 			sut = nullptr;
 		}
+
+		if (mockCommand)
+		{
+			delete mockCommand;
+			mockCommand = nullptr;
+		}
+
+		if (mockView)
+		{
+			delete mockView;
+			mockView = nullptr;
+		}
 	}
 	
 public:

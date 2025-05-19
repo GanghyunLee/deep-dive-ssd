@@ -31,6 +31,21 @@
     <ClCompile Include="SsdControlServiceTest.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
+    <ClCompile Include="HelpCommand.cpp">
+      <Filter>Application\Command\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpView.cpp">
+      <Filter>Application\View\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandTest.cpp">
+      <Filter>Application\Command\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -50,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="TestShellApplication.h">
       <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpCommand.h">
+      <Filter>Application\Command\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpCommandMapper.h">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpView.h">
+      <Filter>Application\View\Help</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +100,15 @@
     </Filter>
     <Filter Include="Service\SSD">
       <UniqueIdentifier>{495f9007-a851-4873-98de-f7c67f733d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Help">
+      <UniqueIdentifier>{c8890e62-892d-4915-9c78-c3c6afeed3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Help">
+      <UniqueIdentifier>{50c7cba4-776b-4b75-a8bb-5255e7d36e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Help">
+      <UniqueIdentifier>{c0bd0b98-c5c0-4d12-8a14-d1d37b71c39c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

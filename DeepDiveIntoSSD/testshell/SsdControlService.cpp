@@ -19,12 +19,14 @@ public:
 		ss << "ssd.exe R " << to_string(lba) << endl;
 #ifdef _DEBUG
 		cout << ss.str() << endl;
+		value = ssd_value;
 #else
 		system(ss.str().c_str());
-#endif
 		cin >> hex >> value;
+#endif
 		result.data = value;
-		return SsdReadResult{};
+		cout << result.data << ", " << value << endl;
+		return result;
 	}
 	void Write(int lba, unsigned int value) {
 		stringstream ss;
@@ -32,6 +34,7 @@ public:
 		ss << "ssd.exe W " << to_string(lba) << " " << "0x" << hex << setw(8) << setfill('0') << value << endl;
 #ifdef _DEBUG
 		cout << ss.str() << endl;
+		ssd_value = value;
 #else
 		system(ss.str().c_str());
 #endif
@@ -55,10 +58,11 @@ public:
 			ss << "ssd.exe R " << to_string(i) << endl;
 #ifdef _DEBUG
 			cout << ss.str() << endl;
+			value = ssd_value;
 #else
 			system(ss.str().c_str());
-#endif
 			cin >> hex >> value;
+#endif
 			result.data = value;
 			return SsdReadResult{};
 		}
@@ -70,18 +74,21 @@ public:
 			ss << "ssd.exe W " << to_string(i) << " " << to_string(value) << endl;
 #ifdef _DEBUG
 			cout << ss.str() << endl;
+			ssd_value = value;
 #else
 			system(ss.str().c_str());
 #endif
 		}
 	}
+private:
+	unsigned int ssd_value = 0;
 };
 
 class SsdControlServicHelp {
 public:
 	bool Help() {
 		cout << "Team : DD(DeepDive)" << endl;
-		cout << "writer : ÀÌ°­Çö, ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
+		cout << "writer : ÀÌ°­Çö(ÆÀÀå), ±Ç°Ý¹Î, ±è¹Î¼®, ÀÌ¹®Çü, ÀÌÀç±Ô" << endl;
 		cout << "write : ssd.exe W lba address" << endl;
 		cout << "read : ssd.exe R address" << endl;
 		cout << "fullwrite : ssd.exe fullwrite 0xABCDFFFF" << endl;
