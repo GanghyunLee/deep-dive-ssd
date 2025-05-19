@@ -18,7 +18,7 @@ bool TestShellApplication::Run()
 		try
 		{
 			// 2. Split User Input Command String
-			std::vector<std::string> userInputCommand = SplitCommand(userInput);
+			std::vector<std::string> userInputCommand = SplitUserInputCommand(userInput);
 
 			// 2. Parse Command
 			ICommand* command = nullptr;
@@ -79,7 +79,7 @@ std::string TestShellApplication::GetUserInputLowerStr()
 	return userInput;
 }
 
-std::vector<std::string> TestShellApplication::SplitCommand(const std::string& input)
+std::vector<std::string> TestShellApplication::SplitUserInputCommand(const std::string& input)
 {
 	std::stringstream ss(input);  // 입력된 문자열을 stringstream으로 변환
 
