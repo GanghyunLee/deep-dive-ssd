@@ -22,10 +22,10 @@ TEST(SsdControlService, WriteTest) {
 }
 TEST(SsdControlService, ExitTest) {
 	SsdControlService service;
-	bool resutl = false;
+	bool result = false;
 
-	resutl = service.Exit();
-	EXPECT_EQ(true, resutl);
+	result = service.Exit();
+	EXPECT_EQ(true, result);
 }
 
 TEST(SsdControlService, FullReadTest) {

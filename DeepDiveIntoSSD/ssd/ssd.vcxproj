@@ -131,6 +131,7 @@
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SsdTest.cpp" />
     <ClCompile Include="Test_FileIO.cpp" />
     <ClCompile Include="ReaderWriterTest.cpp" />
     <ClCompile Include="Ssd.h" />
