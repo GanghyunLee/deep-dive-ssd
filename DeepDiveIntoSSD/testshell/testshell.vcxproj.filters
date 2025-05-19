@@ -19,9 +19,6 @@
     <ClCompile Include="SsdControlService.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
-    <ClCompile Include="SsdReadResult.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
     <ClCompile Include="TestShellApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
@@ -76,6 +73,18 @@
     <ClCompile Include="WriteCommandMapperTest.cpp">
       <Filter>Application\CommandMapper\Write</Filter>
     </ClCompile>
+    <ClCompile Include="SsdReadResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdWriteServiceTest.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -89,9 +98,6 @@
     </ClInclude>
     <ClInclude Include="IView.h">
       <Filter>Application\View</Filter>
-    </ClInclude>
-    <ClInclude Include="SsdReadResult.h">
-      <Filter>Service\SSD</Filter>
     </ClInclude>
     <ClInclude Include="TestShellApplication.h">
       <Filter>Application</Filter>
@@ -125,6 +131,15 @@
     </ClInclude>
     <ClInclude Include="WriteCommandMapper.h">
       <Filter>Application\CommandMapper\Write</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="MockSsdControler.h">
+      <Filter>Service\SSD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
