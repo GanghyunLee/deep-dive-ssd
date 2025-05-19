@@ -20,5 +20,5 @@ public:
 TEST_F(HelpCommandTestFixture, HelpCommandMustGenerateHelpView)
 {
 	std::shared_ptr<IView> view = helpCommand->Execute();
-	EXPECT_TRUE(typeid(*view) == typeid(std::shared_ptr<HelpView>));
+	EXPECT_TRUE(dynamic_pointer_cast<HelpView>(view) != nullptr);
 }

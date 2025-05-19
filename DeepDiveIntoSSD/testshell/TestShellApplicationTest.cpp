@@ -105,8 +105,8 @@ TEST_F(TestShellApplicationTestFixture, SupportedCommandMustGenerateValidCommand
 
 TEST_F(TestShellApplicationTestFixture, CommandWhichHasAViewMustGenerateValidCommandAndRender)
 {
-	mockCommand = std::shared_ptr<MockCommand>();
-	mockView = std::shared_ptr<MockView>();
+	mockCommand = std::make_shared<MockCommand>();
+	mockView = std::make_shared<MockView>();
 
 	EXPECT_CALL(*mockCommandMapper, IsSupport(_))
 		.Times(1)

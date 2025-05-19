@@ -6,3 +6,11 @@
 
 using namespace std;
 using namespace testing;
+
+class WriteCommandTestFixture : public Test
+{
+public:
+
+public:
+
+};

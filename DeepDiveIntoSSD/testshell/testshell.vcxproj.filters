@@ -70,6 +70,12 @@
     <ClCompile Include="SsdWriteService.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
+    <ClCompile Include="WriteCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Write</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -116,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="SsdWriteService.h">
       <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteCommandMapper.h">
+      <Filter>Application\CommandMapper\Write</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

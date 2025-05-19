@@ -1,10 +1,12 @@
 #pragma once
+#include <memory>
+
 #include "ISsdController.h"
 
 class SsdWriteService
 {
 public:
-	SsdWriteService(ISsdController* ssdController) : _ssdController(ssdController)
+	SsdWriteService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
 	{
 	}
 
@@ -12,6 +14,6 @@ public:
 	SsdWriteResult Write(int lba, unsigned int data);
 
 protected:
-	ISsdController* _ssdController;
+	std::shared_ptr<ISsdController> _ssdController;
 };
 

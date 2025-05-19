@@ -7,17 +7,11 @@ class WriteView;
 class WriteCommand : public ICommand
 {
 public:
-	WriteCommand(const std::shared_ptr<SsdWriteService>& ssdWriteService) : _ssdWriteService(ssdWriteService) { }
+	WriteCommand(const std::shared_ptr<SsdWriteService>& ssdWriteService, int lba, unsigned int data) :
+		_ssdWriteService(ssdWriteService), _lba(lba), _data(data) { }
 	~WriteCommand() override = default;
 
 	std::shared_ptr<IView> Execute() override;
-
-public:
-	void SetLBA(int LBA) { _lba = LBA; }
-	int GetLBA() const { return _lba; }
-
-	void SetData(unsigned int data) { _data = data; }
-	unsigned int GetData() const { return _data; }
 
 protected:
 	std::shared_ptr<SsdWriteService> _ssdWriteService;

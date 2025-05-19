@@ -20,6 +20,13 @@ class HelpCommandMapperTestFixture : public Test
 public:
 	~HelpCommandMapperTestFixture() override = default;
 
+protected:
+	void SetUp() override
+	{
+		mockHelpCommand = std::make_shared<MockHelpCommand>();
+		helpCommandMapper = std::make_shared<HelpCommandMapper>(mockHelpCommand);
+	}
+
 public:
 	std::shared_ptr<MockHelpCommand> mockHelpCommand = nullptr;
 	std::shared_ptr<HelpCommandMapper> helpCommandMapper = nullptr;
