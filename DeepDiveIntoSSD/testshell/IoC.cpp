@@ -1,5 +1,6 @@
 #include "IoC.h"
 
+#include "FullReadCommandMapper.h"
 #include "FullWriteCommandMapper.h"
 #include "HelpCommand.h"
 #include "HelpCommandMapper.h"
@@ -25,6 +26,11 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 			return std::make_shared<FullWriteCommand>(GetSsdFullWriteService(), data);
 		});
 
+	static std::shared_ptr<FullReadCommandMapper> fullReadCommandMapper = std::make_shared<FullReadCommandMapper>([&]()
+		{
+			return std::make_shared<FullReadCommand>(GetSsdFullReadService());
+		});
+
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
@@ -32,6 +38,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		writeCommandMapper,
 		readCommandMapper,
 		fullWriteCommandMapper,
+		fullReadCommandMapper,
 		helpCommandMapper,
 	};
 }
@@ -52,6 +59,12 @@ std::shared_ptr<SsdFullWriteService> IoC::GetSsdFullWriteService()
 {
 	static std::shared_ptr<SsdFullWriteService> ssdFullWriteService = std::make_shared<SsdFullWriteService>(GetSsdController());
 	return ssdFullWriteService;
+}
+
+std::shared_ptr<SsdFullReadService> IoC::GetSsdFullReadService()
+{
+	static std::shared_ptr<SsdFullReadService> ssdFullReadService = std::make_shared<SsdFullReadService>(GetSsdController());
+	return ssdFullReadService;
 }
 
 std::shared_ptr<ISsdController> IoC::GetSsdController()

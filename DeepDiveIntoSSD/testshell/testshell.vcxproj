@@ -135,6 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FullReadCommand.cpp" />
+    <ClCompile Include="FullReadCommandMapper.cpp" />
+    <ClCompile Include="FullReadView.cpp" />
+    <ClCompile Include="SsdFullReadService.cpp" />
     <ClCompile Include="FullWriteCommand.cpp" />
     <ClCompile Include="FullWriteCommandMapper.cpp" />
     <ClCompile Include="FullWriteView.cpp" />
@@ -185,6 +189,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FullReadCommand.h" />
+    <ClInclude Include="FullReadCommandMapper.h" />
+    <ClInclude Include="FullReadView.h" />
+    <ClInclude Include="SsdFullReadService.h" />
     <ClInclude Include="FullWriteCommand.h" />
     <ClInclude Include="FullWriteCommandMapper.h" />
     <ClInclude Include="FullWriteView.h" />

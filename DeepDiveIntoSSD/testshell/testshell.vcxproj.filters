@@ -118,6 +118,18 @@
     <ClCompile Include="ParsingUtil.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="SsdFullReadService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadView.cpp">
+      <Filter>Application\View\FullRead</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadCommand.cpp">
+      <Filter>Application\Command\FullRead</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullRead</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -198,6 +210,18 @@
     <ClInclude Include="ParsingUtil.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="SsdFullReadService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadView.h">
+      <Filter>Application\View\FullRead</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadCommand.h">
+      <Filter>Application\Command\FullRead</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadCommandMapper.h">
+      <Filter>Application\CommandMapper\FullRead</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -271,6 +295,15 @@
     </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{516ec221-d6dc-4e7e-8b81-beea254c095a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\FullRead">
+      <UniqueIdentifier>{4f15f8cd-eedb-4e63-b4f1-7e0517de6025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\FullRead">
+      <UniqueIdentifier>{d98f142b-e5f9-4582-87d7-74824988e7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullRead">
+      <UniqueIdentifier>{4515563d-1865-46ce-a428-19ef66d87b77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
