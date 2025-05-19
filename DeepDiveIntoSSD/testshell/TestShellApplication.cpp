@@ -20,9 +20,9 @@ bool TestShellApplication::Run()
 			// 2. Split User Input Command String
 			std::vector<std::string> userInputCommand = SplitUserInputCommand(userInput);
 
-			// 2. Parse Command
+			// 3. Parse Command
 			ICommand* command = nullptr;
-			for (auto& commandMapper : _ioc.GetCommandMappers())
+			for (auto& commandMapper : _commandMappers)
 			{
 				if (false == commandMapper->IsSupport(userInputCommand))
 					continue;
@@ -30,29 +30,29 @@ bool TestShellApplication::Run()
 				command = commandMapper->GenerateCommand(userInputCommand);
 			}
 
-			// 3. Check if Failed to map command
+			// 4. Check if Failed to map command
 			if (command == nullptr)
 				throw std::exception{ "INVALID COMMAND" };
 
-			// 4. Execute Command
+			// 5. Execute Command
 			IView* view = command->Execute();
 
-			// 5. Print Result
+			// 6. Print Result
 			if (view)
 				view->Render(_oStream);
 
-			// 6. Check If the command has quit command
-			bool needToExit = command->NeedToExitAfterExecute();
-
-			// 7. Delete Command
+			// 7. Delete Command & View Object
 			if (command)
 			{
 				delete command;
 				command = nullptr;
 			}
 
-			if (needToExit)
-				break;
+			if (view)
+			{
+				delete view;
+				view = nullptr;
+			}
 		}
 		catch (std::exception& ex)
 		{
