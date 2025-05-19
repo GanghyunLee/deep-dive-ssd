@@ -27,7 +27,7 @@ SsdReadResult SsdController::Read(int lba)
         return SsdReadResult::From(false);
 
     unsigned int data = With0xPrefixHexStringToUInt(input);
-    return SsdReadResult::From(true, data);
+    return SsdReadResult::From(true, lba, data);
 }
 
 std::string SsdController::ExecuteCommand(const std::string& cmd)

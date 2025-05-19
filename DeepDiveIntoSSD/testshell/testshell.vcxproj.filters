@@ -85,6 +85,12 @@
     <ClCompile Include="SsdWriteServiceTest.cpp">
       <Filter>Service\SSD</Filter>
     </ClCompile>
+    <ClCompile Include="ReadView.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadViewTest.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -141,6 +147,9 @@
     <ClInclude Include="MockSsdControler.h">
       <Filter>Service\SSD</Filter>
     </ClInclude>
+    <ClInclude Include="ReadView.h">
+      <Filter>Application\View\Read</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -193,6 +202,9 @@
     </Filter>
     <Filter Include="Application\CommandMapper\Write">
       <UniqueIdentifier>{3e24ae52-f1d2-41ef-9cec-f1aeb4bde9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Read">
+      <UniqueIdentifier>{5ad30ef8-f6ac-4c27-b25e-effa6bca8fdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
