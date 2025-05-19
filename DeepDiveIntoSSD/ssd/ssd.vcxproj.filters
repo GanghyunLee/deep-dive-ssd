@@ -3,7 +3,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="Test_FileIO.cpp" />
+    <ClCompile Include="FileIO_test.cpp" />
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="Ssd.h" />

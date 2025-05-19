@@ -145,7 +145,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ReaderWriter.cpp" />
     <ClCompile Include="Ssd.cpp" />
-    <ClCompile Include="Test_FileIO.cpp" />
+    <ClCompile Include="FileIO_test.cpp" />
     <ClCompile Include="ReaderWriterTest.cpp" />
     <ClCompile Include="Ssd.h" />
   </ItemGroup>
