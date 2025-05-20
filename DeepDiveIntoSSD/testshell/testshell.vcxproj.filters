@@ -473,9 +473,6 @@
     <Filter Include="Application\CommandMapper\EraseAndWriteAgingTestScript">
       <UniqueIdentifier>{efbb7917-a3cc-4997-ae62-174bdc043fd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Command\Runner">
-      <UniqueIdentifier>{e0f5ba37-4f94-469d-a926-55212101e1d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Command\ScriptCommand">
       <UniqueIdentifier>{0ccf95fe-3040-4e3d-a934-c199e5fd3491}</UniqueIdentifier>
     </Filter>
