@@ -62,7 +62,7 @@ public:
 		stringstream ss;
 		ss << commandInput << endl << "exit";
 		istream.str(ss.str());
-		sut->Run();
+		sut->Run(1, nullptr);
 	}
 
 	const std::string STR_DUMMY_COMMAND = "DUMMY";
