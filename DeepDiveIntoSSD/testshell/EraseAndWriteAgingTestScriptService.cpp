@@ -3,7 +3,8 @@
 bool EraseAndWriteAgingTestScriptService::Execute()
 {
 	// 0 ~ 2번 LBA 삭제
-	_ssdController->Erase(0, LOCAL_TEST_ERASE_LBA_SIZE);
+	if (false == _ssdController->Erase(0, LOCAL_TEST_ERASE_LBA_SIZE).GetTestResult())
+		return false;
 
 	// Loop 30회
 	for (int loop = 0; loop < LOOP_COUNT; loop++)
@@ -32,4 +33,6 @@ bool EraseAndWriteAgingTestScriptService::Execute()
 			startLBA += LOCAL_TEST_WRITE_LBA_INCREASE_SIZE;
 		}
 	}
+
+	return true;
 }
