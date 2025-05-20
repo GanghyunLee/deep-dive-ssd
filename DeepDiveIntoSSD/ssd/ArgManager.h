@@ -24,5 +24,5 @@ public:
 	Arg makeStruct(const std::vector<std::string>& args);
 	bool isValid(std::vector<std::string>& args);
 	bool outOfRangeIndex(int index);
-	bool invalidCommand(const std::string &command);
+	bool invalidCommand(const std::string& command);
 };

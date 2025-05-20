@@ -18,30 +18,44 @@ void SSD::run(int argc, char* argv[]) {
 		return;
 	}
 
-	//createBuffer();
-	//updateBuffer();
+	m_commandBuffer = new CommandBuffer();
+	if (m_commandBuffer->checkDirectory()) {
+		m_commandBuffer->loadBuffer();
+	}
+	else {
+		m_commandBuffer->createBuffer();
+	}
 
 	Arg arg = m_argManager->makeStruct(commands);
-
-	std::fstream file(INPUT_FILE, std::ios::in);
-	if (!file.is_open()) {
-		dumpData();
+	if (arg.commandType == COMMAND_TYPE::READ) {
+		// do read
+		//read(arg.index);
+		return;
 	}
-	file.close();
 
-	switch (arg.commandType) {
-	case COMMAND_TYPE::WRITE:
-		write(arg.index, arg.value);
-		break;
+	if (m_commandBuffer->isBufferFull()) {
+		std::fstream file(INPUT_FILE, std::ios::in);
+		if (!file.is_open()) {
+			dumpData();
+		}
+		file.close();
+		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
 
-	case COMMAND_TYPE::READ:
-		read(arg.index);
-		break;
+		for (const auto& buffer : buffers) {
+			switch (buffer.commandType) {
+			case COMMAND_TYPE::WRITE:
+				write(buffer.index, buffer.value);
+				break;
 
-	case COMMAND_TYPE::ERASE:
-		erase(arg.index, arg.value);
-		break;
+			case COMMAND_TYPE::ERASE:
+				erase(buffer.index, buffer.value);
+				break;
+			}
+		}
+		m_commandBuffer->resetBuffer();
 	}
+
+	m_commandBuffer->pushBuffer(arg);
 }
 
 void SSD::read(int index) {
@@ -85,7 +99,7 @@ void SSD::erase(int index, std::string rangeString) {
 		return;
 	}
 
-	if (index + range > 100) 
+	if (index + range > 100)
 	{
 		dumpError();
 		return;
@@ -182,21 +196,4 @@ void SSD::dumpSuccess() {
 	fileIO->writeLine("");
 	fileIO->closeFile();
 	return;
-}
-
-void SSD::createBuffer() {
-	fileIO = new FileIO();
-	if (fileIO->createDirectory()) {
-		for (const auto& bufferName : buffers) {
-			fileIO->createFile("buffer/" + bufferName);
-		}
-	}
-}
-
-void SSD::updateBuffer() {
-	fileIO = new FileIO();
-	std::vector<std::string> dummyBuffers = { "1_empty", "2_dummy", "3_empty", "4_empty", "5_empty" };
-	for (int i = 0; i < dummyBuffers.size(); i++) {
-		fileIO->updateFileName(buffers[i], dummyBuffers[i]);
-	}
 }

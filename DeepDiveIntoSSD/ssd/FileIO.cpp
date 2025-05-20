@@ -36,7 +36,7 @@ std::string FileIO::getFileName() const {
 }
 
 void FileIO::openFile() {
-	
+
 	if (isInvalidArgument(fileName, mode)) {
 		return;
 	}
@@ -67,14 +67,14 @@ bool FileIO::isOpen() {
 
 
 std::string FileIO::readLine() {
-	
+
 	if (mode != READ_MODE) {
 		throw std::exception("모드가 일치하지 않습니다.");
 	}
 	if (!isOpen()) {
 		throw std::exception("파일이 열리지 않았습니다.");
 	}
-	
+
 	std::string a;
 	std::getline(file, a);
 
@@ -85,7 +85,7 @@ std::string FileIO::readLine() {
 	return a;
 }
 
-void FileIO::writeLine(const std::string &line) {
+void FileIO::writeLine(const std::string& line) {
 
 	if ((mode != WRITE_APPEND_MODE) && (mode != WRITE_TRUNC_MODE)) {
 		throw std::exception("모드가 일치하지 않습니다.");
@@ -94,17 +94,22 @@ void FileIO::writeLine(const std::string &line) {
 	if (!isOpen()) {
 		throw std::exception("파일이 열리지 않았습니다.");
 	}
-	
+
 	file << line << std::endl;
 	return;
 }
 
-bool FileIO::createDirectory() {
+bool FileIO::checkDirectory() {
 	std::filesystem::path p("buffer");
 
-	if (!std::filesystem::exists(p) && std::filesystem::create_directory(p))
+	if (std::filesystem::exists(p))
 		return true;
 	return false;
+}
+
+void FileIO::createDirectory() {
+	std::filesystem::path p("buffer");
+	std::filesystem::create_directory(p);
 }
 
 void FileIO::createFile(const std::string& fileName) {
@@ -112,7 +117,26 @@ void FileIO::createFile(const std::string& fileName) {
 	file.close();
 }
 
-void FileIO::updateFileName(std::string& oldName, std::string newName) {
-	std::filesystem::rename("buffer/" + oldName, "buffer/" + newName);
-	oldName = newName;
+std::vector<std::string> FileIO::getFileNamesInDirectory() {
+	std::vector<std::string> fileNames;
+	std::filesystem::path p("buffer");
+
+	for (const auto& entry : std::filesystem::directory_iterator(p)) {
+		if (std::filesystem::is_regular_file(entry.status())) {
+			fileNames.push_back(entry.path().filename().string());
+		}
+	}
+
+	return fileNames;
+}
+
+void FileIO::removeFilesInDirectory()
+{
+	std::filesystem::path p("buffer");
+
+	for (const auto& entry : std::filesystem::directory_iterator(p)) {
+		if (std::filesystem::is_regular_file(entry.status())) {
+			std::filesystem::remove(entry.path());
+		}
+	}
 }

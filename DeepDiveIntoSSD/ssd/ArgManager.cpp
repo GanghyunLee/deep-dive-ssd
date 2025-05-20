@@ -13,7 +13,7 @@ std::vector<std::string> ArgManager::commandSplit(int argc, char* argv[]) {
 bool ArgManager::isValid(std::vector<std::string>& args) {
 	int argc = args.size();
 	int index = 0;
-	
+
 	if (argc < 2) return false;
 
 	// args[1]의 값이 int로 바꿀 수 없는 값일 경우 invalid_argument exception 발생
@@ -27,7 +27,7 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	if (outOfRangeIndex(index)) {
 		return false;
 	}
-	
+
 	if (invalidCommand(args[0])) {
 		return false;
 	}
@@ -38,7 +38,7 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	}
 
 	if (argc != 3) return false;
-	
+
 	if (args[0] == "W" || args[0] == "w") {
 		//hexadecimal check
 
@@ -60,23 +60,30 @@ bool ArgManager::outOfRangeIndex(int index) {
 	return index > 99 || index < 0;
 }
 
-bool ArgManager::invalidCommand(const std::string &command) {
+bool ArgManager::invalidCommand(const std::string& command) {
 	return command != "R" && command != "r" && command != "W" && command != "w" &&
-			command != "E" && command != "e";
+		command != "E" && command != "e";
 }
 
 Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
 	Arg arg;
+
+	if (args.size() == 0 || args[0] == "empty") {
+		arg.commandType = COMMAND_TYPE::EMPTY;
+		arg.value = "";
+		return arg;
+	}
+
 	arg.index = stoi(args[1]);
-	
+
 	if (args[0] == "R" || args[0] == "r") {
 		arg.commandType = COMMAND_TYPE::READ;
 		arg.value = "";
-	
+
 		return arg;
 	}
-	
-	if (args[0] == "W" || args[0] == "w" ) {
+
+	if (args[0] == "W" || args[0] == "w") {
 		int digits = 10 - args[2].size();
 		arg.commandType = COMMAND_TYPE::WRITE;
 		arg.value = args[2];
