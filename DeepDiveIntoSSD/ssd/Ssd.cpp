@@ -18,6 +18,8 @@ void SSD::run(int argc, char* argv[]) {
 		return;
 	}
 
+	createBuffer();
+
 	Arg arg = m_argManager->makeStruct(commands);
 
 	std::fstream file(INPUT_FILE, std::ios::in);
@@ -179,4 +181,17 @@ void SSD::dumpSuccess() {
 	fileIO->writeLine("");
 	fileIO->closeFile();
 	return;
+}
+
+void SSD::createBuffer() {
+	fileIO = new FileIO();
+	if (fileIO->createDirectory()) {
+		for (const auto& bufferName : buffers) {
+			fileIO->createFile("buffer/" + bufferName);
+		}
+	}
+}
+
+void SSD::updateBuffer() {
+
 }

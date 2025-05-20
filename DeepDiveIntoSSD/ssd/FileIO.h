@@ -22,6 +22,8 @@ public:
 	std::string readLine();
 	void writeLine(const std::string&);
 
+	bool createDirectory();
+	void createFile(const std::string& fileName);
 
 private:
 	int mode;

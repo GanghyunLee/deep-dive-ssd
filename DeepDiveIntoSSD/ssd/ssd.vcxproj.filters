@@ -19,6 +19,14 @@
     <ClInclude Include="ArgManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileIO.h" />
+    <Filter Include="테스트 파일">
+      <UniqueIdentifier>{75f3487a-2b56-4e7d-b621-72a1f3acfa26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{6877f21b-0f78-42a3-a602-cdbe6ec06b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{171ba2c5-14f0-480f-a912-011c4994af09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
