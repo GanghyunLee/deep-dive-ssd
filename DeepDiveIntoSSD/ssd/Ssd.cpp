@@ -18,8 +18,8 @@ void SSD::run(int argc, char* argv[]) {
 		return;
 	}
 
-	createBuffer();
-	updateBuffer();
+	//createBuffer();
+	//updateBuffer();
 
 	Arg arg = m_argManager->makeStruct(commands);
 
