@@ -13,6 +13,8 @@ public:
 	bool IsSupport(const std::vector<std::string>& userInputCommand) override;
 	std::shared_ptr<ICommand> GenerateCommand(const std::vector<std::string>& userInputCommand) override;
 
+	void ConvertToValidLbaRange(int& lba, int& size);
+
 protected:
 	EraseCommandFactory _eraseCommandFactory;
 };
