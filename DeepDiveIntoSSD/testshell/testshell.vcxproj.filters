@@ -318,6 +318,9 @@
     <ClInclude Include="EraseRangeCommandMapper.h">
       <Filter>Application\CommandMapper\Erase</Filter>
     </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -430,6 +433,9 @@
     </Filter>
     <Filter Include="Application\Command\Erase">
       <UniqueIdentifier>{05da7f0c-a9dc-4dfc-aeae-1ae9fae19d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Logger">
+      <UniqueIdentifier>{211b3422-c1a2-47a9-942d-007001091ac3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
