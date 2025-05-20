@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <memory>
 #include "IView.h"
 
@@ -10,5 +10,7 @@ public:
 public:
 	// nullptr로 리턴하면 아무것도 출력하지 않는다.
 	virtual std::shared_ptr<IView> Execute() = 0;
+
+	virtual bool NeedToExit() { return false; }
 };
 

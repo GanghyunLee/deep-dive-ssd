@@ -11,6 +11,8 @@ bool TestShellApplication::Run()
 {
 	// 1. Get User Input
 	std::string userInput;
+	bool needToExit = false;
+
 	while ((EXIT_STRING) != (userInput = GetUserInputLowerStr()))
 	{
 		try
@@ -39,12 +41,19 @@ bool TestShellApplication::Run()
 			// 6. Print Result
 			if (view)
 				view->Render(_oStream);
+
+			// 7. Check if exit is required
+			needToExit = command->NeedToExit();
 		}
 		catch (std::exception& ex)
 		{
 			_oStream << ex.what();
 		}
 		_oStream << std::endl;
+
+		// Exit
+		if (needToExit)
+			break;
 	}
 
 	return true;
