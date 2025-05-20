@@ -5,7 +5,8 @@
 
 class CommandBufferAlgorithm {
 public:
-	std::vector<Arg> ignoreCommand(std::vector<Arg> buffer);
+	std::vector<Arg> ignoreCommand(const std::vector<Arg>& buffer);
+  
 	std::vector<Arg> mergeErase(std::vector<Arg> buffer);
 
 	bool mergeAble(Arg a, Arg b);
@@ -15,6 +16,8 @@ public:
 	std::vector<Arg> merge();
 
 	Arg fastRead(std::vector<Arg> buffer);
+
+	bool isIgnore(const std::vector<Arg>& buffer, int index);
 private:
 	std::vector<Arg> ret;
 };
