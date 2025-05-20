@@ -1,18 +1,16 @@
 #pragma once
-#include "ICommand.h"
+#include "AbstractScriptCommand.h"
 #include "WriteReadAgingTestScriptService.h"
 
-class WriteReadAgingTestScriptCommand : public ICommand
+class WriteReadAgingTestScriptCommand : public AbstractScriptCommand
 {
 public:
 	WriteReadAgingTestScriptCommand(const std::shared_ptr<WriteReadAgingTestScriptService>& ssdScriptService) :
-		_ssdScriptService(ssdScriptService) {
+		AbstractScriptCommand(ssdScriptService) {
 	}
 	~WriteReadAgingTestScriptCommand() override = default;
 
-	std::shared_ptr<IView> Execute() override;
-
 protected:
-	std::shared_ptr<WriteReadAgingTestScriptService> _ssdScriptService;
+	std::shared_ptr<IView> GetView() override;
 };
 
