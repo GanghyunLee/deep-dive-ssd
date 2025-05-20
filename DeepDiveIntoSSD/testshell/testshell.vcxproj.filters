@@ -178,7 +178,15 @@
     <ClCompile Include="WriteReadAgingTestScriptService.cpp">
       <Filter>Service\SSD\TestScript</Filter>
     </ClCompile>
-    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp" />
+    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp">
+      <Filter>Application\Command\EraseAndWriteAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -325,7 +333,15 @@
     <ClInclude Include="WriteReadAgingTestScriptService.h">
       <Filter>Service\SSD\TestScript</Filter>
     </ClInclude>
-    <ClInclude Include="EraseAndWriteAgingTestScriptService.h" />
+    <ClInclude Include="EraseAndWriteAgingTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h">
+      <Filter>Application\Command\EraseAndWriteAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -444,6 +460,12 @@
     </Filter>
     <Filter Include="Service\SSD\TestScript">
       <UniqueIdentifier>{b586b2b5-ec99-4682-b1f1-c2693f410b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{84266b45-4e7c-4cee-ac41-2d4a2e3575fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{efbb7917-a3cc-4997-ae62-174bdc043fd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
