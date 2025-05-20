@@ -32,6 +32,32 @@ void SSD::run(int argc, char* argv[]) {
 		//read(arg.index);
 		return;
 	}
+	
+	if (arg.commandType == COMMAND_TYPE::FLUSH) {
+		std::fstream file(INPUT_FILE, std::ios::in);
+		if (!file.is_open()) {
+			dumpData();
+		}
+		file.close();
+		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
+
+		for (const auto& buffer : buffers) {
+			switch (buffer.commandType) {
+			case COMMAND_TYPE::WRITE:
+				write(buffer.index, buffer.value);
+				break;
+
+			case COMMAND_TYPE::ERASE:
+				erase(buffer.index, buffer.value);
+				break;
+
+			case COMMAND_TYPE::EMPTY:
+				break;
+			}
+		}
+		m_commandBuffer->resetBuffer();
+		return;
+	}
 
 	if (m_commandBuffer->isBufferFull()) {
 		std::fstream file(INPUT_FILE, std::ios::in);
