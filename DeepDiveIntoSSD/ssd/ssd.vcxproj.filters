@@ -11,12 +11,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
     <ClCompile Include="Ssd.cpp" />
+    <ClCompile Include="CommandBufferAlgorithm.cpp" />
+    <ClCompile Include="CommandBufferAlgorithm_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />
+    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="CommandBufferAlgorithm.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="테스트 파일">
