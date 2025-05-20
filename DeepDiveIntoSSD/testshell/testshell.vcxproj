@@ -145,6 +145,9 @@
     <ClCompile Include="EraseCommandMapperTest.cpp" />
     <ClCompile Include="EraseRangeCommandMapper.cpp" />
     <ClCompile Include="EraseView.cpp" />
+    <ClCompile Include="FlushCommand.cpp" />
+    <ClCompile Include="FlushCommandMapper.cpp" />
+    <ClCompile Include="FlushView.cpp" />
     <ClCompile Include="FullReadCommand.cpp" />
     <ClCompile Include="FullReadCommandMapper.cpp" />
     <ClCompile Include="FullReadView.cpp" />
@@ -158,6 +161,8 @@
     <ClCompile Include="RunnerApplication.cpp" />
     <ClCompile Include="SsdEraseResult.cpp" />
     <ClCompile Include="SsdEraseService.cpp" />
+    <ClCompile Include="SsdFlushResult.cpp" />
+    <ClCompile Include="SsdFlushService.cpp" />
     <ClCompile Include="SsdFullReadService.cpp" />
     <ClCompile Include="FullWriteCommand.cpp" />
     <ClCompile Include="FullWriteCommandMapper.cpp" />
@@ -216,6 +221,9 @@
     <ClInclude Include="EraseCommandMapper.h" />
     <ClInclude Include="EraseRangeCommandMapper.h" />
     <ClInclude Include="EraseView.h" />
+    <ClInclude Include="FlushCommand.h" />
+    <ClInclude Include="FlushCommandMapper.h" />
+    <ClInclude Include="FlushView.h" />
     <ClInclude Include="FullReadCommand.h" />
     <ClInclude Include="FullReadCommandMapper.h" />
     <ClInclude Include="FullReadView.h" />
@@ -230,6 +238,8 @@
     <ClInclude Include="RunnerApplication.h" />
     <ClInclude Include="SsdEraseResult.h" />
     <ClInclude Include="SsdEraseService.h" />
+    <ClInclude Include="SsdFlushResult.h" />
+    <ClInclude Include="SsdFlushService.h" />
     <ClInclude Include="SsdFullReadService.h" />
     <ClInclude Include="FullWriteCommand.h" />
     <ClInclude Include="FullWriteCommandMapper.h" />
