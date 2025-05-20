@@ -149,3 +149,30 @@ TEST(CommandBufferAlgorithm, CantMergeTestEraseSizeOverFlow) {
 	CommandBufferAlgorithm cba;
 	EXPECT_FALSE(cba.mergeAble({ COMMAND_TYPE::ERASE, 5, "8" }, { COMMAND_TYPE::ERASE, 11, "5" }));
 }
+
+TEST(CommandBufferAlgorithm, MergeTwoEraseOperationTest1) {
+	CommandBufferAlgorithm cba;
+
+	Arg merged = cba.mergeTwoCommand({ COMMAND_TYPE::ERASE, 10, "3" }, { COMMAND_TYPE::ERASE, 10, "3" });
+	EXPECT_EQ(merged.commandType, COMMAND_TYPE::ERASE);
+	EXPECT_EQ(merged.index, 10);
+	EXPECT_EQ(merged.value, "3");
+}
+
+TEST(CommandBufferAlgorithm, MergeTwoEraseOperationTest2) {
+	CommandBufferAlgorithm cba;
+
+	Arg merged = cba.mergeTwoCommand({ COMMAND_TYPE::ERASE, 10, "5" }, { COMMAND_TYPE::ERASE, 15, "5" });
+	EXPECT_EQ(merged.commandType, COMMAND_TYPE::ERASE);
+	EXPECT_EQ(merged.index, 10);
+	EXPECT_EQ(merged.value, "10");
+}
+
+TEST(CommandBufferAlgorithm, MergeTwoEraseOperationTest3) {
+	CommandBufferAlgorithm cba;
+
+	Arg merged = cba.mergeTwoCommand({ COMMAND_TYPE::ERASE, 10, "2" }, { COMMAND_TYPE::ERASE, 12, "2" });
+	EXPECT_EQ(merged.commandType, COMMAND_TYPE::ERASE);
+	EXPECT_EQ(merged.index, 10);
+	EXPECT_EQ(merged.value, "4");
+}

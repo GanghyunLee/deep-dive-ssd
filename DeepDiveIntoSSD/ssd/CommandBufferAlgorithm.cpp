@@ -88,7 +88,15 @@ int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
 }
 
 Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
-	Arg mergedArg;
+	
+	int startIdx = a.index;
+	if (b.index < a.index) {
+		startIdx = b.index;
+	}
+
+	int range = mergedRange(a, b);
+	Arg mergedArg = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+
 	return mergedArg;
 }
 
