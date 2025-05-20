@@ -1,7 +1,9 @@
 #include "IoC.h"
 
+#include "EraseAndWriteAgingTestScriptCommandMapper.h"
 #include "EraseCommandMapper.h"
 #include "EraseRangeCommandMapper.h"
+#include "FlushCommandMapper.h"
 #include "FullReadCommandMapper.h"
 #include "FullWriteAndReadCompareTestScriptCommandMapper.h"
 #include "FullWriteCommandMapper.h"
@@ -48,17 +50,25 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 	static std::shared_ptr<WriteReadAgingTestScriptCommandMapper> writeReadAgingTestScriptCommandMapper =
 		std::make_shared<WriteReadAgingTestScriptCommandMapper>(GetWriteReadAgingTestScriptService());
 
+	static std::shared_ptr<EraseAndWriteAgingTestScriptCommandMapper> eraseAndWriteAgingTestScriptCommandMapper =
+		std::make_shared<EraseAndWriteAgingTestScriptCommandMapper>(GetEraseAndWriteAgingTestScriptService());
+
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
+
+	static std::shared_ptr<FlushCommand> flushCommand = std::make_shared<FlushCommand>(GetSsdFlushService());
+	static std::shared_ptr<FlushCommandMapper> flushCommandMapper = std::make_shared<FlushCommandMapper>(flushCommand);
 
 	return std::vector<std::shared_ptr<ICommandMapper>>{
 		writeCommandMapper,
 		readCommandMapper,
+		flushCommandMapper,
 		fullWriteCommandMapper,
 		fullReadCommandMapper,
 		fullWriteAndReadCompareTestScriptCommandMapper,
 		partialLBAWriteTestScriptCommandMapper,
 		writeReadAgingTestScriptCommandMapper,
+		eraseAndWriteAgingTestScriptCommandMapper,
 		helpCommandMapper,
 		eraseCommandMapper,
 		eraseRangeCommandMapper,
@@ -95,6 +105,12 @@ std::shared_ptr<SsdEraseService> IoC::GetSsdEraseService()
 	return ssdEraseService;
 }
 
+std::shared_ptr<SsdFlushService> IoC::GetSsdFlushService()
+{
+	static std::shared_ptr<SsdFlushService> ssdFlushService = std::make_shared<SsdFlushService>(GetSsdController());
+	return ssdFlushService;
+}
+
 std::shared_ptr<FullWriteAndReadCompareTestScriptService> IoC::GetFullWriteAndReadCompareTestScriptService()
 {
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptService> ssdScriptService = 
@@ -113,6 +129,13 @@ std::shared_ptr<WriteReadAgingTestScriptService> IoC::GetWriteReadAgingTestScrip
 {
 	static std::shared_ptr<WriteReadAgingTestScriptService> ssdScriptService =
 		std::make_shared<WriteReadAgingTestScriptService>(GetSsdController());
+	return ssdScriptService;
+}
+
+std::shared_ptr<EraseAndWriteAgingTestScriptService> IoC::GetEraseAndWriteAgingTestScriptService()
+{
+	static std::shared_ptr<EraseAndWriteAgingTestScriptService> ssdScriptService =
+		std::make_shared<EraseAndWriteAgingTestScriptService>(GetSsdController());
 	return ssdScriptService;
 }
 

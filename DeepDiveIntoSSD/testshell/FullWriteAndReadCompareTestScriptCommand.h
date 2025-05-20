@@ -1,18 +1,16 @@
 #pragma once
+#include "AbstractScriptCommand.h"
 #include "FullWriteAndReadCompareTestScriptService.h"
-#include "ICommand.h"
 
-class FullWriteAndReadCompareTestScriptCommand : public ICommand
+class FullWriteAndReadCompareTestScriptCommand : public AbstractScriptCommand
 {
 public:
 	FullWriteAndReadCompareTestScriptCommand(const std::shared_ptr<FullWriteAndReadCompareTestScriptService>& ssdScriptService) :
-		_ssdScriptService(ssdScriptService) {
+		AbstractScriptCommand(ssdScriptService) {
 	}
 	~FullWriteAndReadCompareTestScriptCommand() override = default;
 
-	std::shared_ptr<IView> Execute() override;
-
-protected:
-	std::shared_ptr<FullWriteAndReadCompareTestScriptService> _ssdScriptService;
+	std::shared_ptr<IView> GetView() override;
+	std::string GetCommandName() override { return "1_FullWriteAndReadCompare"; }
 };
 

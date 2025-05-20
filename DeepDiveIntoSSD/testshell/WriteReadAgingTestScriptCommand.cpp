@@ -1,8 +1,7 @@
 #include "WriteReadAgingTestScriptCommand.h"
 #include "TestScriptView.h"
 
-std::shared_ptr<IView> WriteReadAgingTestScriptCommand::Execute()
+std::shared_ptr<IView> WriteReadAgingTestScriptCommand::GetView()
 {
-	bool result = _ssdScriptService->Execute();
-	return std::make_shared<TestScriptView>(result);
+	return std::make_shared<TestScriptView>(_scriptCommandResult);
 }
