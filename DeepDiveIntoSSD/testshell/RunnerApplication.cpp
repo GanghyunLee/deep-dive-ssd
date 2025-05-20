@@ -24,14 +24,19 @@ bool RunnerApplication::Run(int argc, char* argv[])
         std::string line;
         while (std::getline(file, line))
         {
+            std::string lineLowerStr = ParsingUtil::ToLowerString(line);
             // 1. Find Matching Command (Only AbstractScriptCommand)
             std::shared_ptr<AbstractScriptCommand> command = std::dynamic_pointer_cast<AbstractScriptCommand>(
-                FindMatchingCommand(ParsingUtil::ToLowerString(line))
+                FindMatchingCommand(lineLowerStr)
             );
 
             // 2. Check if Failed to map command
             if (command == nullptr)
-                throw std::exception{ "INVALID COMMAND" };
+            {
+                std::stringstream ss;
+                ss << "INVALID COMMAND(Your Command = " << line << ")";
+                throw std::exception{ss.str().c_str()};
+            }
 
             // 3. Print - ex) 1_FullWriteAndReadCompare  ___   Run...
             _oStream << command->GetCommandName() << "  ___  Run...";
