@@ -1,5 +1,6 @@
 #include <memory>
 #include "IoC.h"
+#include "Logger.h"
 #include "TestShellApplication.h"
 #include "gmock/gmock.h"
 
@@ -15,7 +16,8 @@ int main(void)
 	return RUN_ALL_TESTS();
 #else
 	IoC ioc{};
-	std::shared_ptr<TestShellApplication> app = std::make_shared<TestShellApplication>(ioc.GetCommandMappers(), std::cin, std::cout );
+	DualLogger logger{ "logfile.txt" };
+	std::shared_ptr<TestShellApplication> app = std::make_shared<TestShellApplication>(ioc.GetCommandMappers(), std::cin, logger.getOstream());
 
 	return (app->Run()) ? APPLICATION_NO_ERROR : APPLICATION_ERROR;
 #endif
