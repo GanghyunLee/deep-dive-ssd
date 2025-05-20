@@ -20,10 +20,22 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 		return false;
 	}
 
+	if (!isContinuousEraseRange(a, b)) {
+		return false;
+	}
+
+	int range = mergedRange(a, b);
+	if (range > 10) {
+		return false;
+	}
+
+	return true;
+}
+
+bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
+
 	int a_range = stoi(a.value, nullptr, 10);
 	int b_range = stoi(b.value, nullptr, 10);
-
-
 
 	bool _a[100] = { 0, };
 	bool _b[100] = { 0, };
@@ -41,30 +53,38 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 		startIdx = b.index;
 	}
 
-	int endIdx = a.index + a_range - 1; 
+	int endIdx = a.index + a_range - 1;
 	if (a.index + a_range - 1 < b.index + b_range - 1) {
 		endIdx = b.index + b_range - 1;
 	}
 
 	bool isContinuous = true;
-	for(int i = startIdx; i <= endIdx ; i++){
-		if ( !(_a[i] || _b[i])) {
+	for (int i = startIdx; i <= endIdx; i++) {
+		if (!(_a[i] || _b[i])) {
 			isContinuous = false;
 			break;
 		}
 	}
 
-	if (!isContinuous) {
-		return false;
+	return isContinuous;
+}
+
+int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
+
+	int a_range = stoi(a.value, nullptr, 10);
+	int b_range = stoi(b.value, nullptr, 10);
+
+	int startIdx = a.index;
+	if (a.index > b.index) {
+		startIdx = b.index;
 	}
 
-	int mergedRange = endIdx - startIdx + 1;
-	
-	if (mergedRange > 10) {
-		return false;
+	int endIdx = a.index + a_range - 1;
+	if (a.index + a_range - 1 < b.index + b_range - 1) {
+		endIdx = b.index + b_range - 1;
 	}
 
-	return true;
+	return endIdx - startIdx + 1;
 }
 
 Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
