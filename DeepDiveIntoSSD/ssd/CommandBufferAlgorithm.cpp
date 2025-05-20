@@ -95,9 +95,7 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 	}
 
 	int range = mergedRange(a, b);
-	Arg mergedArg = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
-
-	return mergedArg;
+	return { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
 }
 
 std::vector<Arg> CommandBufferAlgorithm::merge() {
