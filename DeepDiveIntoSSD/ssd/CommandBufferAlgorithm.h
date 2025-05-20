@@ -4,8 +4,11 @@
 
 class CommandBufferAlgorithm {
 public:
+	CommandBufferAlgorithm() {}
 	CommandBufferAlgorithm(std::vector<std::string> buffer) :
 		buffer{ buffer } {}
+
+	void setCommandBuffer(std::vector<std::string> buffer);
 
 	std::vector<std::string> ignoreCommand();
 
@@ -14,4 +17,5 @@ public:
 	std::string fastRead();
 private:
 	std::vector<std::string> buffer;
+	std::vector<std::string> ret;
 };
