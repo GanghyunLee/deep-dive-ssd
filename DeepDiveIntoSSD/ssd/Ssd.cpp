@@ -26,12 +26,18 @@ void SSD::run(int argc, char* argv[]) {
 	}
 	file.close();
 
-
-	if (arg.isWrite) {
+	switch (arg.commandType) {
+	case COMMAND_TYPE::WRITE:
 		write(arg.index, arg.value);
-	}
-	else {
+		break;
+
+	case COMMAND_TYPE::READ:
 		read(arg.index);
+		break;
+
+	case COMMAND_TYPE::ERASE:
+
+		break;
 	}
 }
 

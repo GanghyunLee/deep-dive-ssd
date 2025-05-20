@@ -2,9 +2,15 @@
 #include <string>
 #include <vector>
 
+enum COMMAND_TYPE { READ = 1, WRITE, ERASE };
+
 struct Arg {
 public:
-	bool isWrite;
+	// commandType
+	// 1 = Read
+	// 2 = Write
+	// 3 = Erase
+	int commandType;
 	int index;
 	std::string value;
 };

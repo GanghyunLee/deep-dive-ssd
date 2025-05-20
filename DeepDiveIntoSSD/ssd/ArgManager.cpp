@@ -70,16 +70,26 @@ Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
 	arg.index = stoi(args[1]);
 	
 	if (args[0] == "R" || args[0] == "r") {
-		arg.isWrite = false;
+		arg.commandType = COMMAND_TYPE::READ;
 		arg.value = "";
+	
+		return arg;
 	}
-	else {
+	
+	if (args[0] == "W" || args[0] == "w" ) {
 		int digits = 10 - args[2].size();
-		arg.isWrite = true;
+		arg.commandType = COMMAND_TYPE::WRITE;
 		arg.value = args[2];
 		for (int i = 0; i < digits; i++) {
 			arg.value.insert(2, "0");
 		}
+
+		return arg;
+	}
+
+	if (args[0] == "E" || args[0] == "e") {
+		arg.commandType = COMMAND_TYPE::ERASE;
+		return arg;
 	}
 
 	return arg;
