@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-enum COMMAND_TYPE { EMPTY = 0, READ, WRITE, ERASE };
+enum COMMAND_TYPE { EMPTY = 0, READ , WRITE, ERASE };
 
 struct Arg {
 public:
