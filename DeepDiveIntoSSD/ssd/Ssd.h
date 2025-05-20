@@ -18,6 +18,7 @@ public:
 	void read(int index);
 	void write(int index, std::string value);
 	void erase(int index, std::string range);
+	void flushBuffers();
 
 	void updateData(int index, unsigned int value);
 

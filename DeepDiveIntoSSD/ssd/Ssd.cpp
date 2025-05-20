@@ -5,7 +5,6 @@
 #include "Ssd.h"
 #include "ArgManager.h"
 
-
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
 
@@ -29,59 +28,20 @@ void SSD::run(int argc, char* argv[]) {
 	Arg arg = m_argManager->makeStruct(commands);
 	if (arg.commandType == COMMAND_TYPE::READ) {
 		// do read
-		//read(arg.index);
+		read(arg.index);
 		return;
 	}
 	
 	if (arg.commandType == COMMAND_TYPE::FLUSH) {
-		std::fstream file(INPUT_FILE, std::ios::in);
-		if (!file.is_open()) {
-			dumpData();
-		}
-		file.close();
-		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
-
-		for (const auto& buffer : buffers) {
-			switch (buffer.commandType) {
-			case COMMAND_TYPE::WRITE:
-				write(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::ERASE:
-				erase(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::EMPTY:
-				break;
-			}
-		}
-		m_commandBuffer->resetBuffer();
+		flushBuffers();
 		return;
 	}
 
 	if (m_commandBuffer->isBufferFull()) {
-		std::fstream file(INPUT_FILE, std::ios::in);
-		if (!file.is_open()) {
-			dumpData();
-		}
-		file.close();
-		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
-
-		for (const auto& buffer : buffers) {
-			switch (buffer.commandType) {
-			case COMMAND_TYPE::WRITE:
-				write(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::ERASE:
-				erase(buffer.index, buffer.value);
-				break;
-			}
-		}
-		m_commandBuffer->resetBuffer();
+		flushBuffers();
 	}
-
 	m_commandBuffer->pushBuffer(arg);
+	return;
 }
 
 void SSD::read(int index) {
@@ -147,6 +107,32 @@ void SSD::erase(int index, std::string rangeString) {
 
 }
 
+void SSD::flushBuffers()
+{
+	std::fstream file(INPUT_FILE, std::ios::in);
+	if (!file.is_open()) {
+		dumpData();
+	}
+	file.close();
+	std::vector<Arg> buffers = m_commandBuffer->getBuffer();
+
+	for (const auto& buffer : buffers) {
+		switch (buffer.commandType) {
+		case COMMAND_TYPE::WRITE:
+			write(buffer.index, buffer.value);
+			break;
+
+		case COMMAND_TYPE::ERASE:
+			erase(buffer.index, buffer.value);
+			break;
+
+		case COMMAND_TYPE::EMPTY:
+			break;
+		}
+	}
+	m_commandBuffer->resetBuffer();
+	return;
+}
 
 void SSD::updateData(int index, unsigned int value) {
 	data[index] = value;
