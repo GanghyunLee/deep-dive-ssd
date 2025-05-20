@@ -12,7 +12,7 @@ public:
 	bool IsSupport(const std::vector<std::string>& userInputCommand) override;
 	std::shared_ptr<ICommand> GenerateCommand(const std::vector<std::string>& userInputCommand) override;
 
-	void ValidateLbaParameters(int startLba, int endLba);
+	void ConvertToValidLbaRange(int& startLba, int& endLba);
 
 protected:
 	EraseCommandFactory _eraseCommandFactory;
