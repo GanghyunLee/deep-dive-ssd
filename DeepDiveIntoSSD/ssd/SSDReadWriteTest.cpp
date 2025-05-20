@@ -3,58 +3,13 @@
 
 using namespace testing;
 
-class ReaderMock : public IReader {
-public:
-	MOCK_METHOD(unsigned int, read, (int), (override));
-};
-
-class WriterMock : public IWriter {
-public:
-	MOCK_METHOD(void, write, (int, unsigned int), (override));
-};
-
 class SSDFixture : public Test {
 public:
-	ReaderMock readerMock;
-	WriterMock writerMock;
+	const std::string WRITE_SUCCESS_RESULT = "";
+
 	ArgManager argManager;
-	
-	Reader reader;
-	Writer writer;
-
-	SSD* ssdMock = new SSD(&readerMock, &writerMock, &argManager);
-	SSD* ssdReal = new SSD(&reader, &writer, &argManager);
+	SSD* ssdReal = new SSD(&argManager);
 };
-
-TEST_F(SSDFixture, ReaderSuccess) {
-	int index = 0;
-	
-	EXPECT_CALL(readerMock, read(index)).Times(1);
-
-	ssdMock->read(index);
-}
-
-//TEST_F(SSDFixture, ReaderFailedByIndex) {
-//	int index = 100;
-//
-//	EXPECT_THROW(ssdMock->read(index), std::exception);
-//}
-
-TEST_F(SSDFixture, WriterSuccess) {
-	int index = 0;
-	std::string value = "0x12345678";
-
-	EXPECT_CALL(writerMock, write(index, _)).Times(1);
-
-	ssdMock->write(index, value);
-}
-
-//TEST_F(SSDFixture, WriterFailedByIndex) {
-//	int index = 100;
-//	std::string value = "0x12345678";
-//
-//	EXPECT_THROW(ssdMock->write(index, value), std::exception);
-//}
 
 TEST_F(SSDFixture, initSDSNANDTXTfile) {
 
@@ -92,7 +47,7 @@ TEST_F(SSDFixture, writeSSDNANDTextFile) {
 	std::string line;
 
 	std::getline(fp, line);
-	EXPECT_EQ("", line);
+	EXPECT_EQ(WRITE_SUCCESS_RESULT, line);
 
 }
 

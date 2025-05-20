@@ -1,10 +1,10 @@
-#include "Ssd.h"
-#include "ReaderWriter.h"
-#include "ArgManager.h"
-
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+
+#include "Ssd.h"
+#include "ArgManager.h"
+
 
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
@@ -45,9 +45,6 @@ void SSD::read(int index) {
 
 	readAll();
 	dumpResult(index, data[index]);
-
-	// mock 
-	m_reader->read(index);
 }
 
 void SSD::write(int index, std::string value) {
@@ -62,9 +59,6 @@ void SSD::write(int index, std::string value) {
 	updateData(index, std::stoul(value, nullptr, 16));
 	dumpData();
 	dumpSuccess();
-
-	m_writer->write(index, std::stoul(value, nullptr, 16));
-
 }
 
 void SSD::updateData(int index, unsigned int value) {
