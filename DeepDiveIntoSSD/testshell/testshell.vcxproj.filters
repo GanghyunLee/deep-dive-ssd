@@ -175,6 +175,9 @@
     <ClCompile Include="EraseRangeCommandMapper.cpp">
       <Filter>Application\CommandMapper\Erase</Filter>
     </ClCompile>
+    <ClCompile Include="EraseCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
