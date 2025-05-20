@@ -138,6 +138,7 @@
     <ClCompile Include="AbstractTestScriptService.cpp" />
     <ClCompile Include="EraseCommand.cpp" />
     <ClCompile Include="EraseCommandMapper.cpp" />
+    <ClCompile Include="EraseCommandMapperTest.cpp" />
     <ClCompile Include="EraseRangeCommandMapper.cpp" />
     <ClCompile Include="EraseView.cpp" />
     <ClCompile Include="FullReadCommand.cpp" />

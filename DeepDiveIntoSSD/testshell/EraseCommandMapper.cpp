@@ -32,7 +32,7 @@ void EraseCommandMapper::ConvertToValidLbaRange(int& lba, int& size)
 	// size에 대한 음수 처리
 	if (size < 0)
 	{
-		int targetStartLba = lba + size;
+		int targetStartLba = lba + size + 1;
 
 		if (targetStartLba < 0)
 			throw std::exception{ "INVALID RANGE" };
