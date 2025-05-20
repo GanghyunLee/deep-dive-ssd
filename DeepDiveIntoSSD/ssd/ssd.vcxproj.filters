@@ -13,6 +13,7 @@
     <ClCompile Include="Ssd.cpp" />
     <ClCompile Include="CommandBufferAlgorithm.cpp" />
     <ClCompile Include="CommandBufferAlgorithm_test.cpp" />
+    <ClCompile Include="CommandBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -21,6 +22,7 @@
     <ClInclude Include="ArgManager.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="CommandBufferAlgorithm.h" />
+    <ClInclude Include="CommandBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="테스트 파일">
