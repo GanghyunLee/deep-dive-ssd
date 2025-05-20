@@ -22,7 +22,7 @@ TEST_F(SSDFixture, initSDSNANDTXTfile) {
 	while (std::getline(fp, line)) {
 		lineNum++;
 	}
-
+	fp.close();
 	EXPECT_EQ(lineNum, 100);
 }
 
@@ -35,6 +35,8 @@ TEST_F(SSDFixture, readSSDNANDTextFileAfterInit) {
 	std::string line;
 
 	std::getline(fp, line);
+	fp.close();
+
 	EXPECT_EQ("0x00000000", line);
 	
 }
@@ -47,6 +49,8 @@ TEST_F(SSDFixture, writeSSDNANDTextFile) {
 	std::string line;
 
 	std::getline(fp, line);
+	fp.close();
+
 	EXPECT_EQ(WRITE_SUCCESS_RESULT, line);
 
 }
@@ -59,6 +63,8 @@ TEST_F(SSDFixture, writeInvalidAddressFile) {
 	std::string line;
 
 	std::getline(fp, line);
+	fp.close();
+
 	EXPECT_EQ("ERROR", line);
 
 }
@@ -71,6 +77,31 @@ TEST_F(SSDFixture, readInvalidAddressFile) {
 	std::string line;
 
 	std::getline(fp, line);
+	fp.close();
 	EXPECT_EQ("ERROR", line);
 
+}
+
+TEST_F(SSDFixture, eraseOutOfRangeTest) {
+
+	ssdReal->erase(10, "11");
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("ERROR", line);
+	fp.close();
+}
+
+TEST_F(SSDFixture, eraseValidRangeTest) {
+
+	ssdReal->erase(10, "1");
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("", line);
+	fp.close();
 }

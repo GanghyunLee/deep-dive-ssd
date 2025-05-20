@@ -16,7 +16,8 @@ public:
 	
 	void read(int index);
 	void write(int index, std::string value);
-	
+	void erase(int index, std::string range);
+
 	void updateData(int index, unsigned int value);
 	
 	void readAll();

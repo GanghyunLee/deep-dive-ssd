@@ -89,6 +89,7 @@ Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
 
 	if (args[0] == "E" || args[0] == "e") {
 		arg.commandType = COMMAND_TYPE::ERASE;
+		arg.value = args[2];
 		return arg;
 	}
 
