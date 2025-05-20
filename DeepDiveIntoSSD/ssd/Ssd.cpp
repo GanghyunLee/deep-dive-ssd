@@ -36,7 +36,7 @@ void SSD::run(int argc, char* argv[]) {
 		break;
 
 	case COMMAND_TYPE::ERASE:
-
+		erase(arg.index, arg.value);
 		break;
 	}
 }

@@ -105,3 +105,15 @@ TEST_F(SSDFixture, eraseValidRangeTest) {
 	EXPECT_EQ("", line);
 	fp.close();
 }
+
+TEST_F(SSDFixture, eraseNothingTest) {
+
+	ssdReal->erase(10, "0");
+
+	std::fstream fp("ssd_output.txt", std::ios::in);
+	std::string line;
+
+	std::getline(fp, line);
+	EXPECT_EQ("", line);
+	fp.close();
+}
