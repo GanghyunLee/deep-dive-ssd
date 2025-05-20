@@ -38,16 +38,21 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	}
 
 	if (argc != 3) return false;
-	if (args[2].size() > 10 || args[2].size() < 3) return false;
-	if (args[2][0] != '0' && args[2][1] != 'x') return false;
+	
+	if (args[0] == "W" || args[0] == "w") {
+		//hexadecimal check
 
-	for (int i = 2; i < args[2].size(); i++) {
-		if ((args[2][i] < '0' || args[2][i] > '9') && (args[2][i] < 'a' || args[2][i] > 'f') && (args[2][i] < 'A' || args[2][i] > 'F')) return false;
-		if (args[2][i] >= 'a' && args[2][i] <= 'f') {
-			args[2][i] -= 32;
+		if (args[2].size() > 10 || args[2].size() < 3) return false;
+		if (args[2][0] != '0' && args[2][1] != 'x') return false;
+
+		for (int i = 2; i < args[2].size(); i++) {
+			if ((args[2][i] < '0' || args[2][i] > '9') && (args[2][i] < 'a' || args[2][i] > 'f') && (args[2][i] < 'A' || args[2][i] > 'F')) return false;
+			if (args[2][i] >= 'a' && args[2][i] <= 'f') {
+				args[2][i] -= 32;
+			}
 		}
-	}
 
+	}
 	return true;
 }
 
@@ -56,7 +61,8 @@ bool ArgManager::outOfRangeIndex(int index) {
 }
 
 bool ArgManager::invalidCommand(const std::string &command) {
-	return command != "R" && command != "r" && command != "W" && command != "w";
+	return command != "R" && command != "r" && command != "W" && command != "w" &&
+			command != "E" && command != "e";
 }
 
 Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
