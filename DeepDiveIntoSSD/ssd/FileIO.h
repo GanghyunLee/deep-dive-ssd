@@ -24,6 +24,7 @@ public:
 
 	bool createDirectory();
 	void createFile(const std::string& fileName);
+	void updateFileName(std::string& oldName, std::string newName);
 
 private:
 	int mode;

@@ -111,3 +111,8 @@ void FileIO::createFile(const std::string& fileName) {
 	std::ofstream file(fileName);
 	file.close();
 }
+
+void FileIO::updateFileName(std::string& oldName, std::string newName) {
+	std::filesystem::rename("buffer/" + oldName, "buffer/" + newName);
+	oldName = newName;
+}
