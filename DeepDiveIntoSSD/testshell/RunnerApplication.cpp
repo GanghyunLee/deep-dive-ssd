@@ -2,6 +2,9 @@
 #include <fstream>
 #include <sstream>
 
+#include "AbstractScriptCommand.h"
+#include "ParsingUtil.h"
+
 bool RunnerApplication::Run(int argc, char* argv[])
 {
     try
@@ -21,7 +24,26 @@ bool RunnerApplication::Run(int argc, char* argv[])
         std::string line;
         while (std::getline(file, line))
         {
-            InterpretUserCommandAndExecute(line);
+            // 1. Find Matching Command (Only AbstractScriptCommand)
+            std::shared_ptr<AbstractScriptCommand> command = std::dynamic_pointer_cast<AbstractScriptCommand>(
+                FindMatchingCommand(ParsingUtil::ToLowerString(line))
+            );
+
+            // 2. Check if Failed to map command
+            if (command == nullptr)
+                throw std::exception{ "INVALID COMMAND" };
+
+            // 3. Print - ex) 1_FullWriteAndReadCompare  ___   Run...
+            _oStream << command->GetCommandName() << "  ___  Run...";
+
+            // 4. Execute Command
+            std::shared_ptr<IView> view = command->Execute();
+
+            // 5. Print Result(Pass / Fail)
+            if (view)
+                view->Render(_oStream);
+
+            _oStream << std::endl;
         }
     }
     catch (std::exception& ex)

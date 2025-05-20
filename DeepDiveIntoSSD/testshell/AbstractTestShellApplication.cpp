@@ -7,13 +7,14 @@
 #include "ICommandMapper.h"
 #include "IView.h"
 
-void AbstractTestShellApplication::InterpretUserCommandAndExecute(const std::string& userInput)
+std::shared_ptr<ICommand> AbstractTestShellApplication::FindMatchingCommand(const std::string& userInput)
 {
-	// 2. Split User Input Command String
+	std::shared_ptr<ICommand> command = nullptr;
+
+	// Split User Input Command String
 	std::vector<std::string> userInputCommand = SplitUserInputCommand(userInput);
 
-	// 3. Parse Command
-	std::shared_ptr<ICommand> command = nullptr;
+	// Parse Command
 	for (auto& commandMapper : _commandMappers)
 	{
 		if (false == commandMapper->IsSupport(userInputCommand))
@@ -23,18 +24,8 @@ void AbstractTestShellApplication::InterpretUserCommandAndExecute(const std::str
 		break;
 	}
 
-	// 4. Check if Failed to map command
-	if (command == nullptr)
-		throw std::exception{ "INVALID COMMAND" };
-
-	// 5. Execute Command
-	std::shared_ptr<IView> view = command->Execute();
-
-	// 6. Print Result
-	if (view)
-		view->Render(_oStream);
+	return command;
 }
-
 
 std::vector<std::string> AbstractTestShellApplication::SplitUserInputCommand(const std::string& input)
 {

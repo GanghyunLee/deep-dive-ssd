@@ -14,6 +14,7 @@ public:
 	~AbstractScriptCommand() override = default;
 
 	std::shared_ptr<IView> Execute() final;
+	virtual std::string GetCommandName() = 0;
 
 protected:
 	virtual std::shared_ptr<IView> GetView() = 0;

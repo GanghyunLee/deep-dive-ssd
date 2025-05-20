@@ -12,7 +12,19 @@ bool TestShellApplication::Run(int argc, char* argv[])
 	{
 		try
 		{
-			InterpretUserCommandAndExecute(userInput);
+			// 1. Find Matching Command
+			std::shared_ptr<ICommand> command = FindMatchingCommand(userInput);
+
+			// 2. Check if Failed to map command
+			if (command == nullptr)
+				throw std::exception{ "INVALID COMMAND" };
+
+			// 3. Execute Command
+			std::shared_ptr<IView> view = command->Execute();
+
+			// 4. Print Result
+			if (view)
+				view->Render(_oStream);
 		}
 		catch (std::exception& ex)
 		{

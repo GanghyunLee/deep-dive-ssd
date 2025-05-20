@@ -16,7 +16,7 @@ public:
 	virtual bool Run(int argc, char* argv[]) = 0;
 
 protected:
-	void InterpretUserCommandAndExecute(const std::string& userInput);
+	std::shared_ptr<ICommand> FindMatchingCommand(const std::string& userInput);
 	std::vector<std::string> SplitUserInputCommand(const std::string& input);
 
 protected:
