@@ -8,10 +8,8 @@ int main(int argc, char* argv[])
 	::testing::InitGoogleMock();
 	return RUN_ALL_TESTS();
 #else
-	Reader reader;
-	Writer writer;
 	ArgManager argManager;
-	SSD ssd(&reader, &writer, &argManager);
+	SSD ssd(&argManager);
 	ssd.run(argc - 1, argv + 1);
 	return 0;
 #endif
