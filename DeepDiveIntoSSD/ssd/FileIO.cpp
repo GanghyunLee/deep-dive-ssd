@@ -3,6 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include "FileIO.h"
+#include <filesystem>
 
 bool FileIO::isInvalidArgument(const std::string& fileName, int mode) {
 
@@ -96,4 +97,22 @@ void FileIO::writeLine(const std::string &line) {
 	
 	file << line << std::endl;
 	return;
+}
+
+bool FileIO::createDirectory() {
+	std::filesystem::path p("buffer");
+
+	if (!std::filesystem::exists(p) && std::filesystem::create_directory(p))
+		return true;
+	return false;
+}
+
+void FileIO::createFile(const std::string& fileName) {
+	std::ofstream file(fileName);
+	file.close();
+}
+
+void FileIO::updateFileName(std::string& oldName, std::string newName) {
+	std::filesystem::rename("buffer/" + oldName, "buffer/" + newName);
+	oldName = newName;
 }

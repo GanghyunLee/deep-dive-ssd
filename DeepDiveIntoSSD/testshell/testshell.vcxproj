@@ -212,6 +212,7 @@
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h" />
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h" />
     <ClInclude Include="FullWriteAndReadCompareTestScriptService.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommand.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h" />
     <ClInclude Include="PartialLbaWriteTestScriptService.h" />
