@@ -125,12 +125,27 @@ TEST(CommandBufferAlgorithm, CanMergeTest3) {
 	EXPECT_TRUE(cba.mergeAble({ COMMAND_TYPE::ERASE, 10, "2" }, { COMMAND_TYPE::ERASE, 12, "2" }));
 }
 
-TEST(CommandBufferAlgorithm, CantMergeTest1) {
+TEST(CommandBufferAlgorithm, CanMergeTest4) {
+	CommandBufferAlgorithm cba;
+	EXPECT_TRUE(cba.mergeAble({ COMMAND_TYPE::ERASE, 10, "3" }, { COMMAND_TYPE::ERASE, 10, "3" }));
+}
+
+TEST(CommandBufferAlgorithm, CanMergeTest5) {
+	CommandBufferAlgorithm cba;
+	EXPECT_TRUE(cba.mergeAble({ COMMAND_TYPE::ERASE, 10, "5" }, { COMMAND_TYPE::ERASE, 15, "5" }));
+}
+
+TEST(CommandBufferAlgorithm, CantMergeTestNotContinuous) {
 	CommandBufferAlgorithm cba;
 	EXPECT_FALSE(cba.mergeAble({ COMMAND_TYPE::ERASE, 10, "1" }, { COMMAND_TYPE::ERASE, 12, "1" }));
 }
 
-TEST(CommandBufferAlgorithm, CantMergeTest2) {
+TEST(CommandBufferAlgorithm, CantMergeTestNotContinuous2) {
 	CommandBufferAlgorithm cba;
-	EXPECT_FALSE(cba.mergeAble({ COMMAND_TYPE::ERASE, 10, "3" }, { COMMAND_TYPE::ERASE, 10, "3" }));
+	EXPECT_FALSE(cba.mergeAble({ COMMAND_TYPE::ERASE, 5, "5" }, { COMMAND_TYPE::ERASE, 11, "1" }));
+}
+
+TEST(CommandBufferAlgorithm, CantMergeTestEraseSizeOverFlow) {
+	CommandBufferAlgorithm cba;
+	EXPECT_FALSE(cba.mergeAble({ COMMAND_TYPE::ERASE, 5, "8" }, { COMMAND_TYPE::ERASE, 11, "5" }));
 }
