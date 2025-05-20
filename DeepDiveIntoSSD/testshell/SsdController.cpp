@@ -41,6 +41,15 @@ SsdEraseResult SsdController::Erase(int lba, int size)
     return SsdEraseResult::From(input.empty());
 }
 
+SsdFlushResult SsdController::Flush()
+{
+    std::stringstream ss;
+    ss << STR_SSD_EXE_FILE_NAME << " F";
+
+    ExecuteCommand(ss.str());
+    return SsdFlushResult::From(true); // Flush Result is always true
+}
+
 std::string SsdController::ExecuteCommand(const std::string& cmd)
 {
     char buffer[128];

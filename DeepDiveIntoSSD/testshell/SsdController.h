@@ -9,6 +9,7 @@ public:
 	SsdWriteResult Write(int lba, unsigned int data) override;
 	SsdReadResult Read(int lba) override;
 	SsdEraseResult Erase(int lba, int size) override;
+	SsdFlushResult Flush() override;
 
 private:
 	std::string ExecuteCommand(const std::string& cmd);
