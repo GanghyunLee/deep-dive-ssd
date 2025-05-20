@@ -98,7 +98,7 @@ private:
                 string rotatedName = getRotatedFileName();
                 wstring wRotatedName = std::wstring(rotatedName.begin(), rotatedName.end()); // .log 파일명을 wstring으로 변환
                 if (MoveFileW(wLogFile.c_str(), wRotatedName.c_str()) == 0) { // MoveFileW 사용
-                    cerr << "파일 이름 변경 실패: " << rotatedName << endl;
+                    cerr << "!Failed to rename the file: " << rotatedName << endl;
                 }
                 fileStream.open(LOG_FILE, ios::app);
             }
@@ -135,20 +135,21 @@ private:
             } while (FindNextFile(hFind, &findFileData) != 0);
             FindClose(hFind);
 
-            if (logFiles.size() >= 2) {
-                // 가장 오래된 파일 찾기
-                wstring oldestFile = logFiles[0];
-                for (const wstring& file : logFiles) {
-                    if (compareFileCreationTime(file, oldestFile) < 0) {
-                        oldestFile = file;
-                    }
+            for (const wstring& file : logFiles) {
+                // .log 확장자만을 .zip으로 변경
+                wstring zipFile = file;
+
+                // 파일 확장자가 .log라면, .zip으로 변경
+                if (zipFile.size() >= 4 && zipFile.substr(zipFile.size() - 4) == L".log") {
+                    zipFile.replace(zipFile.size() - 4, 4, L".zip");
                 }
-                string zipFile = string(oldestFile.begin(), oldestFile.end()) + ".zip"; // wstring을 string으로 변환
-                if (MoveFileW(oldestFile.c_str(), wstring(zipFile.begin(), zipFile.end()).c_str()) == 0) { // MoveFileW 사용
-                    cerr << "파일 이름 변경 실패: " << zipFile << endl;
+
+                // 파일 이름을 변경
+                if (MoveFileW(file.c_str(), zipFile.c_str()) == 0) {
+                    wcerr << L"Failed to rename the file: " << file << L" -> " << zipFile << endl;
                 }
                 else {
-                    cout << "파일 이름 변경 성공: " << string(oldestFile.begin(), oldestFile.end()) << " -> " << zipFile << endl;
+                    wcout << L"File renamed successfully: " << file << L" -> " << zipFile << endl;
                 }
             }
         }
