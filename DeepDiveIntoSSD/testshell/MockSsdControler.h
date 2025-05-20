@@ -16,4 +16,5 @@ public:
 public:
 	MOCK_METHOD(SsdWriteResult, Write, (int, unsigned int), (override));
 	MOCK_METHOD(SsdReadResult, Read, (int), (override));
+	MOCK_METHOD(SsdEraseResult, Erase, (int, int), (override));
 };

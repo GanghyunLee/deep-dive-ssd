@@ -136,6 +136,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractTestScriptService.cpp" />
+    <ClCompile Include="EraseCommand.cpp" />
+    <ClCompile Include="EraseCommandMapper.cpp" />
+    <ClCompile Include="EraseRangeCommandMapper.cpp" />
+    <ClCompile Include="EraseView.cpp" />
     <ClCompile Include="FullReadCommand.cpp" />
     <ClCompile Include="FullReadCommandMapper.cpp" />
     <ClCompile Include="FullReadView.cpp" />
@@ -145,6 +149,8 @@
     <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp" />
     <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp" />
     <ClCompile Include="PartialLbaWriteTestScriptService.cpp" />
+    <ClCompile Include="SsdEraseResult.cpp" />
+    <ClCompile Include="SsdEraseService.cpp" />
     <ClCompile Include="SsdFullReadService.cpp" />
     <ClCompile Include="FullWriteCommand.cpp" />
     <ClCompile Include="FullWriteCommandMapper.cpp" />
@@ -195,6 +201,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractTestScriptService.h" />
+    <ClInclude Include="EraseCommand.h" />
+    <ClInclude Include="EraseCommandMapper.h" />
+    <ClInclude Include="EraseRangeCommandMapper.h" />
+    <ClInclude Include="EraseView.h" />
     <ClInclude Include="FullReadCommand.h" />
     <ClInclude Include="FullReadCommandMapper.h" />
     <ClInclude Include="FullReadView.h" />
@@ -204,6 +214,8 @@
     <ClInclude Include="PartialLBAWriteTestScriptCommand.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h" />
     <ClInclude Include="PartialLbaWriteTestScriptService.h" />
+    <ClInclude Include="SsdEraseResult.h" />
+    <ClInclude Include="SsdEraseService.h" />
     <ClInclude Include="SsdFullReadService.h" />
     <ClInclude Include="FullWriteCommand.h" />
     <ClInclude Include="FullWriteCommandMapper.h" />

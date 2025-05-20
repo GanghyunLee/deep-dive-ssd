@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 
+#include "EraseCommand.h"
 #include "FullWriteAndReadCompareTestScriptService.h"
 #include "ICommand.h"
 #include "PartialLbaWriteTestScriptService.h"
@@ -21,10 +22,13 @@ public:
 	std::shared_ptr<SsdReadService> GetSsdReadService();
 	std::shared_ptr<SsdFullWriteService> GetSsdFullWriteService();
 	std::shared_ptr<SsdFullReadService> GetSsdFullReadService();
+	std::shared_ptr<SsdEraseService> GetSsdEraseService();
 	std::shared_ptr<FullWriteAndReadCompareTestScriptService> GetFullWriteAndReadCompareTestScriptService();
 	std::shared_ptr<PartialLbaWriteTestScriptService> GetPartialLbaWriteTestScriptService();
 	std::shared_ptr<WriteReadAgingTestScriptService> GetWriteReadAgingTestScriptService();
-
 	std::shared_ptr<ISsdController> GetSsdController();
+
+protected:
+	EraseCommandFactory GenerateEraseCommandFactory();
 };
 

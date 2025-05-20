@@ -11,7 +11,7 @@ SsdWriteResult SsdController::Write(int lba, unsigned int data)
 
     ExecuteCommand(ss.str());
 
-    std::string input = ReadFileToString("ssd_output.txt");
+    std::string input = ReadFileToString(STR_SSD_OUTPUT_TXT_FILE_NAME);
 	return SsdWriteResult::From(input.empty());
 }
 
@@ -22,12 +22,23 @@ SsdReadResult SsdController::Read(int lba)
 
     ExecuteCommand(ss.str());
 
-    std::string input = ReadFileToString("ssd_output.txt");
+    std::string input = ReadFileToString(STR_SSD_OUTPUT_TXT_FILE_NAME);
     if (input == STR_ERROR_STRING_FROM_SSD)
         return SsdReadResult::From(false);
 
     unsigned int data = With0xPrefixHexStringToUInt(input);
     return SsdReadResult::From(true, lba, data);
+}
+
+SsdEraseResult SsdController::Erase(int lba, int size)
+{
+    std::stringstream ss;
+    ss << STR_SSD_EXE_FILE_NAME << " e " << lba << " " << size;
+
+    ExecuteCommand(ss.str());
+
+    std::string input = ReadFileToString(STR_SSD_OUTPUT_TXT_FILE_NAME);
+    return SsdEraseResult::From(input.empty());
 }
 
 std::string SsdController::ExecuteCommand(const std::string& cmd)
