@@ -1,21 +1,15 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "ArgManager.h"
 
 class CommandBufferAlgorithm {
 public:
-	CommandBufferAlgorithm() {}
-	CommandBufferAlgorithm(std::vector<std::string> buffer) :
-		buffer{ buffer } {}
+	std::vector<Arg> ignoreCommand(std::vector<Arg> buffer);
 
-	void setCommandBuffer(std::vector<std::string> buffer);
+	std::vector<Arg> mergeErase(std::vector<Arg> buffer);
 
-	std::vector<std::string> ignoreCommand();
-
-	std::vector<std::string> mergeErase();
-
-	std::string fastRead();
+	Arg fastRead(std::vector<Arg> buffer);
 private:
-	std::vector<std::string> buffer;
-	std::vector<std::string> ret;
+	std::vector<Arg> ret;
 };
