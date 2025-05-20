@@ -187,9 +187,6 @@
     <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp">
       <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractDelegatingCommand.cpp">
-      <Filter>Application\Command</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractScriptCommand.cpp">
       <Filter>Application\Command\ScriptCommand</Filter>
     </ClCompile>
@@ -353,9 +350,6 @@
     </ClInclude>
     <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h">
       <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
-    </ClInclude>
-    <ClInclude Include="AbstractDelegatingCommand.h">
-      <Filter>Application\Command</Filter>
     </ClInclude>
     <ClInclude Include="AbstractScriptCommand.h">
       <Filter>Application\Command\ScriptCommand</Filter>
