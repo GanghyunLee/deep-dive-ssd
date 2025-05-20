@@ -1,5 +1,7 @@
 #include "IoC.h"
 
+#include "EraseCommandMapper.h"
+#include "EraseRangeCommandMapper.h"
 #include "FullReadCommandMapper.h"
 #include "FullWriteAndReadCompareTestScriptCommandMapper.h"
 #include "FullWriteCommandMapper.h"
@@ -34,6 +36,9 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 			return std::make_shared<FullReadCommand>(GetSsdFullReadService());
 		});
 
+	static std::shared_ptr<EraseCommandMapper> eraseCommandMapper = std::make_shared<EraseCommandMapper>(GenerateEraseCommandFactory());
+	static std::shared_ptr<EraseRangeCommandMapper> eraseRangeCommandMapper = std::make_shared<EraseRangeCommandMapper>(GenerateEraseCommandFactory());
+
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptCommandMapper> fullWriteAndReadCompareTestScriptCommandMapper =
 		std::make_shared<FullWriteAndReadCompareTestScriptCommandMapper>(GetFullWriteAndReadCompareTestScriptService());
 
@@ -55,6 +60,8 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		partialLBAWriteTestScriptCommandMapper,
 		writeReadAgingTestScriptCommandMapper,
 		helpCommandMapper,
+		eraseCommandMapper,
+		eraseRangeCommandMapper,
 	};
 }
 
@@ -82,6 +89,12 @@ std::shared_ptr<SsdFullReadService> IoC::GetSsdFullReadService()
 	return ssdFullReadService;
 }
 
+std::shared_ptr<SsdEraseService> IoC::GetSsdEraseService()
+{
+	static std::shared_ptr<SsdEraseService> ssdEraseService = std::make_shared<SsdEraseService>(GetSsdController());
+	return ssdEraseService;
+}
+
 std::shared_ptr<FullWriteAndReadCompareTestScriptService> IoC::GetFullWriteAndReadCompareTestScriptService()
 {
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptService> ssdScriptService = 
@@ -107,4 +120,12 @@ std::shared_ptr<ISsdController> IoC::GetSsdController()
 {
 	static std::shared_ptr<ISsdController> ssdController = std::make_shared<SsdController>();
 	return ssdController;
+}
+
+EraseCommandFactory IoC::GenerateEraseCommandFactory()
+{
+	return [&](int lba, int size)
+	{
+		return std::make_shared<EraseCommand>(GetSsdEraseService(), lba, size);
+	};
 }

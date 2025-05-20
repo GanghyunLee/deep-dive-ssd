@@ -157,6 +157,24 @@
     <ClCompile Include="WriteReadAgingTestScriptCommandMapper.cpp">
       <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
     </ClCompile>
+    <ClCompile Include="SsdEraseResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdEraseService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseView.cpp">
+      <Filter>Application\View\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseCommand.cpp">
+      <Filter>Application\Command\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseRangeCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -282,6 +300,24 @@
     <ClInclude Include="WriteReadAgingTestScriptCommandMapper.h">
       <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
     </ClInclude>
+    <ClInclude Include="SsdEraseResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdEraseService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseView.h">
+      <Filter>Application\View\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseCommandMapper.h">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseCommand.h">
+      <Filter>Application\Command\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseRangeCommandMapper.h">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -385,6 +421,15 @@
     </Filter>
     <Filter Include="Application\CommandMapper\WriteReadAgingTestScript">
       <UniqueIdentifier>{8ad85a66-60b8-4230-820c-94e5f6cd3b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Erase">
+      <UniqueIdentifier>{aa6b4b0e-0fac-4449-b7c9-487912a8a0bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Erase">
+      <UniqueIdentifier>{c8633a05-867f-46b9-be19-b28e67b9e8d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Erase">
+      <UniqueIdentifier>{05da7f0c-a9dc-4dfc-aeae-1ae9fae19d46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
