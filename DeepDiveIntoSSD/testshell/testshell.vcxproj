@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractTestScriptService.cpp" />
+    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp" />
     <ClCompile Include="EraseCommand.cpp" />
     <ClCompile Include="EraseCommandMapper.cpp" />
     <ClCompile Include="EraseCommandMapperTest.cpp" />
@@ -202,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractTestScriptService.h" />
+    <ClInclude Include="EraseAndWriteAgingTestScriptService.h" />
     <ClInclude Include="EraseCommand.h" />
     <ClInclude Include="EraseCommandMapper.h" />
     <ClInclude Include="EraseRangeCommandMapper.h" />
