@@ -3,12 +3,13 @@
 #include "TestShellApplication.h"
 #include "gmock/gmock.h"
 
-
 #define APPLICATION_NO_ERROR (0)
 #define APPLICATION_ERROR (1)
 
 int main(void)
 {
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
 #ifdef _DEBUG
 	::testing::InitGoogleMock();
 	return RUN_ALL_TESTS();
