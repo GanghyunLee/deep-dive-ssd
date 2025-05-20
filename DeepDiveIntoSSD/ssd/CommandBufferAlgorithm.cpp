@@ -17,3 +17,20 @@ std::string CommandBufferAlgorithm::fastRead() {
 
 	return ret;
 }
+
+bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
+	return false;
+}
+
+Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
+	Arg mergedArg;
+	return mergedArg;
+}
+
+std::vector<Arg> CommandBufferAlgorithm::merge() {
+
+	std::vector<Arg> a;
+
+
+	return a;
+}
