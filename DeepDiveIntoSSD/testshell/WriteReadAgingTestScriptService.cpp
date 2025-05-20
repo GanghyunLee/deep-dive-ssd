@@ -7,7 +7,6 @@ bool WriteReadAgingTestScriptService::Execute()
 	// Loop 200회
 	for (int loop = 0; loop < TEST_LOOP_COUNT; loop++)
 	{
-		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 		unsigned int randValue = std::rand();
 
 		// 0번 LBA에 랜덤값을적는다.

@@ -124,9 +124,6 @@
     <ClCompile Include="FullReadCommandMapper.cpp">
       <Filter>Application\CommandMapper\FullRead</Filter>
     </ClCompile>
-    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
     <ClCompile Include="TestScriptView.cpp">
       <Filter>Application\View\TestScriptView</Filter>
     </ClCompile>
@@ -136,20 +133,11 @@
     <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp">
       <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractTestScriptService.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
-    <ClCompile Include="PartialLbaWriteTestScriptService.cpp">
-      <Filter>Service\SSD</Filter>
-    </ClCompile>
     <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp">
       <Filter>Application\Command\PartialLBAWriteTestScript</Filter>
     </ClCompile>
     <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp">
       <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
-    </ClCompile>
-    <ClCompile Include="WriteReadAgingTestScriptService.cpp">
-      <Filter>Service\SSD</Filter>
     </ClCompile>
     <ClCompile Include="WriteReadAgingTestScriptCommand.cpp">
       <Filter>Application\Command\WriteReadAgingTestScript</Filter>
@@ -177,6 +165,27 @@
     </ClCompile>
     <ClCompile Include="EraseCommandMapperTest.cpp">
       <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLbaWriteTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp">
+      <Filter>Application\Command\EraseAndWriteAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,9 +279,6 @@
     <ClInclude Include="FullReadCommandMapper.h">
       <Filter>Application\CommandMapper\FullRead</Filter>
     </ClInclude>
-    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h">
-      <Filter>Service\SSD</Filter>
-    </ClInclude>
     <ClInclude Include="TestScriptView.h">
       <Filter>Application\View\TestScriptView</Filter>
     </ClInclude>
@@ -282,20 +288,11 @@
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h">
       <Filter>Application\Command\FullWriteAndReadCompareTestScript</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractTestScriptService.h">
-      <Filter>Service\SSD</Filter>
-    </ClInclude>
-    <ClInclude Include="PartialLbaWriteTestScriptService.h">
-      <Filter>Service\SSD</Filter>
-    </ClInclude>
     <ClInclude Include="PartialLBAWriteTestScriptCommand.h">
       <Filter>Application\Command\PartialLBAWriteTestScript</Filter>
     </ClInclude>
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h">
       <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
-    </ClInclude>
-    <ClInclude Include="WriteReadAgingTestScriptService.h">
-      <Filter>Service\SSD</Filter>
     </ClInclude>
     <ClInclude Include="WriteReadAgingTestScriptCommand.h">
       <Filter>Application\Command\WriteReadAgingTestScript</Filter>
@@ -323,6 +320,27 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Application\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLbaWriteTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h">
+      <Filter>Application\Command\EraseAndWriteAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +457,15 @@
     </Filter>
     <Filter Include="Application\Logger">
       <UniqueIdentifier>{211b3422-c1a2-47a9-942d-007001091ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\SSD\TestScript">
+      <UniqueIdentifier>{b586b2b5-ec99-4682-b1f1-c2693f410b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{84266b45-4e7c-4cee-ac41-2d4a2e3575fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{efbb7917-a3cc-4997-ae62-174bdc043fd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

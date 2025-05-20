@@ -208,27 +208,21 @@ TEST_F(ArgManagerFixture, makeStruct1) {
 	Arg argExpected = { WRITE, INDEX, "0x12345678" };
 	Arg argsResult = am.makeStruct({ "W", "3", "0x12345678" });
 
-	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.commandType, argsResult.commandType);
-	EXPECT_EQ(argExpected.value, argsResult.value);
+	EXPECT_EQ(argExpected, argsResult);
 }
 
 TEST_F(ArgManagerFixture, makeStruct2) {
 	Arg argExpected = { READ, INDEX, "" };
 	Arg argsResult = am.makeStruct({ "R", "3" });
 
-	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.commandType, argsResult.commandType);
-	EXPECT_EQ(argExpected.value, argsResult.value);
+	EXPECT_EQ(argExpected, argsResult);
 }
 
 TEST_F(ArgManagerFixture, makeStruct3) {
 	Arg argExpected = { WRITE, INDEX, "0x0000abcd" };
 	Arg argsResult = am.makeStruct({ "W", "3", "0xabcd"});
 
-	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.commandType, argsResult.commandType);
-	EXPECT_EQ(argExpected.value, argsResult.value);
+	EXPECT_EQ(argExpected, argsResult);
 }
 
 TEST_F(ArgManagerFixture, fullTest) {
@@ -239,7 +233,5 @@ TEST_F(ArgManagerFixture, fullTest) {
 
 	Arg argsResult = am.makeStruct(args);
 
-	EXPECT_EQ(argExpected.index, argsResult.index);
-	EXPECT_EQ(argExpected.commandType, argsResult.commandType);
-	EXPECT_EQ(argExpected.value, argsResult.value);
+	EXPECT_EQ(argExpected, argsResult);
 }

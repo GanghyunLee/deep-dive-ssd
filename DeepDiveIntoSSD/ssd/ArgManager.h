@@ -9,6 +9,13 @@ public:
 	int commandType;
 	int index;
 	std::string value;
+
+	bool operator == (const Arg& arg) const {
+		if (this->commandType != arg.commandType) return false;
+		if (this->index != arg.index) return false;
+		if (this->value != arg.value) return false;
+		return true;
+	}
 };
 
 class ArgManager {
