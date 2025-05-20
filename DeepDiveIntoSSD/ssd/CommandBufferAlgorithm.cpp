@@ -1,19 +1,15 @@
 #include "CommandBufferAlgorithm.h"
 
-void CommandBufferAlgorithm::setCommandBuffer(std::vector<std::string> buffer) {
-	this->buffer = buffer;
-}
-
-std::vector<std::string> CommandBufferAlgorithm::ignoreCommand() {
+std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
 	return ret;
 }
 
-std::vector<std::string> CommandBufferAlgorithm::mergeErase() {
+std::vector<Arg> CommandBufferAlgorithm::mergeErase(std::vector<Arg> buffer) {
 	return ret;
 }
 
-std::string CommandBufferAlgorithm::fastRead() {
-	std::string ret;
+Arg CommandBufferAlgorithm::fastRead(std::vector<Arg> buffer) {
+	Arg ret;
 
 	return ret;
 }
