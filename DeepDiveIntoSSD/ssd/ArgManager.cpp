@@ -23,8 +23,14 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	catch (const std::invalid_argument& e) {
 		return false;
 	}
-	if (index > 99 || index < 0) return false;
-	if (args[0] != "R" && args[0] != "r" && args[0] != "W" && args[0] != "w") return false;
+
+	if (outOfRangeIndex(index)) {
+		return false;
+	}
+	
+	if (invalidCommand(args[0])) {
+		return false;
+	}
 
 	if (args[0] == "R" || args[0] == "r") {
 		if (argc != 2) return false;
@@ -43,6 +49,14 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	}
 
 	return true;
+}
+
+bool ArgManager::outOfRangeIndex(int index) {
+	return index > 99 || index < 0;
+}
+
+bool ArgManager::invalidCommand(const std::string &command) {
+	return command != "R" && command != "r" && command != "W" && command != "w";
 }
 
 Arg ArgManager::makeStruct(const std::vector<std::string>& args) {
