@@ -190,11 +190,14 @@
     <ClCompile Include="AbstractDelegatingCommand.cpp">
       <Filter>Application\Command</Filter>
     </ClCompile>
-    <ClCompile Include="RunnerCommand.cpp">
-      <Filter>Application\Command\Runner</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractScriptCommand.cpp">
       <Filter>Application\Command\ScriptCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractTestShellApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerApplication.cpp">
+      <Filter>Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,11 +357,14 @@
     <ClInclude Include="AbstractDelegatingCommand.h">
       <Filter>Application\Command</Filter>
     </ClInclude>
-    <ClInclude Include="RunnerCommand.h">
-      <Filter>Application\Command\Runner</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractScriptCommand.h">
       <Filter>Application\Command\ScriptCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTestShellApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerApplication.h">
+      <Filter>Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

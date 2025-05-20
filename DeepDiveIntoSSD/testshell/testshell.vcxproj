@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractTestScriptService.cpp" />
     <ClCompile Include="AbstractDelegatingCommand.cpp" />
+    <ClCompile Include="AbstractTestShellApplication.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp" />
@@ -154,8 +155,8 @@
     <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp" />
     <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp" />
     <ClCompile Include="PartialLbaWriteTestScriptService.cpp" />
-    <ClCompile Include="RunnerCommand.cpp" />
     <ClCompile Include="AbstractScriptCommand.cpp" />
+    <ClCompile Include="RunnerApplication.cpp" />
     <ClCompile Include="SsdEraseResult.cpp" />
     <ClCompile Include="SsdEraseService.cpp" />
     <ClCompile Include="SsdFullReadService.cpp" />
@@ -209,6 +210,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractTestScriptService.h" />
     <ClInclude Include="AbstractDelegatingCommand.h" />
+    <ClInclude Include="AbstractTestShellApplication.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptService.h" />
@@ -226,8 +228,8 @@
     <ClInclude Include="PartialLBAWriteTestScriptCommand.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h" />
     <ClInclude Include="PartialLbaWriteTestScriptService.h" />
-    <ClInclude Include="RunnerCommand.h" />
     <ClInclude Include="AbstractScriptCommand.h" />
+    <ClInclude Include="RunnerApplication.h" />
     <ClInclude Include="SsdEraseResult.h" />
     <ClInclude Include="SsdEraseService.h" />
     <ClInclude Include="SsdFullReadService.h" />
