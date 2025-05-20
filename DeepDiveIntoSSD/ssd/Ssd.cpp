@@ -8,10 +8,10 @@
 
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
-	
+
 	if (commands.size() == 0)
 		return;
-	
+
 	if (!m_argManager->isValid(commands))
 	{
 		dumpError();
@@ -26,12 +26,18 @@ void SSD::run(int argc, char* argv[]) {
 	}
 	file.close();
 
-
-	if (arg.isWrite) {
+	switch (arg.commandType) {
+	case COMMAND_TYPE::WRITE:
 		write(arg.index, arg.value);
-	}
-	else {
+		break;
+
+	case COMMAND_TYPE::READ:
 		read(arg.index);
+		break;
+
+	case COMMAND_TYPE::ERASE:
+		erase(arg.index, arg.value);
+		break;
 	}
 }
 
@@ -48,7 +54,7 @@ void SSD::read(int index) {
 }
 
 void SSD::write(int index, std::string value) {
-	
+
 	if (index < 0 || index > 99)
 	{
 		dumpError();
@@ -60,6 +66,44 @@ void SSD::write(int index, std::string value) {
 	dumpData();
 	dumpSuccess();
 }
+
+void SSD::erase(int index, std::string rangeString) {
+
+	if (index < 0 || index > 99)
+	{
+		dumpError();
+		return;
+	}
+
+	unsigned int range = stoul(rangeString, nullptr, 10);
+	if (range > 10)
+	{
+		dumpError();
+		return;
+	}
+
+	if (index + range > 100) 
+	{
+		dumpError();
+		return;
+	}
+
+	if (range == 0)
+	{
+		//Do Nothing;
+		dumpSuccess();
+		return;
+	}
+
+	readAll();
+	for (int dataIdx = index; dataIdx < index + range; dataIdx++) {
+		updateData(dataIdx, 0);
+	}
+	dumpData();
+	dumpSuccess();
+
+}
+
 
 void SSD::updateData(int index, unsigned int value) {
 	data[index] = value;
@@ -74,7 +118,7 @@ void SSD::readAll() {
 	while (true) {
 
 		std::string line = fileIO->readLine();
-		
+
 		if (line == fileIO->EOF_STRING) {
 			break;
 		}
@@ -87,7 +131,7 @@ void SSD::readAll() {
 
 		data[index] = value;
 	}
-	
+
 	fileIO->closeFile();
 	delete fileIO;
 }
@@ -103,7 +147,7 @@ void SSD::dumpData() {
 		ss << std::dec << std::setfill('0') << std::setw(2) << i;
 		ss << " 0x";
 		ss << std::hex << std::setfill('0') << std::setw(8) << std::nouppercase << data[i];
-	
+
 		fileIO->writeLine(ss.str());
 	}
 
