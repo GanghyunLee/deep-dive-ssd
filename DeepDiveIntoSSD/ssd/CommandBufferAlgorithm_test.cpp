@@ -74,14 +74,6 @@ TEST_F(CommandBufferAlgorithmFixture, DISABLED_ignoreCommand8) {
 	EXPECT_EQ(expected, ret);
 }
 
-TEST_F(CommandBufferAlgorithmFixture, DISABLED_mergeErase1) {
-	std::vector<Arg> buffer = { {ERASE,10,"5"},{ERASE,15,"5"},{ERASE,20,"5"},{ERASE,25,"5"},{ERASE,30,"5"}};
-	std::vector<Arg> expected = { {ERASE,10,"10"},{ERASE,20,"10"},{ERASE,30,"5"},{0,},{0,} };
-	std::vector<Arg> ret = cba.mergeErase(buffer);
-
-	EXPECT_EQ(expected, ret);
-}
-
 TEST_F(CommandBufferAlgorithmFixture, DISABLED_mergeErase2) {
 	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{ERASE,20,"5"},{ERASE,25,"5"} };
 	std::vector<Arg> expected = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"10"},{ERASE,25,"5"},{0,} };
@@ -175,4 +167,12 @@ TEST(CommandBufferAlgorithm, MergeTwoEraseOperationTest3) {
 	EXPECT_EQ(merged.commandType, COMMAND_TYPE::ERASE);
 	EXPECT_EQ(merged.index, 10);
 	EXPECT_EQ(merged.value, "4");
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
+	std::vector<Arg> buffer = { {ERASE,10,"5"},{ERASE,15,"5"},{ERASE,20,"5"},{ERASE,25,"5"},{ERASE,30,"5"} };
+	std::vector<Arg> expected = { {ERASE,10,"10"},{ERASE,20,"10"},{ERASE,30,"5"},{0,},{0,} };
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
 }

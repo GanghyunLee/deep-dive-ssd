@@ -98,10 +98,43 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 	return { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
 }
 
-std::vector<Arg> CommandBufferAlgorithm::merge() {
+std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
+	
+	std::vector<Arg> tmpBuffer = buffer;
 
-	std::vector<Arg> a;
+	while (1) {
 
+		// find merge item
+		int idx1, idx2; 
+		Arg mergeCommand1, mergeCommand2;
+		bool find = false;
 
-	return a;
+		for (int i = 0; i < tmpBuffer.size() - 1; i++) {
+			mergeCommand1 = tmpBuffer[i];
+			idx1 = i;
+			for (int j = i + 1; j < tmpBuffer.size(); j++) {
+				mergeCommand2 = tmpBuffer[j];
+				idx2 = j;
+				if (mergeAble(mergeCommand1, mergeCommand2)) {
+					find = true;
+					break;
+				}
+			}
+
+			if (find) break;
+		}
+
+		if (!find) break;
+
+		Arg mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
+		tmpBuffer[idx2] = mergedCommand;
+		
+		// erase and push back empty
+		tmpBuffer.erase(tmpBuffer.begin() + idx1);
+		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0, "" });
+
+	}
+
+	return tmpBuffer;
 }
+

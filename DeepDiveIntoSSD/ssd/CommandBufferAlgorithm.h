@@ -12,7 +12,7 @@ public:
 	bool isContinuousEraseRange(Arg a, Arg b);
 	int mergedRange(Arg a, Arg b);
 	Arg mergeTwoCommand(Arg a, Arg b);
-	std::vector<Arg> merge();
+	std::vector<Arg> merge(const std::vector<Arg> &buffer);
 
 	Arg fastRead(std::vector<Arg> buffer);
 private:
