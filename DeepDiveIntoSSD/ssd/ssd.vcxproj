@@ -141,6 +141,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandBuffer.cpp" />
     <ClCompile Include="CommandBufferAlgorithm.cpp" />
     <ClCompile Include="CommandBufferAlgorithm_test.cpp" />
     <ClCompile Include="FileIO.cpp" />
@@ -156,6 +157,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandBuffer.h" />
     <ClInclude Include="CommandBufferAlgorithm.h" />
     <ClInclude Include="FileIO.h" />
   </ItemGroup>
