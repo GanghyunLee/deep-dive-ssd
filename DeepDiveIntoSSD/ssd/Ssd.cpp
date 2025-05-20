@@ -1,10 +1,10 @@
-#include "Ssd.h"
-#include "ReaderWriter.h"
-#include "ArgManager.h"
-
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+
+#include "Ssd.h"
+#include "ArgManager.h"
+
 
 void SSD::run(int argc, char* argv[]) {
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
@@ -43,9 +43,8 @@ void SSD::read(int index) {
 		return;
 	}
 
-	readAllData();
-	int value = m_reader->read(index);
-
+	readAll();
+	dumpResult(index, data[index]);
 }
 
 void SSD::write(int index, std::string value) {
@@ -56,26 +55,31 @@ void SSD::write(int index, std::string value) {
 		return;
 	}
 
-	readAllData();
-	data[index] = std::stoul(value, nullptr, 16);
+	readAll();
+	updateData(index, std::stoul(value, nullptr, 16));
 	dumpData();
-
-	m_writer->write(index, std::stoul(value, nullptr, 16));
-	fileIO = new FileIO();
-	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
-	fileIO->openFile();
-	fileIO->writeLine("");
-	fileIO->closeFile();
-	delete fileIO;
+	dumpSuccess();
 }
 
-void SSD::readAllData() {
+void SSD::updateData(int index, unsigned int value) {
+	data[index] = value;
+}
 
-	std::fstream dataFile("ssd_nand.txt", std::ios::in);
-	std::string line;
-	while (std::getline(dataFile, line)) {
-		std::stringstream ss(line);
+void SSD::readAll() {
+
+	fileIO = new FileIO();
+	fileIO->setArgument(INPUT_FILE, fileIO->READ_MODE);
+	fileIO->openFile();
+
+	while (true) {
+
+		std::string line = fileIO->readLine();
 		
+		if (line == fileIO->EOF_STRING) {
+			break;
+		}
+
+		std::stringstream ss(line);
 		int index;
 		unsigned int value;
 		ss >> std::dec >> index;
@@ -84,7 +88,8 @@ void SSD::readAllData() {
 		data[index] = value;
 	}
 	
-	dataFile.close();
+	fileIO->closeFile();
+	delete fileIO;
 }
 
 void SSD::dumpData() {
@@ -109,12 +114,25 @@ void SSD::dumpData() {
 }
 
 void SSD::dumpError() {
-
 	fileIO = new FileIO();
 	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
 	fileIO->openFile();
 	fileIO->writeLine("ERROR");
 	fileIO->closeFile();
 	return;
+}
 
+void SSD::dumpResult(int index, unsigned int value) {
+	std::fstream file(OUTPUT_FILE, std::ios::out | std::ios::trunc);
+	file << "0x" << std::hex << std::setfill('0') << std::setw(8) << value;
+	file.close();
+}
+
+void SSD::dumpSuccess() {
+	fileIO = new FileIO();
+	fileIO->setArgument(OUTPUT_FILE, fileIO->WRITE_TRUNC_MODE);
+	fileIO->openFile();
+	fileIO->writeLine("");
+	fileIO->closeFile();
+	return;
 }

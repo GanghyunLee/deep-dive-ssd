@@ -143,10 +143,9 @@
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="ArgManager_test.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ReaderWriter.cpp" />
     <ClCompile Include="Ssd.cpp" />
-    <ClCompile Include="Test_FileIO.cpp" />
-    <ClCompile Include="ReaderWriterTest.cpp" />
+    <ClCompile Include="FileIO_test.cpp" />
+    <ClCompile Include="SSDReadWriteTest.cpp" />
     <ClCompile Include="Ssd.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />
-    <ClInclude Include="ReaderWriter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,13 +47,13 @@ void FileIO::openFile() {
 
 	if (this->getMode() == WRITE_APPEND_MODE) {
 		file.open(this->fileName, std::ios::out | std::ios::app);
+		return;
 	}
 
 	if (this->getMode() == WRITE_TRUNC_MODE) {
 		file.open(this->fileName, std::ios::out | std::ios::trunc);
+		return;
 	}
-
-	return;
 }
 
 void FileIO::closeFile() {
@@ -77,8 +77,9 @@ std::string FileIO::readLine() {
 	std::string a;
 	std::getline(file, a);
 
-	if (a == EOF_STRING) 
+	if (a == EOF_STRING) {
 		return EOF_STRING;
+	}
 
 	return a;
 }
