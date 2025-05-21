@@ -1,5 +1,37 @@
 #include "CommandBufferAlgorithm.h"
 
+void CommandBufferAlgorithm::initStatus() {
+	for (int i = 0; i < 100; i++) {
+		status[i] = STATUS::CLEAN;
+	}
+}
+
+void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
+
+	// EMPTY 전까지 찾으면 됨.
+	int cnt = getCommandCount(buffer);
+
+	if (cnt <= 1) {
+		return;
+	}
+
+	initStatus();
+
+	for (int i = 0; i < cnt - 1; i++) {
+		Arg arg = buffer[i];
+
+		switch (arg.commandType) {
+		case ERASE:
+			status[arg.index] = ERASE;
+			break;
+
+		case WRITE:
+			status[arg.index] = MODIFIED;
+			break;
+		}
+	}
+}
+
 int CommandBufferAlgorithm::getCommandCount(std::vector<Arg>& buffer) {
 
 	int cnt = 0;

@@ -176,6 +176,50 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
 
 	EXPECT_EQ(expected, ret);
 }
+
+TEST_F(CommandBufferAlgorithmFixture, DISABLED_mergeTest2) {
+
+	// ignore 도 같이 발생하는 케이스임 필요함
+
+	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
+	std::vector<Arg> expected = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{0,},{0,},{0,} };
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTest3) {
+	std::vector<Arg> buffer = {{ERASE,10,"10"},{ERASE, 10, "5"},{0,},{0,},{0,} };
+	std::vector<Arg> expected = { {ERASE,10,"10"}, {0,},{0,},{0,},{0,} };
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTest4) {
+	std::vector<Arg> buffer = {{ERASE,10,"10"}, {WRITE, 40, "0xABCD1234"}, {ERASE, 11, "5"},{0,}, { 0, } };
+	std::vector<Arg> expected = {{WRITE, 40, "0xABCD1234"}, {ERASE,10, "10"}, { 0, }, { 0, }, { 0, } };
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened1) {
+	std::vector<Arg> buffer = { {ERASE,10,"3"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
+	std::vector<Arg> expected = { {ERASE, 10, "3"},{WRITE,12,"0xABCD1234" }, {ERASE, 15,"5"}, {0,},{0,} };
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened2) {
+	std::vector<Arg> buffer = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"}, {0,},{0,} };
+	std::vector<Arg> expected = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"},{0,},{0,}};
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(expected, ret);
+}
+
 TEST_F(CommandBufferAlgorithmFixture, commandCountTest) {
 	std::vector<Arg> buffer1 = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"}, {0,},{0,} };
 	std::vector<Arg> buffer2 = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"}, {0, },{0,},{0,} };
