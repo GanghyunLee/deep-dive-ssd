@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -80,6 +80,12 @@ public:
         {
             string logLine = className + "." + functionName;
             fileStream << getTimestamp() << " " << left << setw(40) << logLine << "    :  ";
+            fileStream.flush();
+        }
+        else {
+            string logLine = className + "." + functionName;
+            fileStream << std::endl;
+            fileStream << getTimestamp() << " " << left << setw(43) << logLine << "    :  ";
             fileStream.flush();
         }
 

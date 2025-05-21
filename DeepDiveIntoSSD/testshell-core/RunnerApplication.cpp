@@ -50,6 +50,10 @@ bool RunnerApplication::Run(int argc, char* argv[])
                 view->Render(_logger);
 
             _logger->printLine();
+
+            // If the tc is failed, Runner must be stopped.
+            if (command->GetScriptCommandResult() == false)
+                break;
         }
     }
     catch (std::exception& ex)

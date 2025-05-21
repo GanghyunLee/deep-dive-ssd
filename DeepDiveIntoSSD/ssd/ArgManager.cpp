@@ -62,6 +62,13 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 		}
 
 	}
+
+	if (args[0] == "E" || args[0] == "e") {
+		int erase_range = std::stoi(args[2]);
+		if (erase_range < 0 || erase_range > 10)
+			return false;
+	}
+
 	return true;
 }
 
