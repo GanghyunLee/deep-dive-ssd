@@ -1,7 +1,7 @@
 #pragma once
 #include <iosfwd>
 #include <iostream>
-
+#include <memory>
 #include "ILogger.h"
 
 class IView

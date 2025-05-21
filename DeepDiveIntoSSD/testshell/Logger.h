@@ -70,7 +70,7 @@ public:
     }
 
     void print(const std::string& className, const std::string& functionName,
-        const std::string& message, bool printLogInfo = true) override {
+        const std::string& message, bool printLogInfo = DEFAULT_PRINT_LOG_INFO_VALUE) override {
         rotateIfNeeded();
 
         // 여기서는 콘솔에서는 로그 정보를 출력하지 않도록 한다.
@@ -87,8 +87,7 @@ public:
 
     void printLine() override
     {
-        dualStream << '\n';
-        dualStream.flush();
+        dualStream << std::endl;
     }
 
 private:
