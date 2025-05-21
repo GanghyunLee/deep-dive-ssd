@@ -23,6 +23,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="CommandBufferAlgorithm.h" />
     <ClInclude Include="CommandBuffer.h" />
+    <ClInclude Include="Memory.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="테스트 파일">

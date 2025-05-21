@@ -160,6 +160,7 @@
     <ClInclude Include="CommandBuffer.h" />
     <ClInclude Include="CommandBufferAlgorithm.h" />
     <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />

@@ -5,6 +5,7 @@
 #include "FileIO.h"
 #include "ArgManager.h"
 #include "CommandBuffer.h"
+#include "Memory.h"
 
 class SSD {
 public:
@@ -23,23 +24,17 @@ public:
 	void erase(int index, std::string range);
 	void flushBuffers();
 
-	void updateData(int index, unsigned int value);
-
-	void readAll();
-	void dumpData();
-	void dumpError();
-	void dumpResult(int index, unsigned int value);
-	void dumpSuccess();
 	void initNand();
 
 private:
 	SSD(){
 		m_argManager = new ArgManager();
+		initNand();
 	}
 	SSD& operator=(const SSD& other) = delete;
 	SSD(const SSD& other) = delete;
 	ArgManager* m_argManager;
-	FileIO* fileIO;
-	unsigned int data[100] = { 0, };
 	CommandBuffer* m_commandBuffer;
+	IMemory* memory;
+	MemoryFactory memoryFactory;
 };
