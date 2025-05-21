@@ -14,8 +14,23 @@ Arg CommandBufferAlgorithm::fastRead(std::vector<Arg> buffer) {
 	return ret;
 }
 
-bool CommandBufferAlgorithm::isIgnore(const std::vector<Arg>& buffer, int index) {
-	return true;
+int* CommandBufferAlgorithm::updateStatus(Arg arg) {
+	int status[100] = { 0 };
+	int idx = arg.index;
+
+	if (arg.commandType == WRITE) {
+		status[idx] = WRITE;
+	}
+	else if (arg.commandType == ERASE) {
+		int value = stoi(arg.value);
+		int endidx = idx + value;
+
+		for (int i = idx; i < endidx; i++) {
+			status[i] = ERASE;
+		}
+	}
+
+	return status;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {

@@ -17,7 +17,7 @@ public:
 
 	Arg fastRead(std::vector<Arg> buffer);
 
-	bool isIgnore(const std::vector<Arg>& buffer, int index);
+	int* updateStatus(Arg arg);
 private:
 	std::vector<Arg> ret;
 };
