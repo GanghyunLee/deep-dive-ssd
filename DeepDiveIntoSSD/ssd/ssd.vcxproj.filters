@@ -2,38 +2,5 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="FileIO_test.cpp" />
-    <ClCompile Include="ArgManager.cpp" />
-    <ClCompile Include="ArgManager_test.cpp" />
-    <ClCompile Include="Ssd.h" />
-    <ClCompile Include="SSDReadWriteTest.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
-    <ClCompile Include="Ssd.cpp" />
-    <ClCompile Include="CommandBufferAlgorithm.cpp" />
-    <ClCompile Include="CommandBufferAlgorithm_test.cpp" />
-    <ClCompile Include="CommandBuffer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ArgManager.h" />
-    <ClInclude Include="FileIO.h" />
-    <ClInclude Include="CommandBufferAlgorithm.h" />
-    <ClInclude Include="CommandBuffer.h" />
-    <ClInclude Include="Memory.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="테스트 파일">
-      <UniqueIdentifier>{75f3487a-2b56-4e7d-b621-72a1f3acfa26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{6877f21b-0f78-42a3-a602-cdbe6ec06b42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{171ba2c5-14f0-480f-a912-011c4994af09}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
