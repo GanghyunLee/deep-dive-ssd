@@ -6,7 +6,7 @@ void CommandBufferAlgorithm::initStatus() {
 	}
 }
 
-void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
+void CommandBufferAlgorithm::getCurrentStatus(std::vector<Command>& buffer) {
 
 	int cnt = getCommandCount(buffer);
 
@@ -17,7 +17,7 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 	initStatus();
 
 	for (int i = 0; i < cnt - 1; i++) {
-		Arg arg = buffer[i];
+		Command arg = buffer[i];
 
 		switch (arg.commandType) {
 		case ERASE:
@@ -30,7 +30,7 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 	}
 }
 
-int CommandBufferAlgorithm::getCommandCount(std::vector<Arg>& buffer) {
+int CommandBufferAlgorithm::getCommandCount(std::vector<Command>& buffer) {
 
 	int cnt = 0;
 	for (auto item : buffer) {
@@ -47,10 +47,10 @@ int CommandBufferAlgorithm::getStatus(int index) {
 	return status[index];
 }
 
-std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
+std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> buffer) {
 	int cnt = getCommandCount(buffer);
 	int idx = cnt - 1;
-	Arg latestArg = buffer[idx];
+	Command latestArg = buffer[idx];
 	int tempStatus[100] = { 0 };
 
 	getCurrentStatus(buffer);
@@ -107,7 +107,7 @@ std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) 
 	return ret;
 }
 
-void CommandBufferAlgorithm::setStatusWithEraseCommand(Arg arg) {
+void CommandBufferAlgorithm::setStatusWithEraseCommand(Command arg) {
 	
 	int index = arg.index;
 	int range = stoi(arg.value, nullptr, 10);
@@ -117,11 +117,11 @@ void CommandBufferAlgorithm::setStatusWithEraseCommand(Arg arg) {
 	}
 }
 
-void CommandBufferAlgorithm::setStatusWithWriteCommand(Arg arg) {
+void CommandBufferAlgorithm::setStatusWithWriteCommand(Command arg) {
 	this->status[arg.index] = MODIFIED;
 }
 
-void CommandBufferAlgorithm::updateStatus(Arg arg, int* status) {
+void CommandBufferAlgorithm::updateStatus(Command arg, int* status) {
 	int idx = arg.index;
 
 	if (arg.commandType == WRITE) {
@@ -137,7 +137,7 @@ void CommandBufferAlgorithm::updateStatus(Arg arg, int* status) {
 	}
 }
 
-bool CommandBufferAlgorithm::isErased(Arg arg, int* status) {
+bool CommandBufferAlgorithm::isErased(Command arg, int* status) {
 	if (arg.commandType == WRITE) {
 		if (status[arg.index] == ERASED) {
 			return true;
@@ -157,7 +157,7 @@ bool CommandBufferAlgorithm::isErased(Arg arg, int* status) {
 	return true;
 }
 
-bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
+bool CommandBufferAlgorithm::isErasedBigger(Command arg) {
 	int startIdx = arg.index;
 	int endIdx = startIdx + stoi(arg.value);
 	int lowEnd = startIdx - 1;
@@ -183,7 +183,7 @@ bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
 	return false;
 }
 
-bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
+bool CommandBufferAlgorithm::mergeAble(Command a, Command b) {
 
 	if (a.commandType != ERASE || b.commandType != ERASE) {
 		return false;
@@ -205,7 +205,7 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 	return true;
 }
 
-bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
+bool CommandBufferAlgorithm::isContinuousEraseRange(Command a, Command b) {
 
 	int a_range = stoi(a.value, nullptr, 10);
 	int b_range = stoi(b.value, nullptr, 10);
@@ -242,7 +242,7 @@ bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
 	return isContinuous;
 }
 
-bool CommandBufferAlgorithm::isAllErased(Arg a, Arg b) {
+bool CommandBufferAlgorithm::isAllErased(Command a, Command b) {
 
 	int a_range = stoi(a.value, nullptr, 10);
 	int b_range = stoi(b.value, nullptr, 10);
@@ -266,7 +266,7 @@ bool CommandBufferAlgorithm::isAllErased(Arg a, Arg b) {
 	return true;
 }
 
-int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
+int CommandBufferAlgorithm::mergedRange(Command a, Command b) {
 
 	int a_range = stoi(a.value, nullptr, 10);
 	int b_range = stoi(b.value, nullptr, 10);
@@ -284,7 +284,7 @@ int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
 	return endIdx - startIdx + 1;
 }
 
-Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
+Command CommandBufferAlgorithm::mergeTwoCommand(Command a, Command b) {
 	
 	int startIdx = a.index;
 	if (b.index < a.index) {
@@ -293,21 +293,21 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 
 	int range = mergedRange(a, b);
 
-	Arg mergedCommand = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+	Command mergedCommand = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
 	setStatusWithEraseCommand(mergedCommand);
 	
 	return mergedCommand;
 }
 
-std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
+std::vector<Command> CommandBufferAlgorithm::merge(const std::vector<Command> &buffer) {
 	
-	std::vector<Arg> tmpBuffer = buffer;
+	std::vector<Command> tmpBuffer = buffer;
 
 	while (1) {
 
 		// find merge item
 		int idx1, idx2; 
-		Arg mergeCommand1, mergeCommand2;
+		Command mergeCommand1, mergeCommand2;
 		bool find = false;
 
 		for (int i = 0; i < tmpBuffer.size() - 1; i++) {
@@ -327,7 +327,7 @@ std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
 
 		if (!find) break;
 
-		Arg mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
+		Command mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
 		tmpBuffer[idx2] = mergedCommand;
 		
 		tmpBuffer.erase(tmpBuffer.begin() + idx1);

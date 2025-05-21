@@ -27,7 +27,7 @@ void CommandBuffer::loadBuffer() {
 	}
 }
 
-Arg CommandBuffer::parseBufferNameToArg(const std::string& fileName)
+Command CommandBuffer::parseBufferNameToArg(const std::string& fileName)
 {
 	std::vector<std::string> args;
 	std::string str = "";
@@ -41,7 +41,7 @@ Arg CommandBuffer::parseBufferNameToArg(const std::string& fileName)
 	}
 	args.push_back(str);
 
-	Arg arg = argManager.makeStruct(args);
+	Command arg = argManager.makeStruct(args);
 
 	return arg;
 }
@@ -53,12 +53,12 @@ bool CommandBuffer::isBufferFull()
 	return false;
 }
 
-std::vector<Arg> CommandBuffer::getBuffer()
+std::vector<Command> CommandBuffer::getBuffer()
 {
 	return buffers;
 }
 
-std::string CommandBuffer::makeBufferNameFromArg(Arg arg, int index)
+std::string CommandBuffer::makeBufferNameFromArg(Command arg, int index)
 {
 	char num = '0' + index;
 	std::string type;
@@ -78,7 +78,7 @@ std::string CommandBuffer::makeBufferNameFromArg(Arg arg, int index)
 	return num + type + idx + "_" + arg.value;
 }
 
-void CommandBuffer::updateBuffers(std::vector<Arg> ret) {
+void CommandBuffer::updateBuffers(std::vector<Command> ret) {
 	fileIO.removeFilesInDirectory();
 	int index = 0;
 	for (const auto& buffer : ret) {
@@ -95,7 +95,7 @@ int CommandBuffer::checkValueFromBuffer(int index)
 		return CLEAN;
 	}
 
-	Arg lastCmd = buffers[cmdCount -1];
+	Command lastCmd = buffers[cmdCount -1];
 	algo.getCurrentStatus(buffers);	
 
 	if (lastCmd.commandType == ERASE) {
@@ -125,7 +125,7 @@ int CommandBuffer::fastRead(int index)
 	return ret;
 }
 
-void CommandBuffer::pushBuffer(Arg arg)
+void CommandBuffer::pushBuffer(Command arg)
 {
 	for (int i = 0; i < buffers.size(); i++) {
 		if (buffers[i].commandType == EMPTY) {
@@ -134,13 +134,13 @@ void CommandBuffer::pushBuffer(Arg arg)
 		}
 	}
 
-	std::vector<Arg> returnByIgnore = algo.ignoreCommand(buffers);
+	std::vector<Command> returnByIgnore = algo.ignoreCommand(buffers);
 	if (arg.commandType == WRITE) {
 		updateBuffers(returnByIgnore);
 		return;
 	}
 
-	std::vector<Arg> returnByMerge = algo.merge(returnByIgnore);
+	std::vector<Command> returnByMerge = algo.merge(returnByIgnore);
 	updateBuffers(returnByMerge);
 
 	return;
