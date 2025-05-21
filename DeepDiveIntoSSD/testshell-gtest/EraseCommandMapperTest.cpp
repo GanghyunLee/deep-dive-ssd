@@ -35,6 +35,18 @@ public:
 	std::shared_ptr<EraseCommandMapper> eraseCommandMapper = nullptr;
 };
 
+TEST_F(EraseCommandMapperTestFixture, ValidArgumentTestWithLargeSize)
+{
+	std::vector<std::string> validArgument{ "erase", "20", "99999999" };
+	EXPECT_TRUE(eraseCommandMapper->IsSupport(validArgument));
+
+	shared_ptr<EraseCommand> cmd = dynamic_pointer_cast<EraseCommand>(eraseCommandMapper->GenerateCommand(validArgument));
+	EXPECT_TRUE(cmd != nullptr);
+
+	EXPECT_EQ(cmd->GetLba(), 20);
+	EXPECT_EQ(cmd->GetSize(), 80);
+}
+
 TEST_F(EraseCommandMapperTestFixture, ValidArgumentTestWithMinusSize)
 {
 	std::vector<std::string> validArgument{ "erase", "10", "-11" };

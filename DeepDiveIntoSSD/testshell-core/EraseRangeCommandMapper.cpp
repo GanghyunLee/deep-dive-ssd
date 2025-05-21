@@ -1,4 +1,4 @@
-﻿#include "EraseRangeCommandMapper.h"
+#include "EraseRangeCommandMapper.h"
 
 #include "Constants.h"
 #include "ParsingUtil.h"
@@ -18,10 +18,10 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 		int startLba = ParsingUtil::ConvertStringToOnlyPlusIntegerOrElseThrow(userInputCommand[1], true);
 		int endLba = ParsingUtil::ConvertStringToOnlyPlusIntegerOrElseThrow(userInputCommand[2], true);
 
+		ConvertToValidLbaRange(startLba, endLba);
+
 		if (endLba > Constants::MAX_LBA)
 			throw std::exception{ "Exceeds Max LBA" };
-
-		ConvertToValidLbaRange(startLba, endLba);
 
 		return _eraseRangeCommandFactory(startLba, endLba);
 	}
