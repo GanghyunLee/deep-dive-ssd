@@ -22,7 +22,11 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
 		switch (arg.commandType) {
 		case ERASE:
-			status[arg.index] = ERASE;
+			
+			for (int i = arg.index; i < arg.index + stoi(arg.value, nullptr, 10); i++) {
+				status[i] = STATUS::ERASED;
+			}
+
 			break;
 
 		case WRITE:
