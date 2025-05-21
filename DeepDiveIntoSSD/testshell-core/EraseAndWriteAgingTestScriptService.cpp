@@ -1,5 +1,7 @@
 ﻿#include "EraseAndWriteAgingTestScriptService.h"
 
+#include "Constants.h"
+
 bool EraseAndWriteAgingTestScriptService::Execute()
 {
 	// 0 ~ 2번 LBA 삭제
@@ -10,13 +12,13 @@ bool EraseAndWriteAgingTestScriptService::Execute()
 	for (int loop = 0; loop < LOOP_COUNT; loop++)
 	{
 		int startLBA = 2;
-		while (startLBA <= MAX_LBA)
+		while (startLBA <= Constants::MAX_LBA)
 		{
 			unsigned int randomData = std::rand();
 
 			int eraseSize = LOCAL_TEST_ERASE_LBA_SIZE;
-			if (startLBA + eraseSize - 1 > MAX_LBA)
-				eraseSize = MAX_LBA - startLBA + 1;
+			if (startLBA + eraseSize - 1 > Constants::MAX_LBA)
+				eraseSize = Constants::MAX_LBA - startLBA + 1;
 
 			// Write
 			if (false == _ssdController->Write(startLBA, randomData).GetTestResult())

@@ -1,5 +1,5 @@
 ﻿#include "EraseCommandMapper.h"
-
+#include "Constants.h"
 #include "ParsingUtil.h"
 
 bool EraseCommandMapper::IsSupport(const std::vector<std::string>& userInputCommand)
@@ -35,7 +35,10 @@ void EraseCommandMapper::ConvertToValidLbaRange(int& lba, int& size)
 		int targetStartLba = lba + size + 1;
 
 		if (targetStartLba < 0)
-			throw std::exception{ "INVALID RANGE" };
+		{
+			size -= targetStartLba;
+			targetStartLba = 0;
+		}
 
 		lba = targetStartLba;
 		size *= -1;

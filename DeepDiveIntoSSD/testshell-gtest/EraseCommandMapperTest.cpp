@@ -47,17 +47,33 @@ TEST_F(EraseCommandMapperTestFixture, ValidArgumentTestWithMinusSize)
 	EXPECT_EQ(cmd->GetSize(), 11);
 }
 
+TEST_F(EraseCommandMapperTestFixture, ValidArgumentTestWithMinusSize2)
+{
+	std::vector<std::string> validArgument{ "erase", "0", "-2100000" };
+	EXPECT_TRUE(eraseCommandMapper->IsSupport(validArgument));
+
+	shared_ptr<EraseCommand> cmd = dynamic_pointer_cast<EraseCommand>(eraseCommandMapper->GenerateCommand(validArgument));
+	EXPECT_TRUE(cmd != nullptr);
+
+	EXPECT_EQ(cmd->GetLba(), 0);
+	EXPECT_EQ(cmd->GetSize(), 1);
+}
+
+TEST_F(EraseCommandMapperTestFixture, ValidArgumentTestWithMinusSize3)
+{
+	std::vector<std::string> validArgument{ "erase", "5", "-7" };
+
+	shared_ptr<EraseCommand> cmd = dynamic_pointer_cast<EraseCommand>(eraseCommandMapper->GenerateCommand(validArgument));
+	EXPECT_TRUE(cmd != nullptr);
+
+	EXPECT_EQ(cmd->GetLba(), 0);
+	EXPECT_EQ(cmd->GetSize(), 6);
+}
+
+
 TEST_F(EraseCommandMapperTestFixture, LbaCannotBeMinus)
 {
 	std::vector<std::string> invalidArgument{ "erase", "-3", "1" };
-
-	EXPECT_TRUE(eraseCommandMapper->IsSupport(invalidArgument));
-	EXPECT_THROW(eraseCommandMapper->GenerateCommand(invalidArgument), std::exception);
-}
-
-TEST_F(EraseCommandMapperTestFixture, InvalidArgumentTestWithMinusSize)
-{
-	std::vector<std::string> invalidArgument{ "erase", "5", "-7" };
 
 	EXPECT_TRUE(eraseCommandMapper->IsSupport(invalidArgument));
 	EXPECT_THROW(eraseCommandMapper->GenerateCommand(invalidArgument), std::exception);

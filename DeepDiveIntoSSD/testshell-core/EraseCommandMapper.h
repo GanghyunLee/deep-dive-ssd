@@ -4,6 +4,8 @@
 #include "ICommandMapper.h"
 #include "EraseCommand.h"
 
+using EraseCommandFactory = std::function<std::shared_ptr<EraseCommand>(int, int)>;
+
 class EraseCommandMapper : public ICommandMapper
 {
 public:

@@ -4,7 +4,6 @@
 #include "SsdEraseService.h"
 
 class EraseCommand;
-using EraseCommandFactory = std::function<std::shared_ptr<EraseCommand>(int, int)>;
 
 class EraseCommand : public ICommand
 {

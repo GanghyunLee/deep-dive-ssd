@@ -1,12 +1,14 @@
-﻿#pragma once
+#pragma once
 #include <functional>
 #include "ICommandMapper.h"
-#include "EraseCommand.h"
+#include "EraseRangeCommand.h"
+
+using EraseRangeCommandFactory = std::function<std::shared_ptr<EraseRangeCommand>(int, int)>;
 
 class EraseRangeCommandMapper : public ICommandMapper
 {
 public:
-	EraseRangeCommandMapper(const EraseCommandFactory& eraseCommandFactory) : _eraseCommandFactory(eraseCommandFactory) {}
+	EraseRangeCommandMapper(const EraseRangeCommandFactory& eraseRangeCommandFactory) : _eraseRangeCommandFactory(eraseRangeCommandFactory) {}
 	~EraseRangeCommandMapper() override = default;
 
 	bool IsSupport(const std::vector<std::string>& userInputCommand) override;
@@ -15,5 +17,5 @@ public:
 	void ConvertToValidLbaRange(int& startLba, int& endLba);
 
 protected:
-	EraseCommandFactory _eraseCommandFactory;
+	EraseRangeCommandFactory _eraseRangeCommandFactory;
 };

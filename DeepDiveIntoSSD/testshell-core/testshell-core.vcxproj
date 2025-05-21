@@ -154,11 +154,13 @@
   <ItemGroup>
     <ClCompile Include="AbstractTestScriptService.cpp" />
     <ClCompile Include="AbstractTestShellApplication.cpp" />
+    <ClCompile Include="Constants.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp" />
     <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp" />
     <ClCompile Include="EraseCommand.cpp" />
     <ClCompile Include="EraseCommandMapper.cpp" />
+    <ClCompile Include="EraseRangeCommand.cpp" />
     <ClCompile Include="EraseRangeCommandMapper.cpp" />
     <ClCompile Include="EraseView.cpp" />
     <ClCompile Include="FlushCommand.cpp" />
@@ -217,11 +219,13 @@
   <ItemGroup>
     <ClInclude Include="AbstractTestScriptService.h" />
     <ClInclude Include="AbstractTestShellApplication.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h" />
     <ClInclude Include="EraseAndWriteAgingTestScriptService.h" />
     <ClInclude Include="EraseCommand.h" />
     <ClInclude Include="EraseCommandMapper.h" />
+    <ClInclude Include="EraseRangeCommand.h" />
     <ClInclude Include="EraseRangeCommandMapper.h" />
     <ClInclude Include="EraseView.h" />
     <ClInclude Include="FlushCommand.h" />

@@ -6,11 +6,6 @@
 
 class SsdFullReadService
 {
-	enum
-	{
-		MAX_LBA = 99
-	};
-
 public:
 	SsdFullReadService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
 	{
