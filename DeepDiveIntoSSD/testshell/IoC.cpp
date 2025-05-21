@@ -9,6 +9,7 @@
 #include "FullWriteCommandMapper.h"
 #include "HelpCommand.h"
 #include "HelpCommandMapper.h"
+#include "Logger.h"
 #include "PartialLBAWriteTestScriptCommandMapper.h"
 #include "ReadCommandMapper.h"
 #include "SsdController.h"
@@ -143,6 +144,12 @@ std::shared_ptr<ISsdController> IoC::GetSsdController()
 {
 	static std::shared_ptr<ISsdController> ssdController = std::make_shared<SsdController>();
 	return ssdController;
+}
+
+std::shared_ptr<ILogger> IoC::GetLogger()
+{
+	static std::shared_ptr<ILogger> logger = std::make_shared<DualLogger>();
+	return logger;
 }
 
 EraseCommandFactory IoC::GenerateEraseCommandFactory()

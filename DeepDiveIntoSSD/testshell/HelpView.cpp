@@ -1,16 +1,20 @@
-﻿#include "HelpView.h"
-#include <iostream>
+#include "HelpView.h"
+#include <sstream>
 
-void HelpView::Render(std::ostream& os)
+void HelpView::Render(std::shared_ptr<ILogger>& logger)
 {
-	os << "* Team : DD(DeepDive)" << std::endl;
-	os << "* 팀장 : 이강현, * 팀원 : 권경민, 김민석, 이문형, 이재규" << std::endl;
-	os << "* Command Usage" << std::endl;
-	os << "- write : ssd.exe W lba data (ex - ssd.exe W 3 0xABABABAB)" << std::endl;
-	os << "- read : ssd.exe R lba (ex - ssd.exe R 3)" << std::endl;
-	os << "- fullwrite : ssd.exe fullwrite data (ex - ssd.exe fullwrite 0xABABABAB)" << std::endl;
-	os << "- fullread : ssd.exe fullread (ex - ssd.exe fullread)" << std::endl;
-	os << "- 1_FullWriteAndReadCompare" << std::endl;
-	os << "- 2_PartialLBAWrite" << std::endl;
-	os << "- 3_WriteReadAging";
+     std::stringstream ss;
+     ss << "* Team : DD(DeepDive)\n";
+     ss << "* 팀장 : 이강현, * 팀원 : 권경민, 김민석, 이문형, 이재규\n";
+     ss << "* Command Usage\n";
+     ss << "- write : ssd.exe W lba data (ex - ssd.exe W 3 0xABABABAB)\n";
+     ss << "- read : ssd.exe R lba (ex - ssd.exe R 3)\n";
+     ss << "- fullwrite : ssd.exe fullwrite data (ex - ssd.exe fullwrite 0xABABABAB)\n";
+     ss << "- fullread : ssd.exe fullread (ex - ssd.exe fullread)\n";
+     ss << "- 1_FullWriteAndReadCompare\n";
+     ss << "- 2_PartialLBAWrite\n";
+     ss << "- 3_WriteReadAging\n";
+     ss << "- 4_EraseAndWriteAging";
+
+     logger->print("HelpView", __FUNCTION__, ss.str());
 }

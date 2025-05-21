@@ -9,7 +9,7 @@ public:
 	FlushView(const SsdFlushResult& flushCommandResult) : _flushCommandResult(flushCommandResult) {}
 	~FlushView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 private:
 	SsdFlushResult _flushCommandResult;

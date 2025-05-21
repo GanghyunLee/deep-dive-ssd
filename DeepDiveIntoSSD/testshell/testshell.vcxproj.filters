@@ -211,6 +211,9 @@
     <ClCompile Include="FlushView.cpp">
       <Filter>Application\View\Flush</Filter>
     </ClCompile>
+    <ClCompile Include="InMemoryLogger.cpp">
+      <Filter>Application\Logger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -389,6 +392,12 @@
     </ClInclude>
     <ClInclude Include="FlushView.h">
       <Filter>Application\View\Flush</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="InMemoryLogger.h">
+      <Filter>Application\Logger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
