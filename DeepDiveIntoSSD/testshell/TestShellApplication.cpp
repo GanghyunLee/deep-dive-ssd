@@ -42,7 +42,8 @@ std::string TestShellApplication::GetUserInputLowerStr()
 	std::string userInput;
 	if (_printShellPromptPrefix)
 	{
-		_logger->print("TestShellApplication", __FUNCTION__, STR_SHELL_START + " ", false);
+		std::ostream& ostream = _logger->getMainOstream();
+		ostream << STR_SHELL_START + " ";
 	}
 	std::getline(_iStream, userInput);
 
