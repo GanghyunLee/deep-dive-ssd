@@ -1,4 +1,4 @@
-#include "AbstractTestShellApplication.h"
+﻿#include "AbstractTestShellApplication.h"
 #include <algorithm>
 #include <exception>
 #include <sstream>

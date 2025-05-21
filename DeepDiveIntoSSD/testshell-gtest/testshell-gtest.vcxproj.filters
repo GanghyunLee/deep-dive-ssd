@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
+    <ClCompile Include="TestShellApplicationTest.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandTest.cpp">
+      <Filter>Application\Command\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteCommandTest.cpp">
+      <Filter>Application\Command\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadViewTest.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandTest.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteViewTest.cpp">
+      <Filter>Application\View\Write</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{6b77e9eb-49a5-44de-b390-031b14cbc21f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command">
+      <UniqueIdentifier>{e1d3fd5e-e9e9-4ffc-9c13-1c22c292a2c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Write">
+      <UniqueIdentifier>{467c02d1-1faa-4ead-833b-88ccb0c1c9f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Help">
+      <UniqueIdentifier>{ec81ff8a-e61a-4633-bbfb-ae499c4e0ba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper">
+      <UniqueIdentifier>{97195079-1fc7-40a0-9186-a9bd53b32645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Erase">
+      <UniqueIdentifier>{0e64127c-e758-4f40-aac6-25459e60298c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Help">
+      <UniqueIdentifier>{827ec71c-9f13-411c-9b40-ff7dc3fab0c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Read">
+      <UniqueIdentifier>{fb592e6f-10fc-4eba-b3cd-c180e95844f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Write">
+      <UniqueIdentifier>{e9852e1f-c5c9-4f97-8de0-f3040cd34828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Logger">
+      <UniqueIdentifier>{3d8c59e9-75e4-4d4c-8720-73dac46c6f2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View">
+      <UniqueIdentifier>{694a9e02-73d1-4fa2-9fa8-b50ad5307351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Read">
+      <UniqueIdentifier>{b88714ec-fbda-4e59-b495-2d433e763a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Read">
+      <UniqueIdentifier>{aa4901fc-486a-4b49-8e6e-6d4a941087f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Write">
+      <UniqueIdentifier>{c88cd33e-23a1-40c1-989a-359a644c91d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

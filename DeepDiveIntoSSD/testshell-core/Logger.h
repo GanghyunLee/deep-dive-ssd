@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -62,7 +62,9 @@ private:
 
 class DualLogger : public ILogger {
 public:
-    DualLogger(const string& fileName = LOG_FILE) : fileStream(fileName, ios::app), dualStream(cout, fileStream) {}
+    DualLogger(const string& fileName = LOG_FILE) : fileStream(fileName, ios::app), dualStream(cout, fileStream)
+    {
+    }
 
     ostream& getMainOstream() override {
         rotateIfNeeded();

@@ -1,4 +1,4 @@
-#include "RunnerApplication.h"
+﻿#include "RunnerApplication.h"
 #include <fstream>
 #include <sstream>
 
