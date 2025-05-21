@@ -1,15 +1,9 @@
-﻿#pragma once
+#pragma once
 #include <memory>
 #include "ISsdController.h"
 
 class AbstractTestScriptService
 {
-protected:
-	enum
-	{
-		MAX_LBA = 99
-	};
-
 public:
 	AbstractTestScriptService(std::shared_ptr<ISsdController> ssdController) : _ssdController(ssdController)
 	{

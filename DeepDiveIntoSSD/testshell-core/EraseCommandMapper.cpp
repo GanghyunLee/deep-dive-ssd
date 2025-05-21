@@ -1,5 +1,5 @@
-﻿#include "EraseCommandMapper.h"
-
+#include "EraseCommandMapper.h"
+#include "Constants.h"
 #include "ParsingUtil.h"
 
 bool EraseCommandMapper::IsSupport(const std::vector<std::string>& userInputCommand)
@@ -29,6 +29,9 @@ std::shared_ptr<ICommand> EraseCommandMapper::GenerateCommand(const std::vector<
 
 void EraseCommandMapper::ConvertToValidLbaRange(int& lba, int& size)
 {
+	// startLba가 음수이면 보정
+	if (lba < 0) lba = 0;
+
 	// size에 대한 음수 처리
 	if (size < 0)
 	{

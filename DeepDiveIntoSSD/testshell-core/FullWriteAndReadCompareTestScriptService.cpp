@@ -1,15 +1,17 @@
 #include "FullWriteAndReadCompareTestScriptService.h"
 
+#include "Constants.h"
+
 bool FullWriteAndReadCompareTestScriptService::Execute()
 {
 	unsigned int writtenValue = 0x1234ABCD;
 	unsigned int startLBA = 0;
 
-	while (startLBA < MAX_LBA)
+	while (startLBA < Constants::MAX_LBA)
 	{
 		unsigned int endLBA = startLBA + 5;
-		if (endLBA >= MAX_LBA)
-			endLBA = MAX_LBA;
+		if (endLBA >= Constants::MAX_LBA)
+			endLBA = Constants::MAX_LBA;
 
 		if (startLBA == endLBA)
 			break;

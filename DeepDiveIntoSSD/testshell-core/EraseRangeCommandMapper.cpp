@@ -1,7 +1,6 @@
-﻿#include "EraseRangeCommandMapper.h"
+#include "EraseRangeCommandMapper.h"
 
-#include <algorithm>
-
+#include "Constants.h"
 #include "ParsingUtil.h"
 
 bool EraseRangeCommandMapper::IsSupport(const std::vector<std::string>& userInputCommand)
@@ -21,7 +20,7 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 
 		ConvertToValidLbaRange(startLba, endLba);
 
-		return _eraseCommandFactory(startLba, (endLba - startLba + 1));
+		return _eraseRangeCommandFactory(startLba, endLba);
 	}
 	catch (...)
 	{
@@ -31,6 +30,16 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 
 void EraseRangeCommandMapper::ConvertToValidLbaRange(int& startLba, int& endLba)
 {
+	// startLba가 음수이면 보정
+	if (startLba < 0) startLba = 0;
+
+	// endLba가 음수이면 보정
+	if (endLba < 0) endLba = 0;
+
+	// endLba가 MaxLBA를 넘어가면 보정
+	if (endLba > Constants::MAX_LBA)
+		endLba = Constants::MAX_LBA;
+
 	// startLba가 endLba보다 큰 경우 swap
 	if (startLba > endLba)
 		std::swap(startLba, endLba);

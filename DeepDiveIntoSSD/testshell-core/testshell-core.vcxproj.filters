@@ -176,6 +176,12 @@
     <ClCompile Include="InMemoryLogger.cpp">
       <Filter>Application\Logger</Filter>
     </ClCompile>
+    <ClCompile Include="EraseRangeCommand.cpp">
+      <Filter>Application\Command\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="Constants.cpp">
+      <Filter>Constant</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICommand.h">
@@ -361,6 +367,12 @@
     <ClInclude Include="InMemoryLogger.h">
       <Filter>Application\Logger</Filter>
     </ClInclude>
+    <ClInclude Include="EraseRangeCommand.h">
+      <Filter>Application\Command\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -494,6 +506,9 @@
     </Filter>
     <Filter Include="Application\View\Flush">
       <UniqueIdentifier>{c21c6eb0-a305-44f0-8cc5-119507c23e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Constant">
+      <UniqueIdentifier>{fd412bd9-3d5e-4b26-b7ca-43faa229acf8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

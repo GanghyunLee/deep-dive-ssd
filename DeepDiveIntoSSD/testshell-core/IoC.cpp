@@ -40,7 +40,7 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 		});
 
 	static std::shared_ptr<EraseCommandMapper> eraseCommandMapper = std::make_shared<EraseCommandMapper>(GenerateEraseCommandFactory());
-	static std::shared_ptr<EraseRangeCommandMapper> eraseRangeCommandMapper = std::make_shared<EraseRangeCommandMapper>(GenerateEraseCommandFactory());
+	static std::shared_ptr<EraseRangeCommandMapper> eraseRangeCommandMapper = std::make_shared<EraseRangeCommandMapper>(GenerateEraseRangeCommandFactory());
 
 	static std::shared_ptr<FullWriteAndReadCompareTestScriptCommandMapper> fullWriteAndReadCompareTestScriptCommandMapper =
 		std::make_shared<FullWriteAndReadCompareTestScriptCommandMapper>(GetFullWriteAndReadCompareTestScriptService());
@@ -157,5 +157,13 @@ EraseCommandFactory IoC::GenerateEraseCommandFactory()
 	return [&](int lba, int size)
 	{
 		return std::make_shared<EraseCommand>(GetSsdEraseService(), lba, size);
+	};
+}
+
+EraseRangeCommandFactory IoC::GenerateEraseRangeCommandFactory()
+{
+	return [&](int startLba, int endLba)
+	{
+		return std::make_shared<EraseRangeCommand>(GetSsdEraseService(), startLba, endLba);
 	};
 }

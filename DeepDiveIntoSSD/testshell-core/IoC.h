@@ -13,6 +13,8 @@
 #include "SsdReadService.h"
 #include "SsdWriteService.h"
 #include "WriteReadAgingTestScriptService.h"
+#include "EraseCommandMapper.h"
+#include "EraseRangeCommandMapper.h"
 
 class ICommandMapper;
 
@@ -37,5 +39,6 @@ public:
 
 protected:
 	EraseCommandFactory GenerateEraseCommandFactory();
+	EraseRangeCommandFactory GenerateEraseRangeCommandFactory();
 };
 
