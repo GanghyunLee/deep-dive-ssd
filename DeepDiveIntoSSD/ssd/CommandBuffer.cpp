@@ -48,7 +48,7 @@ Command CommandBuffer::parseBufferNameToArg(const std::string& fileName)
 
 bool CommandBuffer::isBufferFull()
 {
-	if (buffers[4].commandType != EMPTY)
+	if (buffers[4].type != EMPTY)
 		return true;
 	return false;
 }
@@ -62,13 +62,13 @@ std::string CommandBuffer::makeBufferNameFromArg(Command arg, int index)
 {
 	char num = '0' + index;
 	std::string type;
-	if (arg.commandType == EMPTY) {
+	if (arg.type == EMPTY) {
 		type = "_empty";
 		return num + type;
 	}
 
 	std::string idx = std::to_string(arg.index);
-	if (arg.commandType == WRITE) {
+	if (arg.type == WRITE) {
 		type = "_w_";
 	}
 	else {
@@ -98,11 +98,11 @@ int CommandBuffer::checkValueFromBuffer(int index)
 	Command lastCmd = buffers[cmdCount -1];
 	algo.getCurrentStatus(buffers);	
 
-	if (lastCmd.commandType == ERASE) {
+	if (lastCmd.type == ERASE) {
 		algo.setStatusWithEraseCommand(lastCmd);
 	}
 	
-	if (lastCmd.commandType == WRITE) {
+	if (lastCmd.type == WRITE) {
 		algo.setStatusWithWriteCommand(lastCmd);
 	}
 
@@ -113,11 +113,11 @@ int CommandBuffer::fastRead(int index)
 {
 	int ret = 0;
 	for (int i = buffers.size() - 1; i >= 0; i--) {
-		if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
+		if (buffers[i].type == EMPTY || buffers[i].type == ERASE)
 			continue;
 		if (buffers[i].index != index)
 			continue;
-		if (buffers[i].commandType == WRITE) {
+		if (buffers[i].type == WRITE) {
 			ret = std::stoul(buffers[i].value, nullptr, 16);
 			break;
 		}
@@ -128,14 +128,14 @@ int CommandBuffer::fastRead(int index)
 void CommandBuffer::pushBuffer(Command arg)
 {
 	for (int i = 0; i < buffers.size(); i++) {
-		if (buffers[i].commandType == EMPTY) {
+		if (buffers[i].type == EMPTY) {
 			buffers[i] = arg;
 			break;
 		}
 	}
 
 	std::vector<Command> returnByIgnore = algo.ignoreCommand(buffers);
-	if (arg.commandType == WRITE) {
+	if (arg.type == WRITE) {
 		updateBuffers(returnByIgnore);
 		return;
 	}

@@ -19,7 +19,7 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Command>& buffer) {
 	for (int i = 0; i < cnt - 1; i++) {
 		Command arg = buffer[i];
 
-		switch (arg.commandType) {
+		switch (arg.type) {
 		case ERASE:
 			setStatusWithEraseCommand(arg);
 			break;
@@ -34,7 +34,7 @@ int CommandBufferAlgorithm::getCommandCount(std::vector<Command>& buffer) {
 
 	int cnt = 0;
 	for (auto item : buffer) {
-		if (item.commandType == EMPTY) {
+		if (item.type == EMPTY) {
 			break;
 		}
 		cnt++;
@@ -56,10 +56,10 @@ std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> 
 	getCurrentStatus(buffer);
 	updateStatus(latestArg, tempStatus);
 
-	if (latestArg.commandType == WRITE) {
+	if (latestArg.type == WRITE) {
 		if (status[latestArg.index] == MODIFIED) {
 			for (int i = 0; i < idx; i++) {
-				if (buffer[i].commandType != WRITE || buffer[i].index != latestArg.index) {
+				if (buffer[i].type != WRITE || buffer[i].index != latestArg.index) {
 					ret.push_back(buffer[i]);
 				}
 			}
@@ -67,7 +67,7 @@ std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> 
 		}
 		else if (status[latestArg.index] == ERASED) {
 			for (int i = 0; i < idx; i++) {
-				if (buffer[i].commandType == ERASE) {
+				if (buffer[i].type == ERASE) {
 					int startIdx = buffer[i].index;
 					int endIdx = startIdx + stoi(buffer[i].value) - 1;
 					if (startIdx == latestArg.index) {
@@ -86,7 +86,7 @@ std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> 
 			ret = buffer;
 		}
 	}
-	else if (latestArg.commandType == ERASE) {
+	else if (latestArg.type == ERASE) {
 		for (int i = 0; i < idx; i++) {
 			if (!isErased(buffer[i], tempStatus)) {
 				ret.push_back(buffer[i]);
@@ -124,10 +124,10 @@ void CommandBufferAlgorithm::setStatusWithWriteCommand(Command arg) {
 void CommandBufferAlgorithm::updateStatus(Command arg, int* status) {
 	int idx = arg.index;
 
-	if (arg.commandType == WRITE) {
+	if (arg.type == WRITE) {
 		status[idx] = MODIFIED;
 	}
-	else if (arg.commandType == ERASE) {
+	else if (arg.type == ERASE) {
 		int value = stoi(arg.value);
 		int endidx = idx + value;
 
@@ -138,12 +138,12 @@ void CommandBufferAlgorithm::updateStatus(Command arg, int* status) {
 }
 
 bool CommandBufferAlgorithm::isErased(Command arg, int* status) {
-	if (arg.commandType == WRITE) {
+	if (arg.type == WRITE) {
 		if (status[arg.index] == ERASED) {
 			return true;
 		}
 	}
-	else if (arg.commandType == ERASE) {
+	else if (arg.type == ERASE) {
 		int startIdx = arg.index;
 		int endIdx = startIdx + stoi(arg.value);
 
@@ -185,7 +185,7 @@ bool CommandBufferAlgorithm::isErasedBigger(Command arg) {
 
 bool CommandBufferAlgorithm::mergeAble(Command a, Command b) {
 
-	if (a.commandType != ERASE || b.commandType != ERASE) {
+	if (a.type != ERASE || b.type != ERASE) {
 		return false;
 	}
 

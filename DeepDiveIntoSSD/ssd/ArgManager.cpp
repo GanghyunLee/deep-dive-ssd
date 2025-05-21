@@ -78,13 +78,13 @@ Command ArgManager::makeStruct(const std::vector<std::string>& args) {
 	Command arg;
 
 	if (args.size() == 0 || args[0] == "empty") {
-		arg.commandType = COMMAND_TYPE::EMPTY;
+		arg.type = COMMAND_TYPE::EMPTY;
 		arg.value = "";
 		return arg;
 	}
 
 	if (args[0] == "F" || args[0] == "f") {
-		arg.commandType = COMMAND_TYPE::FLUSH;
+		arg.type = COMMAND_TYPE::FLUSH;
 		arg.value = "";
 		return arg;
 	}
@@ -92,7 +92,7 @@ Command ArgManager::makeStruct(const std::vector<std::string>& args) {
 	arg.index = stoi(args[1]);
 
 	if (args[0] == "R" || args[0] == "r") {
-		arg.commandType = COMMAND_TYPE::READ;
+		arg.type = COMMAND_TYPE::READ;
 		arg.value = "";
 
 		return arg;
@@ -100,7 +100,7 @@ Command ArgManager::makeStruct(const std::vector<std::string>& args) {
 
 	if (args[0] == "W" || args[0] == "w") {
 		int digits = 10 - args[2].size();
-		arg.commandType = COMMAND_TYPE::WRITE;
+		arg.type = COMMAND_TYPE::WRITE;
 		arg.value = args[2];
 		for (int i = 0; i < digits; i++) {
 			arg.value.insert(2, "0");
@@ -110,7 +110,7 @@ Command ArgManager::makeStruct(const std::vector<std::string>& args) {
 	}
 
 	if (args[0] == "E" || args[0] == "e") {
-		arg.commandType = COMMAND_TYPE::ERASE;
+		arg.type = COMMAND_TYPE::ERASE;
 		arg.value = args[2];
 		return arg;
 	}

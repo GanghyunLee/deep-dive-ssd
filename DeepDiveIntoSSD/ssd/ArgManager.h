@@ -6,12 +6,12 @@ enum COMMAND_TYPE { EMPTY = 0, READ , WRITE, ERASE, FLUSH };
 
 struct Command {
 public:
-	int commandType;
+	int type;
 	int index;
 	std::string value;
 
 	bool operator == (const Command& arg) const {
-		if (this->commandType != arg.commandType) return false;
+		if (this->type != arg.type) return false;
 		if (this->index != arg.index) return false;
 		if (this->value != arg.value) return false;
 		return true;
