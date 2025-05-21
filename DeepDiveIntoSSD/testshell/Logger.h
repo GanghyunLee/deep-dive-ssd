@@ -36,7 +36,7 @@ private:
 class DualStream : public ostream {
 public:
     // DualStream은 복사 불가능
-    DualStream(ostream& s1, ostream& s2) : ostream(nullptr), out1(s1), out2(s2) {
+    DualStream(ostream& s1, ostream& s2) : ostream(&buffer), out1(s1), out2(s2) {
         rdbuf(&buffer);
         buffer.addStream(&out1);
         buffer.addStream(&out2);
@@ -45,6 +45,12 @@ public:
     // 복사 방지
     DualStream(const DualStream&) = delete;
     DualStream& operator=(const DualStream&) = delete;
+
+    void flush() const
+    {
+	    out1.flush();
+	    out2.flush();
+    }
 
 private:
     DualBuffer buffer;
@@ -75,6 +81,7 @@ public:
         }
 
         dualStream << message;
+        dualStream.flush();
     }
 
 private:
