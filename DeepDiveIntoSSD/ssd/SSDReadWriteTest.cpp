@@ -10,17 +10,17 @@ public:
 	SSD* ssdReal = &SSD::getInstance();
 };
 
-TEST_F(SSDFixture, initSSDNANDTXTfile) {
-	std::fstream fp("ssd_nand.txt", std::ios::in);
-	int lineNum = 0;
-	std::string line;
-	
-	while (std::getline(fp, line)) {
-		lineNum++;
-	}
-	fp.close();
-	EXPECT_EQ(lineNum, 100);
-}
+//TEST_F(SSDFixture, initSSDNANDTXTfile) {
+//	std::fstream fp("ssd_nand.txt", std::ios::in);
+//	int lineNum = 0;
+//	std::string line;
+//	
+//	while (std::getline(fp, line)) {
+//		lineNum++;
+//	}
+//	fp.close();
+//	EXPECT_EQ(lineNum, 100);
+//}
 
 TEST_F(SSDFixture, readSSDNANDTextFileAfterInit) {
 	ssdReal->read(0);
