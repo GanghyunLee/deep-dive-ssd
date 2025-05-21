@@ -20,7 +20,7 @@ public:
 
 	bool mergeAble(Arg a, Arg b);
 	bool isContinuousEraseRange(Arg a, Arg b);
-	bool isAllDirty(Arg a, Arg b);
+	bool isAllErased(Arg a, Arg b);
 
 	int mergedRange(Arg a, Arg b);
 	Arg mergeTwoCommand(Arg a, Arg b);

@@ -204,18 +204,26 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
 }
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTest2) {
+	std::vector<Arg> buffer = { {WRITE,10,"0xABCD1234"},
+								{WRITE,11,"0xABCD1234"},
+								{WRITE,12,"0xABCD1234"},
+								{ERASE,8, "5"},
+								{ERASE,10, "5"} };
 
-	// ignore 도 같이 발생하는 케이스, merge 이후 write ignore
+	std::vector<Arg> expected = {{WRITE,10,"0xABCD1234"},
+								{WRITE,11,"0xABCD1234"},
+								{WRITE,12,"0xABCD1234"},
+								{ERASE,8, "7"},
+								{0,} };
 
-	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
-	std::vector<Arg> expected = {{ERASE,10,"10"},{0,},{0,},{0,},{0,}};
-	
 	cba.getCurrentStatus(buffer);
-	cba.setStatusWithEraseCommand({ ERASE, 15, "5" });
+	cba.setStatusWithEraseCommand({ ERASE, 10, "5" });
 	std::vector<Arg> ret = cba.merge(buffer);
 
 	EXPECT_EQ(expected, ret);
 }
+
+
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTest3) {
 	std::vector<Arg> buffer = { {ERASE,10,"10"},{ERASE, 10, "5"},{0,},{0,},{0,} };
@@ -233,10 +241,23 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest4) {
 	std::vector<Arg> expected = { {WRITE, 40, "0xABCD1234"}, {ERASE,10, "10"}, { 0, }, { 0, }, { 0, } };
 	
 	cba.getCurrentStatus(buffer);
-	cba.setStatusWithEraseCommand({ ERASE, 10, "5" });
+	cba.setStatusWithEraseCommand({ ERASE, 11, "5" });
 	std::vector<Arg> ret = cba.merge(buffer);
 
 	EXPECT_EQ(expected, ret);
+}
+
+TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened0) {
+
+	// NOTHING HAPPENED
+
+	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
+	
+	cba.getCurrentStatus(buffer);
+	cba.setStatusWithEraseCommand({ ERASE, 15, "5" });
+	std::vector<Arg> ret = cba.merge(buffer);
+
+	EXPECT_EQ(ret, buffer);
 }
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened1) {

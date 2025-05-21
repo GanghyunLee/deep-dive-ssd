@@ -105,7 +105,7 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 		return false;
 	}
 
-	if (!isAllDirty(a, b)) {
+	if (!isAllErased(a, b)) {
 		return false;
 	}
 
@@ -154,7 +154,7 @@ bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
 	return isContinuous;
 }
 
-bool CommandBufferAlgorithm::isAllDirty(Arg a, Arg b) {
+bool CommandBufferAlgorithm::isAllErased(Arg a, Arg b) {
 
 	int a_range = stoi(a.value, nullptr, 10);
 	int b_range = stoi(b.value, nullptr, 10);
@@ -170,7 +170,7 @@ bool CommandBufferAlgorithm::isAllDirty(Arg a, Arg b) {
 	}
 
 	for (int i = startIdx; i <= endIdx; i++) {
-		if (status[i] == STATUS::CLEAN) {
+		if (status[i] != STATUS::ERASED) {
 			return false;
 		}
 	}
@@ -249,14 +249,14 @@ std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
 
 		// 이후에 앞에 idx2 앞에꺼 보면서 invalid 여부 체크 필요함.
 		// TODO
-		for(int i = 0 ; i < idx2 - 1; i++){
-			Arg command = tmpBuffer[i];
+		//for(int i = 0 ; i < idx2 - 1; i++){
+		//	Arg command = tmpBuffer[i];
 
-			if (canDeleteCommand(command)) {
-				tmpBuffer.erase(tmpBuffer.begin() + i);
-				tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0 , "" });
-			}
-		}
+		//	if (canDeleteCommand(command)) {
+		//		tmpBuffer.erase(tmpBuffer.begin() + i);
+		//		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0 , "" });
+		//	}
+		//}
 	}
 
 	return tmpBuffer;
