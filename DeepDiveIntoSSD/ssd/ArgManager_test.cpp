@@ -206,21 +206,21 @@ TEST_F(ArgManagerFixture, isValid25) {
 
 TEST_F(ArgManagerFixture, makeStruct1) {
 	Command argExpected = { WRITE, INDEX, "0x12345678" };
-	Command argsResult = am.makeStruct({ "W", "3", "0x12345678" });
+	Command argsResult = am.makeCommand({ "W", "3", "0x12345678" });
 
 	EXPECT_EQ(argExpected, argsResult);
 }
 
 TEST_F(ArgManagerFixture, makeStruct2) {
 	Command argExpected = { READ, INDEX, "" };
-	Command argsResult = am.makeStruct({ "R", "3" });
+	Command argsResult = am.makeCommand({ "R", "3" });
 
 	EXPECT_EQ(argExpected, argsResult);
 }
 
 TEST_F(ArgManagerFixture, makeStruct3) {
 	Command argExpected = { WRITE, INDEX, "0x0000abcd" };
-	Command argsResult = am.makeStruct({ "W", "3", "0xabcd"});
+	Command argsResult = am.makeCommand({ "W", "3", "0xabcd"});
 
 	EXPECT_EQ(argExpected, argsResult);
 }
@@ -231,7 +231,7 @@ TEST_F(ArgManagerFixture, fullTest) {
 	std::vector<std::string> args = am.commandSplit(3, input);
 	am.isValid(args);
 
-	Command argsResult = am.makeStruct(args);
+	Command argsResult = am.makeCommand(args);
 
 	EXPECT_EQ(argExpected, argsResult);
 }

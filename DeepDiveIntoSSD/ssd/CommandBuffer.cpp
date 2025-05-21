@@ -41,7 +41,7 @@ Command CommandBuffer::parseBufferNameToArg(const std::string& fileName)
 	}
 	args.push_back(str);
 
-	Command arg = argManager.makeStruct(args);
+	Command arg = argManager.makeCommand(args);
 
 	return arg;
 }

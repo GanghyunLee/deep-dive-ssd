@@ -21,7 +21,7 @@ public:
 class ArgManager {
 public:
 	std::vector<std::string> commandSplit(int argc, char* argv[]);
-	Command makeStruct(const std::vector<std::string>& args);
+	Command makeCommand(const std::vector<std::string>& args);
 	bool isValid(std::vector<std::string>& args);
 	bool outOfRangeIndex(int index);
 	bool invalidCommand(const std::string& command);

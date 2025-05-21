@@ -74,7 +74,7 @@ bool ArgManager::invalidCommand(const std::string& command) {
 		command != "E" && command != "e" && command != "F" && command != "f";
 }
 
-Command ArgManager::makeStruct(const std::vector<std::string>& args) {
+Command ArgManager::makeCommand(const std::vector<std::string>& args) {
 	Command arg;
 
 	if (args.size() == 0 || args[0] == "empty") {

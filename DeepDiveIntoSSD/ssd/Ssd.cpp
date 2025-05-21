@@ -27,7 +27,7 @@ void SSD::run(int argc, char* argv[]) {
 		m_commandBuffer->createBuffer();
 	}
 
-	Command arg = m_argManager->makeStruct(commands);
+	Command arg = m_argManager->makeCommand(commands);
 	if (arg.type == COMMAND_TYPE::READ) {
 		int status = m_commandBuffer->checkValueFromBuffer(arg.index);
 		if (status == STATUS::ERASED) {
