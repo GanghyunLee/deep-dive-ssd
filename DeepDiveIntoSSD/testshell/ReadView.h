@@ -15,4 +15,6 @@ public:
 private:
 	SsdReadResult _readCommandResult;
 	const std::string STR_PRINT_RESULT_PREFIX = "[Read]";
+	const std::string STR_PRINT_RESULT_ERROR = "Error";
+	const std::string STR_CLASS_NAME_READVIEW = "ReadView";
 };

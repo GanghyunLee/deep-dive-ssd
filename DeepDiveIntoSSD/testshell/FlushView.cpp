@@ -7,9 +7,9 @@ void FlushView::Render(std::shared_ptr<ILogger>& logger)
 	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_flushCommandResult.GetTestResult())
-		ss << "Done";
+		ss << STR_PRINT_RESULT_DONE;
 	else
-		ss << "Error";
+		ss << STR_PRINT_RESULT_ERROR;
 
-	logger->print("FlushView", __FUNCTION__, ss.str());
+	logger->print(STR_CLASS_NAME_FLUSHVIEW, __FUNCTION__, ss.str());
 }

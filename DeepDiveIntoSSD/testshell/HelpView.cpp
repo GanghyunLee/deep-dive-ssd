@@ -16,5 +16,5 @@ void HelpView::Render(std::shared_ptr<ILogger>& logger)
      ss << "- 3_WriteReadAging\n";
      ss << "- 4_EraseAndWriteAging";
 
-     logger->print("HelpView", __FUNCTION__, ss.str());
+     logger->print(STR_CLASS_NAME_HELPVIEW, __FUNCTION__, ss.str());
 }

@@ -15,8 +15,8 @@ void ReadView::Render(std::shared_ptr<ILogger>& logger)
 	}
 	else
 	{
-		ss << "Error";
+		ss << STR_PRINT_RESULT_ERROR;
 	}
 
-	logger->print("ReadView", __FUNCTION__, ss.str());
+	logger->print(STR_CLASS_NAME_READVIEW, __FUNCTION__, ss.str());
 }

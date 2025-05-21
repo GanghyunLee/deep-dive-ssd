@@ -14,4 +14,7 @@ public:
 private:
 	SsdEraseResult _eraseCommandResult;
 	const std::string STR_PRINT_RESULT_PREFIX = "[Erase]";
+	const std::string STR_PRINT_RESULT_DONE = "Done";
+	const std::string STR_PRINT_RESULT_ERROR = "Error";
+	const std::string STR_CLASS_NAME_ERASEVIEW = "EraseView";
 };

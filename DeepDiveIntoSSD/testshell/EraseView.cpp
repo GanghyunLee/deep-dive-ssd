@@ -7,11 +7,11 @@ void EraseView::Render(std::shared_ptr<ILogger>& logger)
 	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_eraseCommandResult.GetTestResult())
-		ss << "Done";
+		ss << STR_PRINT_RESULT_DONE;
 	else
-		ss << "Error";
+		ss << STR_PRINT_RESULT_ERROR;
 
 	ss << '\n';
 
-	logger->print("EraseView", __FUNCTION__, ss.str());
+	logger->print(STR_CLASS_NAME_ERASEVIEW, __FUNCTION__, ss.str());
 }
