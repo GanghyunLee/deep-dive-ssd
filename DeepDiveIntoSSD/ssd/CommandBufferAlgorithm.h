@@ -29,6 +29,7 @@ public:
 
 	void updateStatus(Arg arg, int* status);
 	bool isErased(Arg arg, int* status);
+	bool isErasedBigger(Arg arg);
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };

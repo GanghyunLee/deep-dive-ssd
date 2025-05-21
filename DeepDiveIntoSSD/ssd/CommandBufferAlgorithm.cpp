@@ -103,6 +103,32 @@ bool CommandBufferAlgorithm::isErased(Arg arg, int* status) {
 	return true;
 }
 
+bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
+	int startIdx = arg.index;
+	int endIdx = startIdx + stoi(arg.value);
+	int lowEnd = startIdx - 1;
+
+	for (int i = startIdx; i < endIdx; i++) {
+		if (status[i] != ERASED) {
+			return false;
+		}
+	}
+
+	if (lowEnd >= 0) {
+		if (status[lowEnd] != ERASED) {
+			return false;
+		}
+	}
+
+	if (endIdx < 100) {
+		if (status[endIdx] != ERASED) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 
 	if (a.commandType != ERASE || b.commandType != ERASE) {
