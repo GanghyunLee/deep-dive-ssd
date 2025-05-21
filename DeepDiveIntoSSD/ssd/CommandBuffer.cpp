@@ -118,13 +118,6 @@ void CommandBuffer::pushBuffer(Arg arg)
 		}
 	}
 
-	//for test.
-	// algorithm 구현 되면 없애야함.
-	{
-		updateBuffers(buffers);
-		return;
-	}
-
 	std::vector<Arg> returnByIgnore = algo.ignoreCommand(buffers);
 	if (arg.commandType == WRITE) {
 		updateBuffers(returnByIgnore);
