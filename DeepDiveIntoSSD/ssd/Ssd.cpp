@@ -29,16 +29,24 @@ void SSD::run(int argc, char* argv[]) {
 
 	Arg arg = m_argManager->makeStruct(commands);
 	if (arg.commandType == COMMAND_TYPE::READ) {
-		int status = m_commandBuffer->checkValueFromBuffer(arg.index);
-		if (status == ERASE) {
-			dumpResult(arg.index, 0);
-		}
-		else if (status == MODIFIED) {
-			int modifiedValue = m_commandBuffer->fastRead(arg.index);
-			dumpResult(arg.index, modifiedValue);
-		}
-		else if (status == CLEAN) {
+		//int status = m_commandBuffer->checkValueFromBuffer(arg.index);
+		//if (status == ERASE) {
+		//	dumpResult(arg.index, 0);
+		//}
+		//else if (status == MODIFIED) {
+		//	int modifiedValue = m_commandBuffer->fastRead(arg.index);
+		//	dumpResult(arg.index, modifiedValue);
+		//}
+		//else if (status == CLEAN) {
+		//	read(arg.index);
+		//}
+		//return;
+		int val = m_commandBuffer->fastRead(arg.index);
+		if (val == -1) {
 			read(arg.index);
+		}
+		else {
+			dumpResult(arg.index, val);
 		}
 		return;
 	}

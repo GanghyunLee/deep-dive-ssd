@@ -95,15 +95,29 @@ int CommandBuffer::checkValueFromBuffer(int index)
 
 int CommandBuffer::fastRead(int index)
 {
-	int ret = 0;
+	//int ret = 0;
+	//for (int i = buffers.size() - 1; i >= 0; i--) {
+	//	if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
+	//		continue;
+	//	if (buffers[i].index != index)
+	//		continue;
+	//	if (buffers[i].commandType == WRITE) {
+	//		ret = std::stoul(buffers[i].value, nullptr, 16);
+	//		break;
+	//	}
+	//}
+	//return ret;
+
+	int ret = -1;
 	for (int i = buffers.size() - 1; i >= 0; i--) {
-		if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
-			continue;
 		if (buffers[i].index != index)
 			continue;
 		if (buffers[i].commandType == WRITE) {
 			ret = std::stoul(buffers[i].value, nullptr, 16);
 			break;
+		}
+		if (buffers[i].commandType == ERASE) {
+			ret = 0;
 		}
 	}
 	return ret;
