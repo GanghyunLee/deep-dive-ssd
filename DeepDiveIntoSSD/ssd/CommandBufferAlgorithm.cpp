@@ -68,15 +68,7 @@ std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) 
 		else if (status[latestArg.index] == ERASED) {
 			for (int i = 0; i < idx; i++) {
 				if (buffer[i].commandType == ERASE) {
-					int startIdx = buffer[i].index;
-					int endIdx = startIdx + stoi(buffer[i].value) - 1;
-					if (startIdx == latestArg.index) {
-						buffer[i].index += 1;
-						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
-					}
-					else if (endIdx == latestArg.index) {
-						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
-					}
+					modifyEraseCommand(buffer[i], latestArg);
 				}
 				ret.push_back(buffer[i]);
 			}
@@ -99,12 +91,30 @@ std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) 
 
 	updateStatus(latestArg, status);
 
-	cnt = 5 - ret.size();
-	for (int i = 0; i < cnt; i++) {
-		ret.push_back({ EMPTY, });
-	}
+	setEmpty(ret);
 
 	return ret;
+}
+
+void CommandBufferAlgorithm::setEmpty(std::vector<Arg>& buffer) {
+	int cnt = 5 - buffer.size();
+
+	for (int i = 0; i < cnt; i++) {
+		buffer.push_back({ EMPTY, });
+	}
+}
+
+void CommandBufferAlgorithm::modifyEraseCommand(Arg& eraseArg, const Arg& latestArg) {
+	int startIdx = eraseArg.index;
+	int endIdx = startIdx + stoi(eraseArg.value) - 1;
+
+	if (startIdx == latestArg.index) {
+		eraseArg.index += 1;
+		eraseArg.value = std::to_string(stoi(eraseArg.value) - 1);
+	}
+	else if (endIdx == latestArg.index) {
+		eraseArg.value = std::to_string(stoi(eraseArg.value) - 1);
+	}
 }
 
 void CommandBufferAlgorithm::setStatusWithEraseCommand(Arg arg) {
