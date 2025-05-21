@@ -27,7 +27,7 @@ public:
 
 	Arg fastRead(std::vector<Arg> buffer);
 
-	int* updateStatus(Arg arg);
+	void updateStatus(Arg arg, int* status);
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };
