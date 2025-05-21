@@ -1,6 +1,59 @@
 #include "CommandBufferAlgorithm.h"
 
-std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(const std::vector<Arg>& buffer) {
+void CommandBufferAlgorithm::initStatus() {
+	for (int i = 0; i < 100; i++) {
+		status[i] = STATUS::CLEAN;
+	}
+}
+
+void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
+
+	// EMPTY 전까지 찾으면 됨.
+	int cnt = getCommandCount(buffer);
+
+	if (cnt <= 1) {
+		return;
+	}
+
+	initStatus();
+
+	for (int i = 0; i < cnt - 1; i++) {
+		Arg arg = buffer[i];
+
+		switch (arg.commandType) {
+		case ERASE:
+			
+			for (int i = arg.index; i < arg.index + stoi(arg.value, nullptr, 10); i++) {
+				status[i] = STATUS::ERASED;
+			}
+
+			break;
+
+		case WRITE:
+			status[arg.index] = MODIFIED;
+			break;
+		}
+	}
+}
+
+int CommandBufferAlgorithm::getCommandCount(std::vector<Arg>& buffer) {
+
+	int cnt = 0;
+	for (auto item : buffer) {
+		if (item.commandType == EMPTY) {
+			break;
+		}
+		cnt++;
+	}
+
+	return cnt;
+}
+
+int CommandBufferAlgorithm::getStatus(int index) {
+	return status[index];
+}
+
+std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
 	return ret;
 }
 
@@ -12,10 +65,6 @@ Arg CommandBufferAlgorithm::fastRead(std::vector<Arg> buffer) {
 	Arg ret;
 
 	return ret;
-}
-
-bool CommandBufferAlgorithm::isIgnore(const std::vector<Arg>& buffer, int index) {
-	return true;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
@@ -102,10 +151,43 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 	return { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
 }
 
-std::vector<Arg> CommandBufferAlgorithm::merge() {
+std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
+	
+	std::vector<Arg> tmpBuffer = buffer;
 
-	std::vector<Arg> a;
+	while (1) {
 
+		// find merge item
+		int idx1, idx2; 
+		Arg mergeCommand1, mergeCommand2;
+		bool find = false;
 
-	return a;
+		for (int i = 0; i < tmpBuffer.size() - 1; i++) {
+			mergeCommand1 = tmpBuffer[i];
+			idx1 = i;
+			for (int j = i + 1; j < tmpBuffer.size(); j++) {
+				mergeCommand2 = tmpBuffer[j];
+				idx2 = j;
+				if (mergeAble(mergeCommand1, mergeCommand2)) {
+					find = true;
+					break;
+				}
+			}
+
+			if (find) break;
+		}
+
+		if (!find) break;
+
+		Arg mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
+		tmpBuffer[idx2] = mergedCommand;
+		
+		// erase and push back empty
+		tmpBuffer.erase(tmpBuffer.begin() + idx1);
+		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0, "" });
+
+	}
+
+	return tmpBuffer;
 }
+
