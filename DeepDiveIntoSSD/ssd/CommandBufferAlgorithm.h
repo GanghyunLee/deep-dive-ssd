@@ -12,7 +12,8 @@ public:
 	void getCurrentStatus(std::vector<Arg>& buffer);
 	int getCommandCount(std::vector<Arg>& buffer);
 	int getStatus(int index);
-
+	void setStatusWithEraseCommand(Arg arg);
+	void setStatusWithWriteCommand(Arg arg);
 
 	std::vector<Arg> ignoreCommand(std::vector<Arg> buffer);
 	std::vector<Arg> mergeErase(std::vector<Arg> buffer);

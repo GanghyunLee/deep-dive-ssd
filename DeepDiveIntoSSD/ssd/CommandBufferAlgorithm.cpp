@@ -22,15 +22,10 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
 		switch (arg.commandType) {
 		case ERASE:
-			
-			for (int i = arg.index; i < arg.index + stoi(arg.value, nullptr, 10); i++) {
-				status[i] = STATUS::ERASED;
-			}
-
+			setStatusWithEraseCommand(arg);
 			break;
-
 		case WRITE:
-			status[arg.index] = MODIFIED;
+			setStatusWithWriteCommand(arg);
 			break;
 		}
 	}
@@ -51,6 +46,20 @@ int CommandBufferAlgorithm::getCommandCount(std::vector<Arg>& buffer) {
 
 int CommandBufferAlgorithm::getStatus(int index) {
 	return status[index];
+}
+
+void CommandBufferAlgorithm::setStatusWithEraseCommand(Arg arg) {
+	
+	int index = arg.index;
+	int range = stoi(arg.value, nullptr, 10);
+
+	for (int i = index; i < index + range; i++) {
+		this->status[i] = ERASED;
+	}
+}
+
+void CommandBufferAlgorithm::setStatusWithWriteCommand(Arg arg) {
+	this->status[arg.index] = MODIFIED;
 }
 
 std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
