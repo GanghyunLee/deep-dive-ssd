@@ -54,6 +54,62 @@ int CommandBufferAlgorithm::getStatus(int index) {
 }
 
 std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
+	int cnt = getCommandCount(buffer);
+	int idx = cnt - 1;
+	Arg latestArg = buffer[idx];
+	int tempStatus[100] = { 0 };
+
+	getCurrentStatus(buffer);
+	updateStatus(latestArg, tempStatus);
+
+	if (latestArg.commandType == WRITE) {
+		if (status[latestArg.index] == MODIFIED) {
+			for (int i = 0; i < idx; i++) {
+				if (buffer[i].commandType != WRITE || buffer[i].index != latestArg.index) {
+					ret.push_back(buffer[i]);
+				}
+			}
+			ret.push_back(latestArg);
+		}
+		else if (status[latestArg.index] == ERASED) {
+			for (int i = 0; i < idx; i++) {
+				if (buffer[i].commandType == ERASE) {
+					int startIdx = buffer[i].index;
+					int endIdx = startIdx + stoi(buffer[i].value) - 1;
+					if (startIdx == latestArg.index) {
+						buffer[i].index += 1;
+						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
+					}
+					else if (endIdx == latestArg.index) {
+						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
+					}
+				}
+				ret.push_back(buffer[i]);
+			}
+			ret.push_back(latestArg);
+		}
+		else {
+			ret = buffer;
+		}
+	}
+	else if (latestArg.commandType == ERASE) {
+		for (int i = 0; i < idx; i++) {
+			if (!isErased(buffer[i], tempStatus)) {
+				ret.push_back(buffer[i]);
+			}
+		}
+		if (!isErasedBigger(latestArg)) {
+			ret.push_back(latestArg);
+		}
+	}
+
+	updateStatus(latestArg, status);
+
+	cnt = 5 - ret.size();
+	for (int i = 0; i < cnt; i++) {
+		ret.push_back({ EMPTY, });
+	}
+
 	return ret;
 }
 
@@ -115,18 +171,18 @@ bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
 	}
 
 	if (lowEnd >= 0) {
-		if (status[lowEnd] != ERASED) {
-			return false;
+		if (status[lowEnd] == ERASED) {
+			return true;
 		}
 	}
 
 	if (endIdx < 100) {
-		if (status[endIdx] != ERASED) {
-			return false;
+		if (status[endIdx] == ERASED) {
+			return true;
 		}
 	}
 
-	return true;
+	return false;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
