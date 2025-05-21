@@ -14,4 +14,7 @@ public:
 private:
 	SsdFlushResult _flushCommandResult;
 	const std::string STR_PRINT_RESULT_PREFIX = "[Flush]";
+	const std::string STR_PRINT_RESULT_DONE = "Done";
+	const std::string STR_PRINT_RESULT_ERROR = "Error";
+	const std::string STR_CLASS_NAME_FLUSHVIEW = "FlushView";
 };
