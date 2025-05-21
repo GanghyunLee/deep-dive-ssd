@@ -11,7 +11,7 @@ void CommandBuffer::resetBuffer() {
 	std::vector<std::string> initailBuffers = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
 	for (const auto& bufferName : initailBuffers) {
 		fileIO.createFile("buffer/" + bufferName);
-		buffers.push_back(parseBufferNameToArg(bufferName));
+		buffers.push_back(parseBufferNameToCommand(bufferName));
 	}
 }
 
@@ -23,11 +23,11 @@ void CommandBuffer::createBuffer() {
 void CommandBuffer::loadBuffer() {
 	std::vector<std::string> bufferNames = fileIO.getFileNamesInDirectory();
 	for (const auto& bufferName : bufferNames) {
-		buffers.push_back(parseBufferNameToArg(bufferName));
+		buffers.push_back(parseBufferNameToCommand(bufferName));
 	}
 }
 
-Command CommandBuffer::parseBufferNameToArg(const std::string& fileName)
+Command CommandBuffer::parseBufferNameToCommand(const std::string& fileName)
 {
 	std::vector<std::string> args;
 	std::string str = "";
@@ -58,7 +58,7 @@ std::vector<Command> CommandBuffer::getBuffer()
 	return buffers;
 }
 
-std::string CommandBuffer::makeBufferNameFromArg(Command arg, int index)
+std::string CommandBuffer::makeBufferNameFromCommand(Command arg, int index)
 {
 	char num = '0' + index;
 	std::string type;
@@ -83,7 +83,7 @@ void CommandBuffer::updateBuffers(std::vector<Command> ret) {
 	int index = 0;
 	for (const auto& buffer : ret) {
 		buffers[index++] = buffer;
-		std::string bufferName = makeBufferNameFromArg(buffer, index);
+		std::string bufferName = makeBufferNameFromCommand(buffer, index);
 		fileIO.createFile("buffer/" + bufferName);
 	}
 }
@@ -125,7 +125,7 @@ int CommandBuffer::fastRead(int index)
 	return ret;
 }
 
-void CommandBuffer::pushBuffer(Command arg)
+void CommandBuffer::pushCommand(Command arg)
 {
 	for (int i = 0; i < buffers.size(); i++) {
 		if (buffers[i].type == EMPTY) {

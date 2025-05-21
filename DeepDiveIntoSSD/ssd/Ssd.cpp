@@ -51,7 +51,7 @@ void SSD::run(int argc, char* argv[]) {
 	if (m_commandBuffer->isBufferFull()) {
 		flushBuffers();
 	}
-	m_commandBuffer->pushBuffer(arg);
+	m_commandBuffer->pushCommand(arg);
 	dumpSuccess();
 	return;
 }

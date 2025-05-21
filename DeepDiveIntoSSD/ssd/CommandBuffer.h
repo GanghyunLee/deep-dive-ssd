@@ -10,11 +10,11 @@ public:
 	void resetBuffer();
 	void createBuffer();
 	void loadBuffer();
-	Command parseBufferNameToArg(const std::string& fileName);
+	Command parseBufferNameToCommand(const std::string& fileName);
 	bool isBufferFull();
 	std::vector<Command> getBuffer();
-	void pushBuffer(Command arg);
-	std::string makeBufferNameFromArg(Command arg, int index);
+	void pushCommand(Command arg);
+	std::string makeBufferNameFromCommand(Command arg, int index);
 	void updateBuffers(std::vector<Command> b);
 	int checkValueFromBuffer(int index);
 	int fastRead(int index);
