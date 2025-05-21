@@ -25,7 +25,6 @@ public:
 	int mergedRange(Arg a, Arg b);
 	Arg mergeTwoCommand(Arg a, Arg b);
 	std::vector<Arg> merge(const std::vector<Arg> &buffer);
-	bool canDeleteCommand(Arg command);
 
 	Arg fastRead(std::vector<Arg> buffer);
 

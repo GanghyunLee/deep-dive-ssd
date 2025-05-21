@@ -8,7 +8,6 @@ void CommandBufferAlgorithm::initStatus() {
 
 void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
-	// EMPTY 전까지 찾으면 됨.
 	int cnt = getCommandCount(buffer);
 
 	if (cnt <= 1) {
@@ -242,31 +241,9 @@ std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
 		Arg mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
 		tmpBuffer[idx2] = mergedCommand;
 		
-		// erase and push back empty
 		tmpBuffer.erase(tmpBuffer.begin() + idx1);
 		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0, "" });
-
-
-		// 이후에 앞에 idx2 앞에꺼 보면서 invalid 여부 체크 필요함.
-		// TODO
-		//for(int i = 0 ; i < idx2 - 1; i++){
-		//	Arg command = tmpBuffer[i];
-
-		//	if (canDeleteCommand(command)) {
-		//		tmpBuffer.erase(tmpBuffer.begin() + i);
-		//		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0 , "" });
-		//	}
-		//}
 	}
 
 	return tmpBuffer;
-}
-
-bool CommandBufferAlgorithm::canDeleteCommand(Arg command) {
-
-	if (command.commandType == WRITE && status[command.index] != MODIFIED) {
-		return true;
-	}
-
-	return false;
 }
