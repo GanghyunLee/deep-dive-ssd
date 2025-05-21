@@ -90,6 +90,22 @@ void CommandBuffer::updateBuffers(std::vector<Arg> ret) {
 
 int CommandBuffer::checkValueFromBuffer(int index)
 {
+	int cmdCount = algo.getCommandCount(buffers);
+	if (cmdCount == 0) {
+		return CLEAN;
+	}
+
+	Arg lastCmd = buffers[cmdCount -1];
+	algo.getCurrentStatus(buffers);	
+
+	if (lastCmd.commandType == ERASE) {
+		algo.setStatusWithEraseCommand(lastCmd);
+	}
+	
+	if (lastCmd.commandType == WRITE) {
+		algo.setStatusWithWriteCommand(lastCmd);
+	}
+
 	return algo.getStatus(index);
 }
 
