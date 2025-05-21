@@ -7,7 +7,7 @@ bool CommandBuffer::checkDirectory() {
 
 void CommandBuffer::resetBuffer() {
 	fileIO.removeFilesInDirectory();
-	buffers.clear();
+	buffers = {};
 	std::vector<std::string> initailBuffers = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
 	for (const auto& bufferName : initailBuffers) {
 		fileIO.createFile("buffer/" + bufferName);
@@ -67,7 +67,7 @@ std::string CommandBuffer::makeBufferNameFromArg(Arg arg, int index)
 		return num + type;
 	}
 
-	char idx = '0' + arg.index;
+	std::string idx = std::to_string(arg.index);
 	if (arg.commandType == WRITE) {
 		type = "_w_";
 	}
