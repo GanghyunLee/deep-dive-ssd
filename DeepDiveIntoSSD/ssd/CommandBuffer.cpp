@@ -131,7 +131,7 @@ void CommandBuffer::pushBuffer(Arg arg)
 		return;
 	}
 
-	std::vector<Arg> returnByMerge = algo.mergeErase(returnByIgnore);
+	std::vector<Arg> returnByMerge = algo.merge(returnByIgnore);
 	updateBuffers(returnByMerge);
 
 	return;

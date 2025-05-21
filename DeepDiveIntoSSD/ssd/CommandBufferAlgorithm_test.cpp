@@ -74,14 +74,6 @@ TEST_F(CommandBufferAlgorithmFixture, DISABLED_ignoreCommand8) {
 	EXPECT_EQ(expected, ret);
 }
 
-TEST_F(CommandBufferAlgorithmFixture, DISABLED_fastRead) {
-	std::vector<Arg> buffer = {};
-	std::string expected = {};
-	Arg ret = cba.fastRead(buffer);
-
-	//EXPECT_EQ(expected, ret);
-}
-
 TEST(CommandBufferAlgorithm, CanMergeTest1) {
 	CommandBufferAlgorithm cba;
 	std::vector<Arg> buffer = { {ERASE,10,"3"},{ERASE,12,"3"},{0,}, {0,},{0,} };
@@ -222,8 +214,6 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest2) {
 
 	EXPECT_EQ(expected, ret);
 }
-
-
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTest3) {
 	std::vector<Arg> buffer = { {ERASE,10,"10"},{ERASE, 10, "5"},{0,},{0,},{0,} };
