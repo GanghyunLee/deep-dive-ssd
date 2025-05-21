@@ -75,6 +75,23 @@ TEST_F(EraseRangeCommandMapperTestFixture, InvalidArgumentWithMinusEndLba)
 	EXPECT_THROW(eraseRangeCommandMapper->GenerateCommand(validArgument), std::exception);
 }
 
+
+TEST_F(EraseRangeCommandMapperTestFixture, InvalidArgumentWithBiggerStartLba)
+{
+	std::vector<std::string> validArgument{ "erase_range", "99999999", "4" };
+	EXPECT_TRUE(eraseRangeCommandMapper->IsSupport(validArgument));
+
+	EXPECT_THROW(eraseRangeCommandMapper->GenerateCommand(validArgument), std::exception);
+}
+
+TEST_F(EraseRangeCommandMapperTestFixture, InvalidArgumentWithMinusBiggerStartLba)
+{
+	std::vector<std::string> validArgument{ "erase_range", "-999999", "2" };
+	EXPECT_TRUE(eraseRangeCommandMapper->IsSupport(validArgument));
+
+	EXPECT_THROW(eraseRangeCommandMapper->GenerateCommand(validArgument), std::exception);
+}
+
 TEST_F(EraseRangeCommandMapperTestFixture, InvalidArgumentWithMinusStartLbaAndMinusEndLba)
 {
 	std::vector<std::string> validArgument{ "erase_range", "-27", "-86" };
