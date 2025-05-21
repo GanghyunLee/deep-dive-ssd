@@ -16,6 +16,8 @@ public:
 	void pushBuffer(Arg arg);
 	std::string makeBufferNameFromArg(Arg arg, int index);
 	void updateBuffers(std::vector<Arg> b);
+	int checkValueFromBuffer(int index);
+	int fastRead(int index);
 private:
 	FileIO fileIO;
 	ArgManager argManager;
