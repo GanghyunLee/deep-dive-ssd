@@ -8,8 +8,8 @@ bool CommandBuffer::checkDirectory() {
 void CommandBuffer::resetBuffer() {
 	fileIO.removeFilesInDirectory();
 	buffer = {};
-	std::vector<std::string> initailBuffers = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
-	for (const auto& bufferName : initailBuffers) {
+	std::vector<std::string> initialBuffer = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
+	for (const auto& bufferName : initialBuffer) {
 		fileIO.createFile("buffer/" + bufferName);
 		buffer.push_back(parseBufferNameToCommand(bufferName));
 	}
@@ -41,9 +41,9 @@ Command CommandBuffer::parseBufferNameToCommand(const std::string& fileName)
 	}
 	args.push_back(str);
 
-	Command arg = argManager.makeCommand(args);
+	Command command = argManager.makeCommand(args);
 
-	return arg;
+	return command;
 }
 
 bool CommandBuffer::isBufferFull()
@@ -58,24 +58,24 @@ std::vector<Command> CommandBuffer::getBuffer()
 	return buffer;
 }
 
-std::string CommandBuffer::makeBufferNameFromCommand(Command arg, int index)
+std::string CommandBuffer::makeBufferNameFromCommand(Command command, int index)
 {
 	char num = '0' + index;
 	std::string type;
-	if (arg.type == EMPTY) {
+	if (command.type == EMPTY) {
 		type = "_empty";
 		return num + type;
 	}
 
-	std::string idx = std::to_string(arg.index);
-	if (arg.type == WRITE) {
+	std::string idx = std::to_string(command.index);
+	if (command.type == WRITE) {
 		type = "_w_";
 	}
 	else {
 		type = "_e_";
 	}
 
-	return num + type + idx + "_" + arg.value;
+	return num + type + idx + "_" + command.value;
 }
 
 void CommandBuffer::updateBuffers(std::vector<Command> ret) {
@@ -113,29 +113,32 @@ int CommandBuffer::fastRead(int index)
 {
 	int ret = 0;
 	for (int i = buffer.size() - 1; i >= 0; i--) {
-		if (buffer[i].type == EMPTY || buffer[i].type == ERASE)
+		
+		Command command = buffer[i];
+
+		if (command.type == EMPTY || command.type == ERASE)
 			continue;
-		if (buffer[i].index != index)
+		if (command.index != index)
 			continue;
-		if (buffer[i].type == WRITE) {
-			ret = std::stoul(buffer[i].value, nullptr, 16);
+		if (command.type == WRITE) {
+			ret = std::stoul(command.value, nullptr, 16);
 			break;
 		}
 	}
 	return ret;
 }
 
-void CommandBuffer::pushCommand(Command arg)
+void CommandBuffer::pushCommand(Command command)
 {
 	for (int i = 0; i < buffer.size(); i++) {
 		if (buffer[i].type == EMPTY) {
-			buffer[i] = arg;
+			buffer[i] = command;
 			break;
 		}
 	}
 
 	std::vector<Command> returnByIgnore = algo.ignoreCommand(buffer);
-	if (arg.type == WRITE) {
+	if (command.type == WRITE) {
 		updateBuffers(returnByIgnore);
 		return;
 	}

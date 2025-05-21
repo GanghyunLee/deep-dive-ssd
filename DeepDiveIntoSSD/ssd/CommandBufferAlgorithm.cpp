@@ -48,6 +48,9 @@ int CommandBufferAlgorithm::getStatus(int index) {
 }
 
 std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> buffer) {
+	
+	std::vector<Command> tmpBuffer;
+
 	int cnt = getCommandCount(buffer);
 	int idx = cnt - 1;
 	Command latestArg = buffer[idx];
@@ -60,10 +63,10 @@ std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> 
 		if (status[latestArg.index] == MODIFIED) {
 			for (int i = 0; i < idx; i++) {
 				if (buffer[i].type != WRITE || buffer[i].index != latestArg.index) {
-					ret.push_back(buffer[i]);
+					tmpBuffer.push_back(buffer[i]);
 				}
 			}
-			ret.push_back(latestArg);
+			tmpBuffer.push_back(latestArg);
 		}
 		else if (status[latestArg.index] == ERASED) {
 			for (int i = 0; i < idx; i++) {
@@ -78,33 +81,33 @@ std::vector<Command> CommandBufferAlgorithm::ignoreCommand(std::vector<Command> 
 						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
 					}
 				}
-				ret.push_back(buffer[i]);
+				tmpBuffer.push_back(buffer[i]);
 			}
-			ret.push_back(latestArg);
+			tmpBuffer.push_back(latestArg);
 		}
 		else {
-			ret = buffer;
+			tmpBuffer = buffer;
 		}
 	}
 	else if (latestArg.type == ERASE) {
 		for (int i = 0; i < idx; i++) {
 			if (!isErased(buffer[i], tempStatus)) {
-				ret.push_back(buffer[i]);
+				tmpBuffer.push_back(buffer[i]);
 			}
 		}
 		if (!isErasedBigger(latestArg)) {
-			ret.push_back(latestArg);
+			tmpBuffer.push_back(latestArg);
 		}
 	}
 
 	updateStatus(latestArg, status);
 
-	cnt = 5 - ret.size();
+	cnt = 5 - tmpBuffer.size();
 	for (int i = 0; i < cnt; i++) {
-		ret.push_back({ EMPTY, });
+		tmpBuffer.push_back({ EMPTY, });
 	}
 
-	return ret;
+	return tmpBuffer;
 }
 
 void CommandBufferAlgorithm::setStatusWithEraseCommand(Command arg) {

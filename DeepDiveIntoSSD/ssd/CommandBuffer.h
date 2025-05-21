@@ -14,7 +14,7 @@ public:
 	bool isBufferFull();
 	std::vector<Command> getBuffer();
 	void pushCommand(Command arg);
-	std::string makeBufferNameFromCommand(Command arg, int index);
+	std::string makeBufferNameFromCommand(Command command, int index);
 	void updateBuffers(std::vector<Command> b);
 	int checkBufferStatus(int index);
 	int fastRead(int index);

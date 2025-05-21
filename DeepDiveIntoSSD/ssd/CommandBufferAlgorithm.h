@@ -31,6 +31,5 @@ public:
 	bool isErased(Command arg, int* status);
 	bool isErasedBigger(Command arg);
 private:
-	std::vector<Command> ret;
 	int status[100] = { CLEAN, };
 };
