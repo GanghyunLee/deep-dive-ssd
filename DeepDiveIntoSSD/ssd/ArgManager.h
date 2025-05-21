@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-enum COMMAND_TYPE { EMPTY = 0, READ , WRITE, ERASE };
+enum COMMAND_TYPE { EMPTY = 0, READ , WRITE, ERASE, FLUSH };
 
 struct Arg {
 public:
@@ -24,5 +24,5 @@ public:
 	Arg makeStruct(const std::vector<std::string>& args);
 	bool isValid(std::vector<std::string>& args);
 	bool outOfRangeIndex(int index);
-	bool invalidCommand(const std::string &command);
+	bool invalidCommand(const std::string& command);
 };

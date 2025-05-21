@@ -1,5 +1,7 @@
 #pragma once
 #include <fstream>
+#include <vector>
+
 class FileIO {
 public:
 	const int READ_MODE = 1;
@@ -22,9 +24,12 @@ public:
 	std::string readLine();
 	void writeLine(const std::string&);
 
-	bool createDirectory();
+	bool checkDirectory();
+	void createDirectory();
 	void createFile(const std::string& fileName);
-	void updateFileName(std::string& oldName, std::string newName);
+	std::vector<std::string> getFileNamesInDirectory();
+	void removeFilesInDirectory();
+	bool checkFileExist(const std::string& fileName);
 
 private:
 	int mode;

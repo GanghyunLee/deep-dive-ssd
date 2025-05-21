@@ -3,6 +3,7 @@
 #include "EraseAndWriteAgingTestScriptCommandMapper.h"
 #include "EraseCommandMapper.h"
 #include "EraseRangeCommandMapper.h"
+#include "FlushCommandMapper.h"
 #include "FullReadCommandMapper.h"
 #include "FullWriteAndReadCompareTestScriptCommandMapper.h"
 #include "FullWriteCommandMapper.h"
@@ -55,9 +56,13 @@ std::vector<std::shared_ptr<ICommandMapper>> IoC::GetCommandMappers()
 	static std::shared_ptr<HelpCommand> helpCommand = std::make_shared<HelpCommand>();
 	static std::shared_ptr<HelpCommandMapper> helpCommandMapper = std::make_shared<HelpCommandMapper>(helpCommand);
 
+	static std::shared_ptr<FlushCommand> flushCommand = std::make_shared<FlushCommand>(GetSsdFlushService());
+	static std::shared_ptr<FlushCommandMapper> flushCommandMapper = std::make_shared<FlushCommandMapper>(flushCommand);
+
 	return std::vector<std::shared_ptr<ICommandMapper>>{
 		writeCommandMapper,
 		readCommandMapper,
+		flushCommandMapper,
 		fullWriteCommandMapper,
 		fullReadCommandMapper,
 		fullWriteAndReadCompareTestScriptCommandMapper,
@@ -98,6 +103,12 @@ std::shared_ptr<SsdEraseService> IoC::GetSsdEraseService()
 {
 	static std::shared_ptr<SsdEraseService> ssdEraseService = std::make_shared<SsdEraseService>(GetSsdController());
 	return ssdEraseService;
+}
+
+std::shared_ptr<SsdFlushService> IoC::GetSsdFlushService()
+{
+	static std::shared_ptr<SsdFlushService> ssdFlushService = std::make_shared<SsdFlushService>(GetSsdController());
+	return ssdFlushService;
 }
 
 std::shared_ptr<FullWriteAndReadCompareTestScriptService> IoC::GetFullWriteAndReadCompareTestScriptService()

@@ -3,7 +3,7 @@
 void TestScriptView::Render(std::ostream& os)
 {
 	if (_testResult)
-		os << "PASS";
+		os << "Pass";
 	else
-		os << "FAIL";
+		os << "Fail";
 }

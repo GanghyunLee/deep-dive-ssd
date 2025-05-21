@@ -1,4 +1,5 @@
 #include "ParsingUtil.h"
+#include <algorithm>
 
 bool ParsingUtil::ContainsHexPrefix(const std::string& str)
 {
@@ -34,4 +35,27 @@ int ParsingUtil::ConvertStringToOnlyPlusIntegerOrElseThrow(const std::string& st
 		throw std::exception{ "Value is 0" };
 
 	return value;
+}
+
+std::vector<std::string> ParsingUtil::ArgvToVector(int argc, char* argv[])
+{
+	std::vector<std::string> args;
+
+	for (int i = 0; i < argc; ++i) {
+		args.push_back(std::string(argv[i]));
+	}
+
+	return args;
+}
+
+std::string ParsingUtil::ToLowerString(const std::string& str)
+{
+	// 모든 문자를 소문자로 변환
+	std::string ret{str};
+
+	std::transform(ret.begin(), ret.end(), ret.begin(), [](unsigned char c) {
+		return std::tolower(c);
+		});
+
+	return ret;
 }
