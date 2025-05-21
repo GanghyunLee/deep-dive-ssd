@@ -25,7 +25,11 @@ public:
 	Arg mergeTwoCommand(Arg a, Arg b);
 	std::vector<Arg> merge(const std::vector<Arg> &buffer);
 
-	int* updateStatus(Arg arg);
+	Arg fastRead(std::vector<Arg> buffer);
+
+	void updateStatus(Arg arg, int* status);
+	bool isErased(Arg arg, int* status);
+	bool isErasedBigger(Arg arg);
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };
