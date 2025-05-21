@@ -1,12 +1,15 @@
 #include "WriteView.h"
-#include <ostream>
+#include <sstream>
 
-void WriteView::Render(std::ostream& os)
+void WriteView::Render(std::shared_ptr<ILogger>& logger)
 {
-	os << STR_PRINT_RESULT_PREFIX << " ";
+	std::stringstream ss;
+	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_writeCommandResult.GetTestResult())
-		os << "Done";
+		ss << "Done";
 	else
-		os << "Error";
+		ss << "Error";
+
+	logger->print("WriteView", __FUNCTION__, ss.str());
 }

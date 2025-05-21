@@ -8,10 +8,13 @@
 
 class SSD {
 public:
+	static SSD& getInstance() {
+		static SSD instance;
+		return instance;
+	}
+
 	const std::string OUTPUT_FILE = "ssd_output.txt";
 	const std::string INPUT_FILE = "ssd_nand.txt";
-
-	SSD(ArgManager* argManager) : m_argManager{ argManager } {}
 
 	void run(int argc, char* argv[]);
 
@@ -30,6 +33,11 @@ public:
 	void initNand();
 
 private:
+	SSD(){
+		m_argManager = new ArgManager();
+	}
+	SSD& operator=(const SSD& other) = delete;
+	SSD(const SSD& other) = delete;
 	ArgManager* m_argManager;
 	FileIO* fileIO;
 	unsigned int data[100] = { 0, };

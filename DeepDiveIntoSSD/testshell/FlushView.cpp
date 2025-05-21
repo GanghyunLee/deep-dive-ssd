@@ -1,11 +1,15 @@
 #include "FlushView.h"
+#include <sstream>
 
-void FlushView::Render(std::ostream& os)
+void FlushView::Render(std::shared_ptr<ILogger>& logger)
 {
-	os << STR_PRINT_RESULT_PREFIX << " ";
+	std::stringstream ss;
+	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_flushCommandResult.GetTestResult())
-		os << "Done";
+		ss << "Done";
 	else
-		os << "Error";
+		ss << "Error";
+
+	logger->print("FlushView", __FUNCTION__, ss.str());
 }

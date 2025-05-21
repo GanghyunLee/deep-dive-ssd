@@ -6,6 +6,6 @@ class HelpView : public IView
 public:
 	~HelpView() override = default;
 
-	void Render(std::ostream& os) override;
+public:
+	void Render(std::shared_ptr<ILogger>& logger) override;
 };
-
