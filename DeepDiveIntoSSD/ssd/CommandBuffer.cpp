@@ -7,11 +7,11 @@ bool CommandBuffer::checkDirectory() {
 
 void CommandBuffer::resetBuffer() {
 	fileIO.removeFilesInDirectory();
-	buffers = {};
+	buffer = {};
 	std::vector<std::string> initailBuffers = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
 	for (const auto& bufferName : initailBuffers) {
 		fileIO.createFile("buffer/" + bufferName);
-		buffers.push_back(parseBufferNameToCommand(bufferName));
+		buffer.push_back(parseBufferNameToCommand(bufferName));
 	}
 }
 
@@ -23,7 +23,7 @@ void CommandBuffer::createBuffer() {
 void CommandBuffer::loadBuffer() {
 	std::vector<std::string> bufferNames = fileIO.getFileNamesInDirectory();
 	for (const auto& bufferName : bufferNames) {
-		buffers.push_back(parseBufferNameToCommand(bufferName));
+		buffer.push_back(parseBufferNameToCommand(bufferName));
 	}
 }
 
@@ -48,14 +48,14 @@ Command CommandBuffer::parseBufferNameToCommand(const std::string& fileName)
 
 bool CommandBuffer::isBufferFull()
 {
-	if (buffers[4].type != EMPTY)
+	if (buffer[4].type != EMPTY)
 		return true;
 	return false;
 }
 
 std::vector<Command> CommandBuffer::getBuffer()
 {
-	return buffers;
+	return buffer;
 }
 
 std::string CommandBuffer::makeBufferNameFromCommand(Command arg, int index)
@@ -81,22 +81,22 @@ std::string CommandBuffer::makeBufferNameFromCommand(Command arg, int index)
 void CommandBuffer::updateBuffers(std::vector<Command> ret) {
 	fileIO.removeFilesInDirectory();
 	int index = 0;
-	for (const auto& buffer : ret) {
-		buffers[index++] = buffer;
-		std::string bufferName = makeBufferNameFromCommand(buffer, index);
+	for (const auto& command : ret) {
+		buffer[index++] = command;
+		std::string bufferName = makeBufferNameFromCommand(command, index);
 		fileIO.createFile("buffer/" + bufferName);
 	}
 }
 
-int CommandBuffer::checkValueFromBuffer(int index)
+int CommandBuffer::checkBufferStatus(int index)
 {
-	int cmdCount = algo.getCommandCount(buffers);
+	int cmdCount = algo.getCommandCount(buffer);
 	if (cmdCount == 0) {
 		return CLEAN;
 	}
 
-	Command lastCmd = buffers[cmdCount -1];
-	algo.getCurrentStatus(buffers);	
+	Command lastCmd = buffer[cmdCount -1];
+	algo.getCurrentStatus(buffer);	
 
 	if (lastCmd.type == ERASE) {
 		algo.setStatusWithEraseCommand(lastCmd);
@@ -112,13 +112,13 @@ int CommandBuffer::checkValueFromBuffer(int index)
 int CommandBuffer::fastRead(int index)
 {
 	int ret = 0;
-	for (int i = buffers.size() - 1; i >= 0; i--) {
-		if (buffers[i].type == EMPTY || buffers[i].type == ERASE)
+	for (int i = buffer.size() - 1; i >= 0; i--) {
+		if (buffer[i].type == EMPTY || buffer[i].type == ERASE)
 			continue;
-		if (buffers[i].index != index)
+		if (buffer[i].index != index)
 			continue;
-		if (buffers[i].type == WRITE) {
-			ret = std::stoul(buffers[i].value, nullptr, 16);
+		if (buffer[i].type == WRITE) {
+			ret = std::stoul(buffer[i].value, nullptr, 16);
 			break;
 		}
 	}
@@ -127,14 +127,14 @@ int CommandBuffer::fastRead(int index)
 
 void CommandBuffer::pushCommand(Command arg)
 {
-	for (int i = 0; i < buffers.size(); i++) {
-		if (buffers[i].type == EMPTY) {
-			buffers[i] = arg;
+	for (int i = 0; i < buffer.size(); i++) {
+		if (buffer[i].type == EMPTY) {
+			buffer[i] = arg;
 			break;
 		}
 	}
 
-	std::vector<Command> returnByIgnore = algo.ignoreCommand(buffers);
+	std::vector<Command> returnByIgnore = algo.ignoreCommand(buffer);
 	if (arg.type == WRITE) {
 		updateBuffers(returnByIgnore);
 		return;

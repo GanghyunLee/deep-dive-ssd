@@ -29,7 +29,7 @@ void SSD::run(int argc, char* argv[]) {
 
 	Command arg = m_argManager->makeCommand(commands);
 	if (arg.type == COMMAND_TYPE::READ) {
-		int status = m_commandBuffer->checkValueFromBuffer(arg.index);
+		int status = m_commandBuffer->checkBufferStatus(arg.index);
 		if (status == STATUS::ERASED) {
 			dumpResult(arg.index, 0);
 		}
@@ -126,16 +126,16 @@ void SSD::flushBuffers()
 		dumpData();
 	}
 	file.close();
-	std::vector<Command> buffers = m_commandBuffer->getBuffer();
+	std::vector<Command> buffer = m_commandBuffer->getBuffer();
 
-	for (const auto& buffer : buffers) {
-		switch (buffer.type) {
+	for (const auto& command : buffer) {
+		switch (command.type) {
 		case COMMAND_TYPE::WRITE:
-			write(buffer.index, buffer.value);
+			write(command.index, command.value);
 			break;
 
 		case COMMAND_TYPE::ERASE:
-			erase(buffer.index, buffer.value);
+			erase(command.index, command.value);
 			break;
 
 		case COMMAND_TYPE::EMPTY:

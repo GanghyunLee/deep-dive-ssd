@@ -16,11 +16,11 @@ public:
 	void pushCommand(Command arg);
 	std::string makeBufferNameFromCommand(Command arg, int index);
 	void updateBuffers(std::vector<Command> b);
-	int checkValueFromBuffer(int index);
+	int checkBufferStatus(int index);
 	int fastRead(int index);
 private:
 	FileIO fileIO;
 	ArgManager argManager;
 	CommandBufferAlgorithm algo;
-	std::vector<Command> buffers;
+	std::vector<Command> buffer;
 };
