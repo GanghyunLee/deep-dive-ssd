@@ -8,7 +8,6 @@ void CommandBufferAlgorithm::initStatus() {
 
 void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
-	// EMPTY 전까지 찾으면 됨.
 	int cnt = getCommandCount(buffer);
 
 	if (cnt <= 1) {
@@ -22,15 +21,10 @@ void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
 		switch (arg.commandType) {
 		case ERASE:
-			
-			for (int i = arg.index; i < arg.index + stoi(arg.value, nullptr, 10); i++) {
-				status[i] = STATUS::ERASED;
-			}
-
+			setStatusWithEraseCommand(arg);
 			break;
-
 		case WRITE:
-			status[arg.index] = MODIFIED;
+			setStatusWithWriteCommand(arg);
 			break;
 		}
 	}
@@ -54,36 +48,139 @@ int CommandBufferAlgorithm::getStatus(int index) {
 }
 
 std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
+	int cnt = getCommandCount(buffer);
+	int idx = cnt - 1;
+	Arg latestArg = buffer[idx];
+	int tempStatus[100] = { 0 };
+
+	getCurrentStatus(buffer);
+	updateStatus(latestArg, tempStatus);
+
+	if (latestArg.commandType == WRITE) {
+		if (status[latestArg.index] == MODIFIED) {
+			for (int i = 0; i < idx; i++) {
+				if (buffer[i].commandType != WRITE || buffer[i].index != latestArg.index) {
+					ret.push_back(buffer[i]);
+				}
+			}
+			ret.push_back(latestArg);
+		}
+		else if (status[latestArg.index] == ERASED) {
+			for (int i = 0; i < idx; i++) {
+				if (buffer[i].commandType == ERASE) {
+					int startIdx = buffer[i].index;
+					int endIdx = startIdx + stoi(buffer[i].value) - 1;
+					if (startIdx == latestArg.index) {
+						buffer[i].index += 1;
+						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
+					}
+					else if (endIdx == latestArg.index) {
+						buffer[i].value = std::to_string(stoi(buffer[i].value) - 1);
+					}
+				}
+				ret.push_back(buffer[i]);
+			}
+			ret.push_back(latestArg);
+		}
+		else {
+			ret = buffer;
+		}
+	}
+	else if (latestArg.commandType == ERASE) {
+		for (int i = 0; i < idx; i++) {
+			if (!isErased(buffer[i], tempStatus)) {
+				ret.push_back(buffer[i]);
+			}
+		}
+		if (!isErasedBigger(latestArg)) {
+			ret.push_back(latestArg);
+		}
+	}
+
+	updateStatus(latestArg, status);
+
+	cnt = 5 - ret.size();
+	for (int i = 0; i < cnt; i++) {
+		ret.push_back({ EMPTY, });
+	}
+
 	return ret;
 }
 
-std::vector<Arg> CommandBufferAlgorithm::mergeErase(std::vector<Arg> buffer) {
-	return ret;
+void CommandBufferAlgorithm::setStatusWithEraseCommand(Arg arg) {
+	
+	int index = arg.index;
+	int range = stoi(arg.value, nullptr, 10);
+
+	for (int i = index; i < index + range; i++) {
+		this->status[i] = ERASED;
+	}
 }
 
-Arg CommandBufferAlgorithm::fastRead(std::vector<Arg> buffer) {
-	Arg ret;
-
-	return ret;
+void CommandBufferAlgorithm::setStatusWithWriteCommand(Arg arg) {
+	this->status[arg.index] = MODIFIED;
 }
 
-int* CommandBufferAlgorithm::updateStatus(Arg arg) {
-	int status[100] = { 0 };
+void CommandBufferAlgorithm::updateStatus(Arg arg, int* status) {
 	int idx = arg.index;
 
 	if (arg.commandType == WRITE) {
-		status[idx] = WRITE;
+		status[idx] = MODIFIED;
 	}
 	else if (arg.commandType == ERASE) {
 		int value = stoi(arg.value);
 		int endidx = idx + value;
 
 		for (int i = idx; i < endidx; i++) {
-			status[i] = ERASE;
+			status[i] = ERASED;
+		}
+	}
+}
+
+bool CommandBufferAlgorithm::isErased(Arg arg, int* status) {
+	if (arg.commandType == WRITE) {
+		if (status[arg.index] == ERASED) {
+			return true;
+		}
+	}
+	else if (arg.commandType == ERASE) {
+		int startIdx = arg.index;
+		int endIdx = startIdx + stoi(arg.value);
+
+		for (int i = startIdx; i < endIdx; i++) {
+			if (status[i] != ERASED) {
+				return false;
+			}
 		}
 	}
 
-	return status;
+	return true;
+}
+
+bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
+	int startIdx = arg.index;
+	int endIdx = startIdx + stoi(arg.value);
+	int lowEnd = startIdx - 1;
+
+	for (int i = startIdx; i < endIdx; i++) {
+		if (status[i] != ERASED) {
+			return false;
+		}
+	}
+
+	if (lowEnd >= 0) {
+		if (status[lowEnd] == ERASED) {
+			return true;
+		}
+	}
+
+	if (endIdx < 100) {
+		if (status[endIdx] == ERASED) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
@@ -93,6 +190,10 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 	}
 
 	if (!isContinuousEraseRange(a, b)) {
+		return false;
+	}
+
+	if (!isAllErased(a, b)) {
 		return false;
 	}
 
@@ -141,6 +242,30 @@ bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
 	return isContinuous;
 }
 
+bool CommandBufferAlgorithm::isAllErased(Arg a, Arg b) {
+
+	int a_range = stoi(a.value, nullptr, 10);
+	int b_range = stoi(b.value, nullptr, 10);
+	
+	int startIdx = a.index;
+	if (a.index > b.index) {
+		startIdx = b.index;
+	}
+
+	int endIdx = a.index + a_range - 1;
+	if (a.index + a_range - 1 < b.index + b_range - 1) {
+		endIdx = b.index + b_range - 1;
+	}
+
+	for (int i = startIdx; i <= endIdx; i++) {
+		if (status[i] != STATUS::ERASED) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
 
 	int a_range = stoi(a.value, nullptr, 10);
@@ -167,7 +292,11 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 	}
 
 	int range = mergedRange(a, b);
-	return { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+
+	Arg mergedCommand = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+	setStatusWithEraseCommand(mergedCommand);
+	
+	return mergedCommand;
 }
 
 std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
@@ -201,12 +330,9 @@ std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
 		Arg mergedCommand = mergeTwoCommand(mergeCommand1, mergeCommand2);
 		tmpBuffer[idx2] = mergedCommand;
 		
-		// erase and push back empty
 		tmpBuffer.erase(tmpBuffer.begin() + idx1);
 		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0, "" });
-
 	}
 
 	return tmpBuffer;
 }
-

@@ -8,4 +8,7 @@ public:
 
 public:
 	void Render(std::shared_ptr<ILogger>& logger) override;
+
+private:
+	const std::string STR_CLASS_NAME_HELPVIEW = "HelpView";
 };

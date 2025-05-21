@@ -7,7 +7,7 @@ bool CommandBuffer::checkDirectory() {
 
 void CommandBuffer::resetBuffer() {
 	fileIO.removeFilesInDirectory();
-	buffers.clear();
+	buffers = {};
 	std::vector<std::string> initailBuffers = { "1_empty","2_empty", "3_empty", "4_empty", "5_empty" };
 	for (const auto& bufferName : initailBuffers) {
 		fileIO.createFile("buffer/" + bufferName);
@@ -67,7 +67,7 @@ std::string CommandBuffer::makeBufferNameFromArg(Arg arg, int index)
 		return num + type;
 	}
 
-	char idx = '0' + arg.index;
+	std::string idx = std::to_string(arg.index);
 	if (arg.commandType == WRITE) {
 		type = "_w_";
 	}
@@ -95,15 +95,29 @@ int CommandBuffer::checkValueFromBuffer(int index)
 
 int CommandBuffer::fastRead(int index)
 {
-	int ret = 0;
+	//int ret = 0;
+	//for (int i = buffers.size() - 1; i >= 0; i--) {
+	//	if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
+	//		continue;
+	//	if (buffers[i].index != index)
+	//		continue;
+	//	if (buffers[i].commandType == WRITE) {
+	//		ret = std::stoul(buffers[i].value, nullptr, 16);
+	//		break;
+	//	}
+	//}
+	//return ret;
+
+	int ret = -1;
 	for (int i = buffers.size() - 1; i >= 0; i--) {
-		if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
-			continue;
 		if (buffers[i].index != index)
 			continue;
 		if (buffers[i].commandType == WRITE) {
 			ret = std::stoul(buffers[i].value, nullptr, 16);
 			break;
+		}
+		if (buffers[i].commandType == ERASE) {
+			ret = 0;
 		}
 	}
 	return ret;
@@ -131,7 +145,7 @@ void CommandBuffer::pushBuffer(Arg arg)
 		return;
 	}
 
-	std::vector<Arg> returnByMerge = algo.mergeErase(returnByIgnore);
+	std::vector<Arg> returnByMerge = algo.merge(returnByIgnore);
 	updateBuffers(returnByMerge);
 
 	return;
