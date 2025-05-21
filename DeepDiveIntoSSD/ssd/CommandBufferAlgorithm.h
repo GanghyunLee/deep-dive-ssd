@@ -28,6 +28,7 @@ public:
 	Arg fastRead(std::vector<Arg> buffer);
 
 	void updateStatus(Arg arg, int* status);
+	bool isErased(Arg arg, int* status);
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };
