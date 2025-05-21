@@ -1,4 +1,4 @@
-﻿#include "EraseCommandMapper.h"
+#include "EraseCommandMapper.h"
 #include "Constants.h"
 #include "ParsingUtil.h"
 
@@ -43,4 +43,8 @@ void EraseCommandMapper::ConvertToValidLbaRange(int& lba, int& size)
 		lba = targetStartLba;
 		size *= -1;
 	}
+
+	// MaxLBA 보정
+	if (lba + size - 1 > Constants::MAX_LBA)
+		size = (Constants::MAX_LBA - lba + 1);
 }
