@@ -29,16 +29,16 @@ std::shared_ptr<ICommand> EraseCommandMapper::GenerateCommand(const std::vector<
 
 void EraseCommandMapper::ConvertToValidLbaRange(int& lba, int& size)
 {
-	// startLba가 음수이면 보정
-	if (lba < 0) lba = 0;
-
 	// size에 대한 음수 처리
 	if (size < 0)
 	{
 		int targetStartLba = lba + size + 1;
 
 		if (targetStartLba < 0)
-			throw std::exception{ "INVALID RANGE" };
+		{
+			size -= targetStartLba;
+			targetStartLba = 0;
+		}
 
 		lba = targetStartLba;
 		size *= -1;
