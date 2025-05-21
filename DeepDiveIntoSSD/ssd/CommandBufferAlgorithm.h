@@ -5,6 +5,7 @@
 
 class CommandBufferAlgorithm {
 public:
+	int getCommandCount(std::vector<Arg>& buffer);
 	std::vector<Arg> ignoreCommand(std::vector<Arg> buffer);
 	std::vector<Arg> mergeErase(std::vector<Arg> buffer);
 

@@ -1,5 +1,22 @@
 #include "CommandBufferAlgorithm.h"
 
+int CommandBufferAlgorithm::getCommandCount(std::vector<Arg>& buffer) {
+
+	int cnt = 0;
+	for (auto item : buffer) {
+		if (item.commandType == EMPTY) {
+			break;
+		}
+		cnt++;
+	}
+
+	return cnt;
+}
+
+int CommandBufferAlgorithm::getStatus(int index) {
+	return status[index];
+}
+
 std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
 	return ret;
 }

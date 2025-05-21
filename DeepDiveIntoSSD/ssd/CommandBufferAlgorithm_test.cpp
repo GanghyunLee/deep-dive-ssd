@@ -176,3 +176,17 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
 
 	EXPECT_EQ(expected, ret);
 }
+TEST_F(CommandBufferAlgorithmFixture, commandCountTest) {
+	std::vector<Arg> buffer1 = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"}, {0,},{0,} };
+	std::vector<Arg> buffer2 = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"}, {0, },{0,},{0,} };
+	std::vector<Arg> buffer3 = { {WRITE,12,"0xABCD1234"},{0,}, {0,},{0,},{0,} };
+	std::vector<Arg> buffer4 = { {0,},{0,}, {0,},{0,},{0,} };
+	std::vector<Arg> buffer5=  { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"}, {ERASE, 20, "5"},{ERASE, 20, "5"} };
+	EXPECT_EQ(cba.getCommandCount(buffer1), 3);
+	EXPECT_EQ(cba.getCommandCount(buffer2), 2);
+	EXPECT_EQ(cba.getCommandCount(buffer3), 1);
+	EXPECT_EQ(cba.getCommandCount(buffer4), 0);
+	EXPECT_EQ(cba.getCommandCount(buffer5), 5);
+
+
+}
