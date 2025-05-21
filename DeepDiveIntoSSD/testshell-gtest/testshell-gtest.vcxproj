@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EraseCommandMapperTest.cpp" />
+    <ClCompile Include="EraseRangeCommandMapperTest.cpp" />
     <ClCompile Include="HelpCommandMapperTest.cpp" />
     <ClCompile Include="HelpCommandTest.cpp" />
     <ClCompile Include="main.cpp" />

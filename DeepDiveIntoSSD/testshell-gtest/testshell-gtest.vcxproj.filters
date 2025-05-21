@@ -34,6 +34,9 @@
     <ClCompile Include="WriteViewTest.cpp">
       <Filter>Application\View\Write</Filter>
     </ClCompile>
+    <ClCompile Include="EraseRangeCommandMapperTest.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
