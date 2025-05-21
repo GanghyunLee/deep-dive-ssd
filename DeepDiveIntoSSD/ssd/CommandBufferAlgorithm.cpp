@@ -8,7 +8,7 @@ void CommandBufferAlgorithm::initStatus() {
 
 void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
-	// EMPTY 전까지 찾으면 됨.
+	// EMPTY ������ ã���� ��.
 	int cnt = getCommandCount(buffer);
 
 	if (cnt <= 1) {
@@ -65,6 +65,25 @@ Arg CommandBufferAlgorithm::fastRead(std::vector<Arg> buffer) {
 	Arg ret;
 
 	return ret;
+}
+
+int* CommandBufferAlgorithm::updateStatus(Arg arg) {
+	int status[100] = { 0 };
+	int idx = arg.index;
+
+	if (arg.commandType == WRITE) {
+		status[idx] = WRITE;
+	}
+	else if (arg.commandType == ERASE) {
+		int value = stoi(arg.value);
+		int endidx = idx + value;
+
+		for (int i = idx; i < endidx; i++) {
+			status[i] = ERASE;
+		}
+	}
+
+	return status;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {

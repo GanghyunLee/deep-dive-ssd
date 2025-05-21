@@ -26,6 +26,8 @@ public:
 	std::vector<Arg> merge(const std::vector<Arg> &buffer);
 
 	Arg fastRead(std::vector<Arg> buffer);
+
+	int* updateStatus(Arg arg);
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };
