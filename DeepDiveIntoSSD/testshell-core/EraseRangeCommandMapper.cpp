@@ -1,4 +1,4 @@
-#include "EraseRangeCommandMapper.h"
+﻿#include "EraseRangeCommandMapper.h"
 
 #include "Constants.h"
 #include "ParsingUtil.h"

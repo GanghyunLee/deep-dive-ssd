@@ -1,4 +1,4 @@
-#include "ParsingUtil.h"
+﻿#include "ParsingUtil.h"
 #include <algorithm>
 
 bool ParsingUtil::ContainsHexPrefix(const std::string& str)
