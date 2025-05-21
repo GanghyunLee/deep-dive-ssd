@@ -121,10 +121,6 @@ void CommandBufferAlgorithm::setStatusWithWriteCommand(Arg arg) {
 	this->status[arg.index] = MODIFIED;
 }
 
-std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
-	return ret;
-}
-
 void CommandBufferAlgorithm::updateStatus(Arg arg, int* status) {
 	int idx = arg.index;
 
