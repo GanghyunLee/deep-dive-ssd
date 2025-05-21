@@ -1,11 +1,17 @@
 #include "EraseView.h"
+#include <sstream>
 
-void EraseView::Render(std::ostream& os)
+void EraseView::Render(std::shared_ptr<ILogger>& logger)
 {
-	os << STR_PRINT_RESULT_PREFIX << " ";
+	std::stringstream ss;
+	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_eraseCommandResult.GetTestResult())
-		os << "Done";
+		ss << "Done";
 	else
-		os << "Error";
+		ss << "Error";
+
+	ss << '\n';
+
+	logger->print("EraseView", __FUNCTION__, ss.str());
 }

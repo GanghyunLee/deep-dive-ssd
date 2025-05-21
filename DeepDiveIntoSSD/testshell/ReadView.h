@@ -10,7 +10,7 @@ public:
 	ReadView(const SsdReadResult& readCommandResult) : _readCommandResult(readCommandResult) {}
 	~ReadView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 private:
 	SsdReadResult _readCommandResult;

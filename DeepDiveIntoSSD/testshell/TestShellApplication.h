@@ -9,8 +9,8 @@
 class TestShellApplication : public AbstractTestShellApplication
 {
 public:
-	TestShellApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::ostream& oStream, bool printShellPromptPrefix = true) :
-		AbstractTestShellApplication(commandMappers, iStream, oStream, printShellPromptPrefix) { }
+	TestShellApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::shared_ptr<ILogger> logger, bool printShellPromptPrefix = true) :
+		AbstractTestShellApplication(commandMappers, iStream, logger, printShellPromptPrefix) { }
 
 public:
 	bool Run(int argc, char* argv[]) override;

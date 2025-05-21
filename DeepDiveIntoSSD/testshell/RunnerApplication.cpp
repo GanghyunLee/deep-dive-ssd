@@ -39,21 +39,22 @@ bool RunnerApplication::Run(int argc, char* argv[])
             }
 
             // 3. Print - ex) 1_FullWriteAndReadCompare  ___   Run...
-            _oStream << command->GetCommandName() << "  ___  Run...";
+            _logger->print("RunnerApplication", __FUNCTION__,
+                command->GetCommandName() + "  ___  Run...");
 
             // 4. Execute Command
             std::shared_ptr<IView> view = command->Execute();
 
             // 5. Print Result(Pass / Fail)
             if (view)
-                view->Render(_oStream);
+                view->Render(_logger);
 
-            _oStream << std::endl;
+            _logger->printLine();
         }
     }
     catch (std::exception& ex)
     {
-        _oStream << ex.what();
+        _logger->print("RunnerApplication", __FUNCTION__, ex.what());
         return false;
     }
 

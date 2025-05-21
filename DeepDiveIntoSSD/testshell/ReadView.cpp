@@ -1,19 +1,22 @@
 #include "ReadView.h"
 
 #include <iomanip>
-#include <ostream>
+#include <sstream>
 
-void ReadView::Render(std::ostream& os)
+void ReadView::Render(std::shared_ptr<ILogger>& logger)
 {
-	os << STR_PRINT_RESULT_PREFIX << " ";
+	std::stringstream ss;
+	ss << STR_PRINT_RESULT_PREFIX << " ";
 
 	if (_readCommandResult.GetTestResult())
 	{
-		os << "LBA " << std::setw(2) << std::setfill('0') << _readCommandResult.GetLba() << " : ";
-		os << "0x" << std::setw(8) << std::setfill('0') << std::hex << std::uppercase << static_cast<unsigned long long>(_readCommandResult.GetData());
+		ss << "LBA " << std::setw(2) << std::setfill('0') << _readCommandResult.GetLba() << " : ";
+		ss << "0x" << std::setw(8) << std::setfill('0') << std::hex << std::uppercase << static_cast<unsigned long long>(_readCommandResult.GetData());
 	}
 	else
 	{
-		os << "Error";
+		ss << "Error";
 	}
+
+	logger->print("ReadView", __FUNCTION__, ss.str());
 }

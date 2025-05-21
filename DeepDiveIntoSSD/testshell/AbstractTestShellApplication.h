@@ -2,13 +2,15 @@
 #include <string>
 #include <vector>
 #include <ostream>
+
+#include "ILogger.h"
 #include "IoC.h"
 
 class AbstractTestShellApplication
 {
 public:
-	AbstractTestShellApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::ostream& oStream, bool printShellPromptPrefix = true) :
-		_commandMappers(commandMappers), _iStream(iStream), _oStream(oStream), _printShellPromptPrefix(printShellPromptPrefix) {
+	AbstractTestShellApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::shared_ptr<ILogger> logger, bool printShellPromptPrefix = true) :
+		_commandMappers(commandMappers), _iStream(iStream), _logger(logger), _printShellPromptPrefix(printShellPromptPrefix) {
 	}
 	virtual ~AbstractTestShellApplication() = default;
 
@@ -22,7 +24,7 @@ protected:
 protected:
 	std::vector<std::shared_ptr<ICommandMapper>> _commandMappers;
 	std::istream& _iStream;
-	std::ostream& _oStream;
+	std::shared_ptr<ILogger> _logger;
 	bool _printShellPromptPrefix;
 };
 

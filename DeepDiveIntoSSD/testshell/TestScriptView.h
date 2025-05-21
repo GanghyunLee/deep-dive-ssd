@@ -7,7 +7,7 @@ public:
 	TestScriptView(bool testResult) : _testResult(testResult) { }
 	~TestScriptView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 protected:
 	bool _testResult;

@@ -52,6 +52,8 @@ public:
 	    out2.flush();
     }
 
+    ostream& GetOut1Stream() { return out1; }
+
 private:
     DualBuffer buffer;
     ostream& out1;
@@ -62,10 +64,9 @@ class DualLogger : public ILogger {
 public:
     DualLogger(const string& fileName = LOG_FILE) : fileStream(fileName, ios::app), dualStream(cout, fileStream) {}
 
-    // ostream을 반환할 때는 참조로 반환합니다.
-    ostream& getOstream() {
+    ostream& getMainOstream() override {
         rotateIfNeeded();
-        return dualStream;
+        return dualStream.GetOut1Stream();
     }
 
     void print(const std::string& className, const std::string& functionName,
@@ -81,6 +82,12 @@ public:
         }
 
         dualStream << message;
+        dualStream.flush();
+    }
+
+    void printLine() override
+    {
+        dualStream << '\n';
         dualStream.flush();
     }
 
