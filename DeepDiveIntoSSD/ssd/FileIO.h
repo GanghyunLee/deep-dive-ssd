@@ -29,6 +29,7 @@ public:
 	void createFile(const std::string& fileName);
 	std::vector<std::string> getFileNamesInDirectory();
 	void removeFilesInDirectory();
+	bool checkFileExist(const std::string& fileName);
 
 private:
 	int mode;
