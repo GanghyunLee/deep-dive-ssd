@@ -72,9 +72,16 @@ public:
     }
 
     void print(const std::string& className, const std::string& functionName,
-        const std::string& message, bool printLogInfo = DEFAULT_PRINT_LOG_INFO_VALUE) override {
+        const std::string& message, bool printLogInfo = DEFAULT_PRINT_LOG_INFO_VALUE, int printdir = 0) override {
         rotateIfNeeded();
 
+        if (printdir == 1) {
+            string logLine = className + "." + functionName;
+            fileStream << getTimestamp() << " " << left << setw(40) << logLine << "    :  ";
+            fileStream << message << endl;
+            fileStream.flush();
+            return;
+        }
         // 여기서는 콘솔에서는 로그 정보를 출력하지 않도록 한다.
         if (printLogInfo)
         {

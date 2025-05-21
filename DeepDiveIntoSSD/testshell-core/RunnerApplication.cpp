@@ -1,4 +1,4 @@
-﻿#include "RunnerApplication.h"
+#include "RunnerApplication.h"
 #include <fstream>
 #include <sstream>
 
@@ -34,7 +34,7 @@ bool RunnerApplication::Run(int argc, char* argv[])
             if (command == nullptr)
             {
                 std::stringstream ss;
-                ss << "INVALID COMMAND(Your Command = " << line << ")";
+                ss << "INVALID COMMAND(Your Command = " << line << ")" << std::endl;
                 throw std::exception{ss.str().c_str()};
             }
 
