@@ -7,7 +7,6 @@ enum STATUS { CLEAN = 0, ERASED, MODIFIED };
 
 class CommandBufferAlgorithm {
 public:
-	
 	void initStatus();
 	void getCurrentStatus(std::vector<Arg>& buffer);
 	
@@ -26,8 +25,10 @@ public:
 	int mergedRange(Arg a, Arg b);
 	Arg mergeTwoCommand(Arg a, Arg b);
 	std::vector<Arg> merge(const std::vector<Arg> &buffer);
+	bool canDeleteCommand(Arg command);
 
 	Arg fastRead(std::vector<Arg> buffer);
+
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };

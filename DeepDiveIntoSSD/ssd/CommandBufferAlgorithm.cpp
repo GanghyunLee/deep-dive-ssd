@@ -185,7 +185,11 @@ Arg CommandBufferAlgorithm::mergeTwoCommand(Arg a, Arg b) {
 	}
 
 	int range = mergedRange(a, b);
-	return { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+
+	Arg mergedCommand = { COMMAND_TYPE::ERASE, startIdx, std::to_string(range) };
+	setStatusWithEraseCommand(mergedCommand);
+	
+	return mergedCommand;
 }
 
 std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
@@ -223,8 +227,27 @@ std::vector<Arg> CommandBufferAlgorithm::merge(const std::vector<Arg> &buffer) {
 		tmpBuffer.erase(tmpBuffer.begin() + idx1);
 		tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0, "" });
 
+
+		// 이후에 앞에 idx2 앞에꺼 보면서 invalid 여부 체크 필요함.
+		// TODO
+		for(int i = 0 ; i < idx2 - 1; i++){
+			Arg command = tmpBuffer[i];
+
+			if (canDeleteCommand(command)) {
+				tmpBuffer.erase(tmpBuffer.begin() + i);
+				tmpBuffer.push_back({ COMMAND_TYPE::EMPTY, 0 , "" });
+			}
+		}
 	}
 
 	return tmpBuffer;
 }
 
+bool CommandBufferAlgorithm::canDeleteCommand(Arg command) {
+
+	if (command.commandType == WRITE && status[command.index] != MODIFIED) {
+		return true;
+	}
+
+	return false;
+}
