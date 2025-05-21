@@ -7,8 +7,7 @@ int main(int argc, char* argv[])
 	::testing::InitGoogleMock();
 	return RUN_ALL_TESTS();
 #else
-	ArgManager argManager;
-	SSD ssd(&argManager);
+	SSD& ssd = SSD::getInstance();
 	ssd.run(argc - 1, argv + 1);
 	return 0;
 #endif

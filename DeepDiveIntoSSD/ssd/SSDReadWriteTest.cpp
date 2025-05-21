@@ -7,8 +7,7 @@ class SSDFixture : public Test {
 public:
 	const std::string WRITE_SUCCESS_RESULT = "";
 
-	ArgManager argManager;
-	SSD* ssdReal = new SSD(&argManager);
+	SSD* ssdReal = &SSD::getInstance();
 };
 
 TEST_F(SSDFixture, initSDSNANDTXTfile) {
