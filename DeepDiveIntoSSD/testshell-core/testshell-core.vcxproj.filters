@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ICommand.cpp">
+      <Filter>Application\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommandMapper.cpp">
+      <Filter>Application\CommandMapper</Filter>
+    </ClCompile>
+    <ClCompile Include="IoC.cpp">
+      <Filter>Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="IView.cpp">
+      <Filter>Application\View</Filter>
+    </ClCompile>
+    <ClCompile Include="TestShellApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommand.cpp">
+      <Filter>Application\Command\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpView.cpp">
+      <Filter>Application\View\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteCommand.cpp">
+      <Filter>Application\Command\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteView.cpp">
+      <Filter>Application\View\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdController.cpp">
+      <Filter>Infrastructure\SsdController</Filter>
+    </ClCompile>
+    <ClCompile Include="ISsdController.cpp">
+      <Filter>Infrastructure\SsdController</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdWriteResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdWriteService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Write</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdReadService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadView.cpp">
+      <Filter>Application\View\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommand.cpp">
+      <Filter>Application\Command\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdFullWriteService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteView.cpp">
+      <Filter>Application\View\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteCommand.cpp">
+      <Filter>Application\Command\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsingUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdFullReadService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadView.cpp">
+      <Filter>Application\View\FullRead</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadCommand.cpp">
+      <Filter>Application\Command\FullRead</Filter>
+    </ClCompile>
+    <ClCompile Include="FullReadCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullRead</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScriptView.cpp">
+      <Filter>Application\View\TestScriptView</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\FullWriteAndReadCompareTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp">
+      <Filter>Application\Command\ScriptCommand\FullWriteAndReadCompareTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp">
+      <Filter>Application\Command\ScriptCommand\PartialLBAWriteTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptCommand.cpp">
+      <Filter>Application\Command\ScriptCommand\WriteReadAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdEraseResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdEraseService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseView.cpp">
+      <Filter>Application\View\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseCommand.cpp">
+      <Filter>Application\Command\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseRangeCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialLbaWriteTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteReadAgingTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp">
+      <Filter>Application\Command\ScriptCommand\EraseAndWriteAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractScriptCommand.cpp">
+      <Filter>Application\Command\ScriptCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractTestShellApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="RunnerApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdFlushResult.cpp">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClCompile>
+    <ClCompile Include="SsdFlushService.cpp">
+      <Filter>Service\SSD</Filter>
+    </ClCompile>
+    <ClCompile Include="FlushCommandMapper.cpp">
+      <Filter>Application\CommandMapper\Flush</Filter>
+    </ClCompile>
+    <ClCompile Include="FlushCommand.cpp">
+      <Filter>Application\Command\Flush</Filter>
+    </ClCompile>
+    <ClCompile Include="FlushView.cpp">
+      <Filter>Application\View\Flush</Filter>
+    </ClCompile>
+    <ClCompile Include="InMemoryLogger.cpp">
+      <Filter>Application\Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ICommand.h">
+      <Filter>Application\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandMapper.h">
+      <Filter>Application\CommandMapper</Filter>
+    </ClInclude>
+    <ClInclude Include="IoC.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>Application\View</Filter>
+    </ClInclude>
+    <ClInclude Include="TestShellApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpCommand.h">
+      <Filter>Application\Command\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpCommandMapper.h">
+      <Filter>Application\CommandMapper\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpView.h">
+      <Filter>Application\View\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteCommand.h">
+      <Filter>Application\Command\Write</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteView.h">
+      <Filter>Application\View\Write</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdController.h">
+      <Filter>Infrastructure\SsdController</Filter>
+    </ClInclude>
+    <ClInclude Include="ISsdController.h">
+      <Filter>Infrastructure\SsdController</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdWriteResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdWriteService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteCommandMapper.h">
+      <Filter>Application\CommandMapper\Write</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdReadService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="MockSsdControler.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadView.h">
+      <Filter>Application\View\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadCommand.h">
+      <Filter>Application\Command\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadCommandMapper.h">
+      <Filter>Application\CommandMapper\Read</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdFullWriteService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteView.h">
+      <Filter>Application\View\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteCommand.h">
+      <Filter>Application\Command\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteCommandMapper.h">
+      <Filter>Application\CommandMapper\FullWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsingUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdFullReadService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadView.h">
+      <Filter>Application\View\FullRead</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadCommand.h">
+      <Filter>Application\Command\FullRead</Filter>
+    </ClInclude>
+    <ClInclude Include="FullReadCommandMapper.h">
+      <Filter>Application\CommandMapper\FullRead</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScriptView.h">
+      <Filter>Application\View\TestScriptView</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\FullWriteAndReadCompareTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h">
+      <Filter>Application\Command\ScriptCommand\FullWriteAndReadCompareTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLBAWriteTestScriptCommand.h">
+      <Filter>Application\Command\ScriptCommand\PartialLBAWriteTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\PartialLBAWriteTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptCommand.h">
+      <Filter>Application\Command\ScriptCommand\WriteReadAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\WriteReadAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdEraseResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdEraseService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseView.h">
+      <Filter>Application\View\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseCommandMapper.h">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseCommand.h">
+      <Filter>Application\Command\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseRangeCommandMapper.h">
+      <Filter>Application\CommandMapper\Erase</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialLbaWriteTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteReadAgingTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptService.h">
+      <Filter>Service\SSD\TestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h">
+      <Filter>Application\Command\ScriptCommand\EraseAndWriteAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h">
+      <Filter>Application\CommandMapper\EraseAndWriteAgingTestScript</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractScriptCommand.h">
+      <Filter>Application\Command\ScriptCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractTestShellApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="RunnerApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdFlushResult.h">
+      <Filter>Infrastructure\SsdController\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="SsdFlushService.h">
+      <Filter>Service\SSD</Filter>
+    </ClInclude>
+    <ClInclude Include="FlushCommandMapper.h">
+      <Filter>Application\CommandMapper\Flush</Filter>
+    </ClInclude>
+    <ClInclude Include="FlushCommand.h">
+      <Filter>Application\Command\Flush</Filter>
+    </ClInclude>
+    <ClInclude Include="FlushView.h">
+      <Filter>Application\View\Flush</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="InMemoryLogger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{9473193b-f236-4947-8a37-204a41efb24a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service">
+      <UniqueIdentifier>{bd1e2d79-ade9-4cb5-b19e-eb337927bdc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command">
+      <UniqueIdentifier>{787f988f-03a4-478d-a6d3-c49402e49f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper">
+      <UniqueIdentifier>{c98d6bf0-d8c5-42a6-88ee-157c70482d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{53dabc4f-3fa6-4a51-8c2b-32fa3fbdf76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View">
+      <UniqueIdentifier>{d6831d88-a48d-4c8d-b86e-d04af62f0b70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\SSD">
+      <UniqueIdentifier>{495f9007-a851-4873-98de-f7c67f733d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Help">
+      <UniqueIdentifier>{c8890e62-892d-4915-9c78-c3c6afeed3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Help">
+      <UniqueIdentifier>{50c7cba4-776b-4b75-a8bb-5255e7d36e31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Help">
+      <UniqueIdentifier>{c0bd0b98-c5c0-4d12-8a14-d1d37b71c39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure">
+      <UniqueIdentifier>{886f21ed-3535-45d3-a666-6657045526f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure\SsdController">
+      <UniqueIdentifier>{ef041df9-d3c7-49db-a5a1-c078b77140c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Write">
+      <UniqueIdentifier>{ad50d6b5-2b15-46c5-abc5-11844baab29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Write">
+      <UniqueIdentifier>{31140def-d3e5-44d1-a942-690c7a4c8816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure\SsdController\Dto">
+      <UniqueIdentifier>{abcb840f-22b6-4ba3-83e5-448c55fd288c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Write">
+      <UniqueIdentifier>{3e24ae52-f1d2-41ef-9cec-f1aeb4bde9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Read">
+      <UniqueIdentifier>{5ad30ef8-f6ac-4c27-b25e-effa6bca8fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Read">
+      <UniqueIdentifier>{656a81c2-8a14-4e98-864b-5f91015b9d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Read">
+      <UniqueIdentifier>{8effdc6d-3ddd-4ecc-aa8b-c766711f4816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\FullWrite">
+      <UniqueIdentifier>{4989feee-d538-4a22-8a76-e49c2421f37c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\FullWrite">
+      <UniqueIdentifier>{bfaae2e5-7c4e-4de2-ac69-c208380a7de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullWrite">
+      <UniqueIdentifier>{8a060141-656e-4189-9311-9ba9b2793db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{516ec221-d6dc-4e7e-8b81-beea254c095a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\FullRead">
+      <UniqueIdentifier>{4f15f8cd-eedb-4e63-b4f1-7e0517de6025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\FullRead">
+      <UniqueIdentifier>{d98f142b-e5f9-4582-87d7-74824988e7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullRead">
+      <UniqueIdentifier>{4515563d-1865-46ce-a428-19ef66d87b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\TestScriptView">
+      <UniqueIdentifier>{f240b8ba-77bc-4bcc-819a-f22f8a24b285}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\FullWriteAndReadCompareTestScript">
+      <UniqueIdentifier>{5dc48cef-65a4-4598-9101-98d9c86e18d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\PartialLBAWriteTestScript">
+      <UniqueIdentifier>{e9ffba2f-2027-4fc6-a249-92066913b208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\WriteReadAgingTestScript">
+      <UniqueIdentifier>{8ad85a66-60b8-4230-820c-94e5f6cd3b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Erase">
+      <UniqueIdentifier>{aa6b4b0e-0fac-4449-b7c9-487912a8a0bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Erase">
+      <UniqueIdentifier>{c8633a05-867f-46b9-be19-b28e67b9e8d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Erase">
+      <UniqueIdentifier>{05da7f0c-a9dc-4dfc-aeae-1ae9fae19d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Logger">
+      <UniqueIdentifier>{211b3422-c1a2-47a9-942d-007001091ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service\SSD\TestScript">
+      <UniqueIdentifier>{b586b2b5-ec99-4682-b1f1-c2693f410b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{efbb7917-a3cc-4997-ae62-174bdc043fd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ScriptCommand">
+      <UniqueIdentifier>{0ccf95fe-3040-4e3d-a934-c199e5fd3491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ScriptCommand\EraseAndWriteAgingTestScript">
+      <UniqueIdentifier>{84266b45-4e7c-4cee-ac41-2d4a2e3575fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ScriptCommand\FullWriteAndReadCompareTestScript">
+      <UniqueIdentifier>{ac94b4e6-6bf7-4d66-8a58-4cb2851d465d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ScriptCommand\PartialLBAWriteTestScript">
+      <UniqueIdentifier>{8cba221a-0b82-4599-b17a-b3250544da7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\ScriptCommand\WriteReadAgingTestScript">
+      <UniqueIdentifier>{aacfc940-9b9c-425a-a3d6-262c4aa4f8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CommandMapper\Flush">
+      <UniqueIdentifier>{fcc6343a-d4ba-4e79-96ce-c0f63934d573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Command\Flush">
+      <UniqueIdentifier>{7c63e0d7-e2a3-4546-8945-e735b54155dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\View\Flush">
+      <UniqueIdentifier>{c21c6eb0-a305-44f0-8cc5-119507c23e40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

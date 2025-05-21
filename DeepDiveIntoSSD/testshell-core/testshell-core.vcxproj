@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f3f8367c-8c29-4a4c-a12c-4450e789a609}</ProjectGuid>
+    <RootNamespace>testshell</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>testshell-core</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AbstractTestScriptService.cpp" />
+    <ClCompile Include="AbstractTestShellApplication.cpp" />
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommand.cpp" />
+    <ClCompile Include="EraseAndWriteAgingTestScriptCommandMapper.cpp" />
+    <ClCompile Include="EraseAndWriteAgingTestScriptService.cpp" />
+    <ClCompile Include="EraseCommand.cpp" />
+    <ClCompile Include="EraseCommandMapper.cpp" />
+    <ClCompile Include="EraseRangeCommandMapper.cpp" />
+    <ClCompile Include="EraseView.cpp" />
+    <ClCompile Include="FlushCommand.cpp" />
+    <ClCompile Include="FlushCommandMapper.cpp" />
+    <ClCompile Include="FlushView.cpp" />
+    <ClCompile Include="FullReadCommand.cpp" />
+    <ClCompile Include="FullReadCommandMapper.cpp" />
+    <ClCompile Include="FullReadView.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptCommandMapper.cpp" />
+    <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp" />
+    <ClCompile Include="InMemoryLogger.cpp" />
+    <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp" />
+    <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp" />
+    <ClCompile Include="PartialLbaWriteTestScriptService.cpp" />
+    <ClCompile Include="AbstractScriptCommand.cpp" />
+    <ClCompile Include="RunnerApplication.cpp" />
+    <ClCompile Include="SsdEraseResult.cpp" />
+    <ClCompile Include="SsdEraseService.cpp" />
+    <ClCompile Include="SsdFlushResult.cpp" />
+    <ClCompile Include="SsdFlushService.cpp" />
+    <ClCompile Include="SsdFullReadService.cpp" />
+    <ClCompile Include="FullWriteCommand.cpp" />
+    <ClCompile Include="FullWriteCommandMapper.cpp" />
+    <ClCompile Include="FullWriteView.cpp" />
+    <ClCompile Include="HelpCommand.cpp" />
+    <ClCompile Include="HelpCommandMapper.cpp" />
+    <ClCompile Include="HelpView.cpp" />
+    <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="ICommandMapper.cpp" />
+    <ClCompile Include="IoC.cpp" />
+    <ClCompile Include="ISsdController.cpp" />
+    <ClCompile Include="IView.cpp" />
+    <ClCompile Include="main.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ParsingUtil.cpp" />
+    <ClCompile Include="ReadCommand.cpp" />
+    <ClCompile Include="ReadCommandMapper.cpp" />
+    <ClCompile Include="ReadView.cpp" />
+    <ClCompile Include="SsdController.cpp" />
+    <ClCompile Include="SsdFullWriteService.cpp" />
+    <ClCompile Include="SsdReadResult.cpp" />
+    <ClCompile Include="SsdReadService.cpp" />
+    <ClCompile Include="SsdWriteService.cpp" />
+    <ClCompile Include="TestScriptView.cpp" />
+    <ClCompile Include="TestShellApplication.cpp" />
+    <ClCompile Include="WriteCommand.cpp" />
+    <ClCompile Include="SsdWriteResult.cpp" />
+    <ClCompile Include="WriteCommandMapper.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptCommandMapper.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptService.cpp" />
+    <ClCompile Include="WriteReadAgingTestScriptCommand.cpp" />
+    <ClCompile Include="WriteView.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AbstractTestScriptService.h" />
+    <ClInclude Include="AbstractTestShellApplication.h" />
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommand.h" />
+    <ClInclude Include="EraseAndWriteAgingTestScriptCommandMapper.h" />
+    <ClInclude Include="EraseAndWriteAgingTestScriptService.h" />
+    <ClInclude Include="EraseCommand.h" />
+    <ClInclude Include="EraseCommandMapper.h" />
+    <ClInclude Include="EraseRangeCommandMapper.h" />
+    <ClInclude Include="EraseView.h" />
+    <ClInclude Include="FlushCommand.h" />
+    <ClInclude Include="FlushCommandMapper.h" />
+    <ClInclude Include="FlushView.h" />
+    <ClInclude Include="FullReadCommand.h" />
+    <ClInclude Include="FullReadCommandMapper.h" />
+    <ClInclude Include="FullReadView.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h" />
+    <ClInclude Include="FullWriteAndReadCompareTestScriptService.h" />
+    <ClInclude Include="ILogger.h" />
+    <ClInclude Include="InMemoryLogger.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="PartialLBAWriteTestScriptCommand.h" />
+    <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h" />
+    <ClInclude Include="PartialLbaWriteTestScriptService.h" />
+    <ClInclude Include="AbstractScriptCommand.h" />
+    <ClInclude Include="RunnerApplication.h" />
+    <ClInclude Include="SsdEraseResult.h" />
+    <ClInclude Include="SsdEraseService.h" />
+    <ClInclude Include="SsdFlushResult.h" />
+    <ClInclude Include="SsdFlushService.h" />
+    <ClInclude Include="SsdFullReadService.h" />
+    <ClInclude Include="FullWriteCommand.h" />
+    <ClInclude Include="FullWriteCommandMapper.h" />
+    <ClInclude Include="FullWriteView.h" />
+    <ClInclude Include="HelpCommand.h" />
+    <ClInclude Include="HelpCommandMapper.h" />
+    <ClInclude Include="HelpView.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="ICommandMapper.h" />
+    <ClInclude Include="IoC.h" />
+    <ClInclude Include="ISsdController.h" />
+    <ClInclude Include="IView.h" />
+    <ClInclude Include="MockSsdControler.h" />
+    <ClInclude Include="ParsingUtil.h" />
+    <ClInclude Include="ReadCommand.h" />
+    <ClInclude Include="ReadCommandMapper.h" />
+    <ClInclude Include="ReadView.h" />
+    <ClInclude Include="SsdController.h" />
+    <ClInclude Include="SsdFullWriteService.h" />
+    <ClInclude Include="SsdReadResult.h" />
+    <ClInclude Include="SsdReadService.h" />
+    <ClInclude Include="SsdWriteService.h" />
+    <ClInclude Include="TestScriptView.h" />
+    <ClInclude Include="TestShellApplication.h" />
+    <ClInclude Include="WriteCommand.h" />
+    <ClInclude Include="SsdWriteResult.h" />
+    <ClInclude Include="WriteCommandMapper.h" />
+    <ClInclude Include="WriteReadAgingTestScriptCommandMapper.h" />
+    <ClInclude Include="WriteReadAgingTestScriptService.h" />
+    <ClInclude Include="WriteReadAgingTestScriptCommand.h" />
+    <ClInclude Include="WriteView.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

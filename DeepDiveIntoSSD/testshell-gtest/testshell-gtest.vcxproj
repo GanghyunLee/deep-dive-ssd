@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{41e67927-77bd-4860-8388-c411452d2dc5}</ProjectGuid>
-    <RootNamespace>testshell</RootNamespace>
+    <ProjectGuid>{580565a9-874c-44eb-b988-6aad482a9e44}</ProjectGuid>
+    <RootNamespace>testshellgtest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,27 +72,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)testshell-core;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)Output\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,9 +151,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EraseCommandMapperTest.cpp" />
+    <ClCompile Include="HelpCommandMapperTest.cpp" />
+    <ClCompile Include="HelpCommandTest.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ReadCommandMapperTest.cpp" />
+    <ClCompile Include="ReadCommandTest.cpp" />
+    <ClCompile Include="ReadViewTest.cpp" />
+    <ClCompile Include="TestShellApplicationTest.cpp" />
+    <ClCompile Include="WriteCommandMapperTest.cpp" />
+    <ClCompile Include="WriteCommandTest.cpp" />
+    <ClCompile Include="WriteViewTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\gmock.1.11.0\build\native\gmock.targets" Condition="Exists('..\packages\gmock.1.11.0\build\native\gmock.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\gmock.1.11.0\build\native\gmock.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\gmock.1.11.0\build\native\gmock.targets'))" />
+  </Target>
 </Project>

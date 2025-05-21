@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <functional>
 #include "ICommandMapper.h"
 #include "EraseCommand.h"
