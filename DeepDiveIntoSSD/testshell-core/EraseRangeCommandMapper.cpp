@@ -18,9 +18,16 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 		int startLba = ParsingUtil::ConvertStringToOnlyPlusIntegerOrElseThrow(userInputCommand[1], true);
 		int endLba = ParsingUtil::ConvertStringToOnlyPlusIntegerOrElseThrow(userInputCommand[2], true);
 
+		if (endLba > Constants::MAX_LBA)
+			throw std::exception{ "Exceeds Max LBA" };
+
 		ConvertToValidLbaRange(startLba, endLba);
 
 		return _eraseRangeCommandFactory(startLba, endLba);
+	}
+	catch (std::exception& e)
+	{
+		throw std::exception{e.what()};
 	}
 	catch (...)
 	{
@@ -30,16 +37,6 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 
 void EraseRangeCommandMapper::ConvertToValidLbaRange(int& startLba, int& endLba)
 {
-	// startLba가 음수이면 보정
-	if (startLba < 0) startLba = 0;
-
-	// endLba가 음수이면 보정
-	if (endLba < 0) endLba = 0;
-
-	// endLba가 MaxLBA를 넘어가면 보정
-	if (endLba > Constants::MAX_LBA)
-		endLba = Constants::MAX_LBA;
-
 	// startLba가 endLba보다 큰 경우 swap
 	if (startLba > endLba)
 		std::swap(startLba, endLba);
