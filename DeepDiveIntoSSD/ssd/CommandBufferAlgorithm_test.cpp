@@ -163,7 +163,7 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
 
 TEST_F(CommandBufferAlgorithmFixture, DISABLED_mergeTest2) {
 
-	// ignore �� ���� �߻��ϴ� ���̽��� �ʿ���
+	// ignore 도 같이 발생하는 케이스임 필요함
 
 	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
 	std::vector<Arg> expected = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{0,},{0,},{0,} };
