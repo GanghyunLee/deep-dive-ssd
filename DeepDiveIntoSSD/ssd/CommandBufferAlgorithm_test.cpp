@@ -221,7 +221,7 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest1) {
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTest2) {
 
-	// ignore 도 같이 발생하는 케이스임 필요함
+	// ignore 도 같이 발생하는 케이스, merge 이후 write ignore
 
 	std::vector<Arg> buffer = { {ERASE,10,"5"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
 	std::vector<Arg> expected = {{ERASE,10,"10"},{0,},{0,},{0,},{0,}};
@@ -258,14 +258,23 @@ TEST_F(CommandBufferAlgorithmFixture, mergeTest4) {
 TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened1) {
 	std::vector<Arg> buffer = { {ERASE,10,"3"},{WRITE,12,"0xABCD1234"},{ERASE,15,"5"},{0,},{0,} };
 	std::vector<Arg> expected = { {ERASE, 10, "3"},{WRITE,12,"0xABCD1234" }, {ERASE, 15,"5"}, {0,},{0,} };
+	
+	cba.getCurrentStatus(buffer);
+	cba.setStatusWithEraseCommand({ ERASE, 15, "5" });
 	std::vector<Arg> ret = cba.merge(buffer);
 
 	EXPECT_EQ(expected, ret);
 }
 
 TEST_F(CommandBufferAlgorithmFixture, mergeTestNothingHappened2) {
+
+	// CAUTION (only for test)
+	// CAN'T HAPPENED
 	std::vector<Arg> buffer = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"}, {0,},{0,} };
 	std::vector<Arg> expected = { {WRITE,12,"0xABCD1234"},{ERASE,10,"10"},{ERASE, 20, "5"},{0,},{0,} };
+
+	cba.getCurrentStatus(buffer);
+	cba.setStatusWithEraseCommand({ ERASE, 20, "5" });
 	std::vector<Arg> ret = cba.merge(buffer);
 
 	EXPECT_EQ(expected, ret);
