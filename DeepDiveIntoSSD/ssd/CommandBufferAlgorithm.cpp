@@ -86,6 +86,10 @@ bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
 		return false;
 	}
 
+	if (!isAllDirty(a, b)) {
+		return false;
+	}
+
 	int range = mergedRange(a, b);
 	if (range > 10) {
 		return false;
@@ -129,6 +133,30 @@ bool CommandBufferAlgorithm::isContinuousEraseRange(Arg a, Arg b) {
 	}
 
 	return isContinuous;
+}
+
+bool CommandBufferAlgorithm::isAllDirty(Arg a, Arg b) {
+
+	int a_range = stoi(a.value, nullptr, 10);
+	int b_range = stoi(b.value, nullptr, 10);
+	
+	int startIdx = a.index;
+	if (a.index > b.index) {
+		startIdx = b.index;
+	}
+
+	int endIdx = a.index + a_range - 1;
+	if (a.index + a_range - 1 < b.index + b_range - 1) {
+		endIdx = b.index + b_range - 1;
+	}
+
+	for (int i = startIdx; i <= endIdx; i++) {
+		if (status[i] == STATUS::CLEAN) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 int CommandBufferAlgorithm::mergedRange(Arg a, Arg b) {
