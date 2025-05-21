@@ -8,7 +8,7 @@ void CommandBufferAlgorithm::initStatus() {
 
 void CommandBufferAlgorithm::getCurrentStatus(std::vector<Arg>& buffer) {
 
-	// EMPTY ������ ã���� ��.
+	// EMPTY 전까지 찾으면 됨.
 	int cnt = getCommandCount(buffer);
 
 	if (cnt <= 1) {
