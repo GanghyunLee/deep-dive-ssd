@@ -6,6 +6,8 @@
 #include "ArgManager.h"
 
 void SSD::run(int argc, char* argv[]) {
+	initNand();
+
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
 
 	if (commands.size() == 0)
@@ -209,4 +211,12 @@ void SSD::dumpSuccess() {
 	fileIO->writeLine("");
 	fileIO->closeFile();
 	return;
+}
+
+void SSD::initNand()
+{
+	fileIO = new FileIO();
+	if (!fileIO->checkFileExist(INPUT_FILE)) {
+		dumpData();
+	}
 }

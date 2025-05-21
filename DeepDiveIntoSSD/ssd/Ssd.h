@@ -27,6 +27,7 @@ public:
 	void dumpError();
 	void dumpResult(int index, unsigned int value);
 	void dumpSuccess();
+	void initNand();
 
 private:
 	ArgManager* m_argManager;
