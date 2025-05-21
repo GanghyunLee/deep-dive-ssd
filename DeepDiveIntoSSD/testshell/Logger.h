@@ -8,6 +8,8 @@
 #include <string>
 #include <windows.h>
 
+#include "ILogger.h"
+
 using namespace std;
 
 const string LOG_FILE = "latest.log";
@@ -50,9 +52,9 @@ private:
     ostream& out2;
 };
 
-class DualLogger {
+class DualLogger : public ILogger {
 public:
-    DualLogger(const string& fileName) : fileStream(fileName, ios::app), dualStream(cout, fileStream) {}
+    DualLogger(const string& fileName = LOG_FILE) : fileStream(fileName, ios::app), dualStream(cout, fileStream) {}
 
     // ostream을 반환할 때는 참조로 반환합니다.
     ostream& getOstream() {
@@ -60,12 +62,19 @@ public:
         return dualStream;
     }
 
-    void print(const string& className, const string& functionName, const string& message) {
+    void print(const std::string& className, const std::string& functionName,
+        const std::string& message, bool printLogInfo = true) override {
         rotateIfNeeded();
-        // string logLine = getTimestamp() + " " + className + "." + functionName + "    : " + message;
-        string logLine = className + "." + functionName;
-        fileStream << getTimestamp() << " " << left << setw(40) << logLine << "    :  " << message << endl;
-        // cout << logLine << endl;
+
+        // 여기서는 콘솔에서는 로그 정보를 출력하지 않도록 한다.
+        if (printLogInfo)
+        {
+            string logLine = className + "." + functionName;
+            fileStream << getTimestamp() << " " << left << setw(40) << logLine << "    :  ";
+            fileStream.flush();
+        }
+
+        dualStream << message;
     }
 
 private:
@@ -92,7 +101,7 @@ private:
         wstring wLogFile = std::wstring(LOG_FILE.begin(), LOG_FILE.end()); // std::string을 std::wstring으로 변환
 
         if (GetFileAttributesExW(wLogFile.c_str(), GetFileExInfoStandard, &fileInfo) != 0) {
-            DWORD fileSize = (fileInfo.nFileSizeHigh << 32) + fileInfo.nFileSizeLow;
+            unsigned long long fileSize = ((static_cast<unsigned long long>(fileInfo.nFileSizeHigh) << 32)) + fileInfo.nFileSizeLow;
             if (fileSize > MAX_LOG_SIZE) {
                 fileStream.close();
                 string rotatedName = getRotatedFileName();

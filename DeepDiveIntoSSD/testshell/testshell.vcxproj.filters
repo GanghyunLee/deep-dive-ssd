@@ -390,6 +390,9 @@
     <ClInclude Include="FlushView.h">
       <Filter>Application\View\Flush</Filter>
     </ClInclude>
+    <ClInclude Include="ILogger.h">
+      <Filter>Application\Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
