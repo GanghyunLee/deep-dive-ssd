@@ -32,5 +32,6 @@ std::shared_ptr<ICommand> EraseRangeCommandMapper::GenerateCommand(const std::ve
 void EraseRangeCommandMapper::ConvertToValidLbaRange(int& startLba, int& endLba)
 {
 	// startLba가 endLba보다 큰 경우 swap
-	std::swap(startLba, endLba);
+	if (startLba > endLba)
+		std::swap(startLba, endLba);
 }
