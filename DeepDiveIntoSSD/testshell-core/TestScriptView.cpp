@@ -10,5 +10,5 @@ void TestScriptView::Render(std::shared_ptr<ILogger>& logger)
 	else
 		ss << STR_PRINT_RESULT_FAIL;
 
-	logger->print(STR_CLASS_NAME_TESTSCRIPTVIEW, __FUNCTION__, ss.str());
+	logger->print(STR_CLASS_NAME_TESTSCRIPTVIEW, __FUNCTION__, ss.str(), false);
 }
