@@ -154,6 +154,7 @@
     <ClCompile Include="FullWriteAndReadCompareTestScriptCommand.cpp" />
     <ClCompile Include="FullWriteAndReadCompareTestScriptCommandMapper.cpp" />
     <ClCompile Include="FullWriteAndReadCompareTestScriptService.cpp" />
+    <ClCompile Include="InMemoryLogger.cpp" />
     <ClCompile Include="PartialLBAWriteTestScriptCommand.cpp" />
     <ClCompile Include="PartialLBAWriteTestScriptCommandMapper.cpp" />
     <ClCompile Include="PartialLbaWriteTestScriptService.cpp" />
@@ -230,6 +231,8 @@
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommand.h" />
     <ClInclude Include="FullWriteAndReadCompareTestScriptCommandMapper.h" />
     <ClInclude Include="FullWriteAndReadCompareTestScriptService.h" />
+    <ClInclude Include="ILogger.h" />
+    <ClInclude Include="InMemoryLogger.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommand.h" />
     <ClInclude Include="PartialLBAWriteTestScriptCommandMapper.h" />

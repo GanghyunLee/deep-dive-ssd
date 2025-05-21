@@ -24,13 +24,14 @@ bool TestShellApplication::Run(int argc, char* argv[])
 
 			// 4. Print Result
 			if (view)
-				view->Render(_oStream);
+				view->Render(_logger);
 		}
 		catch (std::exception& ex)
 		{
-			_oStream << ex.what();
+			_logger->print("TestShellApplication", __FUNCTION__, ex.what());
 		}
-		_oStream << std::endl;
+
+		_logger->printLine();
 	}
 
 	return true;
@@ -40,7 +41,10 @@ std::string TestShellApplication::GetUserInputLowerStr()
 {
 	std::string userInput;
 	if (_printShellPromptPrefix)
-		_oStream << STR_SHELL_START << " ";
+	{
+		std::ostream& ostream = _logger->getMainOstream();
+		ostream << STR_SHELL_START + " ";
+	}
 	std::getline(_iStream, userInput);
 
 	return ParsingUtil::ToLowerString(userInput);

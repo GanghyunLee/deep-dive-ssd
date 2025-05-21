@@ -1,5 +1,6 @@
 #include "ICommand.h"
 #include "ICommandMapper.h"
+#include "InMemoryLogger.h"
 #include "TestShellApplication.h"
 #include "gmock/gmock.h"
 
@@ -31,7 +32,7 @@ public:
 	~MockView() override = default;
 
 public:
-	MOCK_METHOD(void, Render, (std::ostream& os), (override));
+	MOCK_METHOD(void, Render, (std::shared_ptr<ILogger>&), (override));
 };
 
 class TestShellApplicationTestFixture : public Test
@@ -43,7 +44,7 @@ protected:
 
 		sut = std::make_shared<TestShellApplication>(
 			std::vector<std::shared_ptr<ICommandMapper>> {mockCommandMapper},
-			istream, ostream, false
+			istream, logger, false
 		);
 	}
 	
@@ -55,6 +56,7 @@ public:
 	std::shared_ptr<MockCommandMapper> mockCommandMapper;
 	std::istringstream istream;
 	std::ostringstream ostream;
+	std::shared_ptr<ILogger> logger = std::make_shared<InMemoryLogger>(ostream);
 	std::shared_ptr<TestShellApplication> sut = nullptr;
 
 	void EnqueueCommandWithExitCommand(const string& commandInput)

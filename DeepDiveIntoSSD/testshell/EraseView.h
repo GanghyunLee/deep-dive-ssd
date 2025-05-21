@@ -9,7 +9,7 @@ public:
 	EraseView(const SsdEraseResult& eraseCommandResult) : _eraseCommandResult(eraseCommandResult) {}
 	~EraseView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 private:
 	SsdEraseResult _eraseCommandResult;

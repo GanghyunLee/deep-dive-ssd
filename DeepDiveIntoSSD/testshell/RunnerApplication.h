@@ -4,8 +4,8 @@
 class RunnerApplication : public AbstractTestShellApplication
 {
 public:
-	RunnerApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::ostream& oStream, bool printShellPromptPrefix = true) :
-		AbstractTestShellApplication(commandMappers, iStream, oStream, printShellPromptPrefix) {
+	RunnerApplication(const std::vector<std::shared_ptr<ICommandMapper>>& commandMappers, std::istream& iStream, std::shared_ptr<ILogger> logger, bool printShellPromptPrefix = true) :
+		AbstractTestShellApplication(commandMappers, iStream, logger, printShellPromptPrefix) {
 	}
 	~RunnerApplication() override = default;
 

@@ -10,7 +10,7 @@ public:
 	FullWriteView(const std::vector<SsdWriteResult>& writeCommandResults) : _writeCommandResults(writeCommandResults) {}
 	~FullWriteView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 private:
 	std::vector<SsdWriteResult> _writeCommandResults;

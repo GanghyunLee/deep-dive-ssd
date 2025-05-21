@@ -10,7 +10,7 @@ public:
 	WriteView(const SsdWriteResult& writeCommandResult) : _writeCommandResult(writeCommandResult) { }
 	~WriteView() override = default;
 
-	void Render(std::ostream& os) override;
+	void Render(std::shared_ptr<ILogger>& logger) override;
 
 private:
 	SsdWriteResult _writeCommandResult;

@@ -33,6 +33,8 @@ public:
 	std::shared_ptr<EraseAndWriteAgingTestScriptService> GetEraseAndWriteAgingTestScriptService();
 	std::shared_ptr<ISsdController> GetSsdController();
 
+	std::shared_ptr<ILogger> GetLogger();
+
 protected:
 	EraseCommandFactory GenerateEraseCommandFactory();
 };
