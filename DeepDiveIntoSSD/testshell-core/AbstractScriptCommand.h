@@ -15,6 +15,7 @@ public:
 
 	std::shared_ptr<IView> Execute() final;
 	virtual std::string GetCommandName() = 0;
+	bool GetScriptCommandResult() const { return _scriptCommandResult; }
 
 protected:
 	virtual std::shared_ptr<IView> GetView() = 0;
