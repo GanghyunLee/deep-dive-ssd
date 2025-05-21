@@ -41,6 +41,7 @@ void SSD::run(int argc, char* argv[]) {
 		flushBuffers();
 	}
 	m_commandBuffer->pushBuffer(arg);
+	dumpSuccess();
 	return;
 }
 
