@@ -14,6 +14,10 @@ bool ArgManager::isValid(std::vector<std::string>& args) {
 	int argc = args.size();
 	int index = 0;
 
+	if (argc == 0) {
+		return false;
+	}
+
 	if (invalidCommand(args[0])) {
 		return false;
 	}

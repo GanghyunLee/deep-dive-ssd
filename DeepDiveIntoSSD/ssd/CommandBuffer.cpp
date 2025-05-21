@@ -88,6 +88,27 @@ void CommandBuffer::updateBuffers(std::vector<Arg> ret) {
 	}
 }
 
+int CommandBuffer::checkValueFromBuffer(int index)
+{
+	return algo.getStatus(index);
+}
+
+int CommandBuffer::fastRead(int index)
+{
+	int ret = 0;
+	for (int i = buffers.size() - 1; i >= 0; i--) {
+		if (buffers[i].commandType == EMPTY || buffers[i].commandType == ERASE)
+			continue;
+		if (buffers[i].index != index)
+			continue;
+		if (buffers[i].commandType == WRITE) {
+			ret = std::stoul(buffers[i].value, nullptr, 16);
+			break;
+		}
+	}
+	return ret;
+}
+
 void CommandBuffer::pushBuffer(Arg arg)
 {
 	for (int i = 0; i < buffers.size(); i++) {

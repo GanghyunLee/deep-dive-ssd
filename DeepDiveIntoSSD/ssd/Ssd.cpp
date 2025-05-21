@@ -5,8 +5,9 @@
 #include "Ssd.h"
 #include "ArgManager.h"
 
-
 void SSD::run(int argc, char* argv[]) {
+	initNand();
+
 	std::vector<std::string> commands = m_argManager->commandSplit(argc, argv);
 
 	if (commands.size() == 0)
@@ -28,60 +29,31 @@ void SSD::run(int argc, char* argv[]) {
 
 	Arg arg = m_argManager->makeStruct(commands);
 	if (arg.commandType == COMMAND_TYPE::READ) {
-		// do read
-		//read(arg.index);
+		int status = m_commandBuffer->checkValueFromBuffer(arg.index);
+		if (status == ERASE) {
+			dumpResult(arg.index, 0);
+		}
+		else if (status == MODIFIED) {
+			int modifiedValue = m_commandBuffer->fastRead(arg.index);
+			dumpResult(arg.index, modifiedValue);
+		}
+		else if (status == CLEAN) {
+			read(arg.index);
+		}
 		return;
 	}
 	
 	if (arg.commandType == COMMAND_TYPE::FLUSH) {
-		std::fstream file(INPUT_FILE, std::ios::in);
-		if (!file.is_open()) {
-			dumpData();
-		}
-		file.close();
-		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
-
-		for (const auto& buffer : buffers) {
-			switch (buffer.commandType) {
-			case COMMAND_TYPE::WRITE:
-				write(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::ERASE:
-				erase(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::EMPTY:
-				break;
-			}
-		}
-		m_commandBuffer->resetBuffer();
+		flushBuffers();
 		return;
 	}
 
 	if (m_commandBuffer->isBufferFull()) {
-		std::fstream file(INPUT_FILE, std::ios::in);
-		if (!file.is_open()) {
-			dumpData();
-		}
-		file.close();
-		std::vector<Arg> buffers = m_commandBuffer->getBuffer();
-
-		for (const auto& buffer : buffers) {
-			switch (buffer.commandType) {
-			case COMMAND_TYPE::WRITE:
-				write(buffer.index, buffer.value);
-				break;
-
-			case COMMAND_TYPE::ERASE:
-				erase(buffer.index, buffer.value);
-				break;
-			}
-		}
-		m_commandBuffer->resetBuffer();
+		flushBuffers();
 	}
-
 	m_commandBuffer->pushBuffer(arg);
+	dumpSuccess();
+	return;
 }
 
 void SSD::read(int index) {
@@ -147,6 +119,32 @@ void SSD::erase(int index, std::string rangeString) {
 
 }
 
+void SSD::flushBuffers()
+{
+	std::fstream file(INPUT_FILE, std::ios::in);
+	if (!file.is_open()) {
+		dumpData();
+	}
+	file.close();
+	std::vector<Arg> buffers = m_commandBuffer->getBuffer();
+
+	for (const auto& buffer : buffers) {
+		switch (buffer.commandType) {
+		case COMMAND_TYPE::WRITE:
+			write(buffer.index, buffer.value);
+			break;
+
+		case COMMAND_TYPE::ERASE:
+			erase(buffer.index, buffer.value);
+			break;
+
+		case COMMAND_TYPE::EMPTY:
+			break;
+		}
+	}
+	m_commandBuffer->resetBuffer();
+	return;
+}
 
 void SSD::updateData(int index, unsigned int value) {
 	data[index] = value;
@@ -222,4 +220,12 @@ void SSD::dumpSuccess() {
 	fileIO->writeLine("");
 	fileIO->closeFile();
 	return;
+}
+
+void SSD::initNand()
+{
+	fileIO = new FileIO();
+	if (!fileIO->checkFileExist(INPUT_FILE)) {
+		dumpData();
+	}
 }

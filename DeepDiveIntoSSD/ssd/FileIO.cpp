@@ -140,3 +140,8 @@ void FileIO::removeFilesInDirectory()
 		}
 	}
 }
+
+bool FileIO::checkFileExist(const std::string& fileName)
+{
+	return std::filesystem::exists(fileName) && std::filesystem::is_regular_file(fileName);
+}
