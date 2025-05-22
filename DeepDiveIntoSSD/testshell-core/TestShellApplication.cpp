@@ -28,7 +28,7 @@ bool TestShellApplication::Run(int argc, char* argv[])
 		}
 		catch (std::exception& ex)
 		{
-			_logger->print("TestShellApplication", __FUNCTION__, ex.what());
+			_logger->print("TestShellApplication", __FUNCTION__, ex.what(), false);
 		}
 
 		_logger->printLine();
@@ -46,6 +46,7 @@ std::string TestShellApplication::GetUserInputLowerStr()
 		ostream << STR_SHELL_START + " ";
 	}
 	std::getline(_iStream, userInput);
-
+	std::string log = STR_SHELL_START + " " + userInput;
+	_logger->print("TestShellApplication", __FUNCTION__, log, false, 1);
 	return ParsingUtil::ToLowerString(userInput);
 }

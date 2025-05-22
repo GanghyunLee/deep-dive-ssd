@@ -16,7 +16,7 @@ public:
 
 public:
 	void print(const std::string& className, const std::string& functionName, const std::string& message,
-		bool printLogInfo = DEFAULT_PRINT_LOG_INFO_VALUE) override;
+		bool printLogInfo = DEFAULT_PRINT_LOG_INFO_VALUE, int printdir = 0) override;
 	void printLine() override;
 	std::ostream& getMainOstream() override { return _ostream; }
 
