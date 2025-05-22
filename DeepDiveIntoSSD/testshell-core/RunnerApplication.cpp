@@ -16,7 +16,7 @@ bool RunnerApplication::Run(int argc, char* argv[])
         // 파일이 성공적으로 열렸는지 확인
         if (!file.is_open()) {
             std::stringstream ss;
-            ss << "파일을 열 수 없습니다: " << filename;
+            ss << "Cannot find the file " << filename << std::endl;
             throw std::exception{ss.str().c_str()};
         }
 
