@@ -25,4 +25,8 @@ public:
 	bool isValid(std::vector<std::string>& args);
 	bool outOfRangeIndex(int index);
 	bool invalidCommand(const std::string& command);
+	bool isValidFlush(int argc);
+	bool isValidRead(int argc);
+	bool isValidWrite(std::vector<std::string>& args);
+	bool isValidErase(const std::vector<std::string>& args);
 };
