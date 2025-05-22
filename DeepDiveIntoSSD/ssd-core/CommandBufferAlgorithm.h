@@ -2,8 +2,7 @@
 #include <vector>
 #include <string>
 #include "ArgManager.h"
-
-enum STATUS { CLEAN = 0, ERASED, MODIFIED };
+#include "CommandHandler.h"
 
 class CommandBufferAlgorithm {
 public:
@@ -32,6 +31,8 @@ public:
 	bool isErasedBigger(Arg arg);
 	void setEmpty(std::vector<Arg>& buffer);
 	void modifyEraseCommand(Arg& eraseArg, const Arg& latestArg);
+
+	ICommandHandler* commandHandler;
 private:
 	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };

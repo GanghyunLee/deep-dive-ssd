@@ -4,11 +4,10 @@
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="Ssd.h" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc" />
     <ClCompile Include="Ssd.cpp" />
     <ClCompile Include="CommandBufferAlgorithm.cpp" />
     <ClCompile Include="CommandBuffer.cpp" />
+    <ClCompile Include="CommandHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArgManager.h" />
@@ -16,6 +15,7 @@
     <ClInclude Include="CommandBufferAlgorithm.h" />
     <ClInclude Include="CommandBuffer.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="CommandHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="테스트 파일">

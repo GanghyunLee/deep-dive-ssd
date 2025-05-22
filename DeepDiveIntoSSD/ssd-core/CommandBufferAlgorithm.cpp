@@ -49,44 +49,19 @@ int CommandBufferAlgorithm::getStatus(int index) {
 
 std::vector<Arg> CommandBufferAlgorithm::ignoreCommand(std::vector<Arg> buffer) {
 	int cnt = getCommandCount(buffer);
-	int idx = cnt - 1;
-	Arg latestArg = buffer[idx];
+	Arg latestArg = buffer[cnt - 1];
 	int tempStatus[100] = { 0 };
 
 	getCurrentStatus(buffer);
 	updateStatus(latestArg, tempStatus);
 
 	if (latestArg.commandType == WRITE) {
-		if (status[latestArg.index] == MODIFIED) {
-			for (int i = 0; i < idx; i++) {
-				if (buffer[i].commandType != WRITE || buffer[i].index != latestArg.index) {
-					ret.push_back(buffer[i]);
-				}
-			}
-			ret.push_back(latestArg);
-		}
-		else if (status[latestArg.index] == ERASED) {
-			for (int i = 0; i < idx; i++) {
-				if (buffer[i].commandType == ERASE) {
-					modifyEraseCommand(buffer[i], latestArg);
-				}
-				ret.push_back(buffer[i]);
-			}
-			ret.push_back(latestArg);
-		}
-		else {
-			ret = buffer;
-		}
+		commandHandler = new WriteCommandHandler;
+		ret = commandHandler->handle(buffer, cnt, latestArg, tempStatus, status);
 	}
 	else if (latestArg.commandType == ERASE) {
-		for (int i = 0; i < idx; i++) {
-			if (!isErased(buffer[i], tempStatus)) {
-				ret.push_back(buffer[i]);
-			}
-		}
-		if (!isErasedBigger(latestArg)) {
-			ret.push_back(latestArg);
-		}
+		commandHandler = new EraseCommandHandler;
+		ret = commandHandler->handle(buffer, cnt, latestArg, tempStatus, status);
 	}
 
 	updateStatus(latestArg, status);
@@ -145,52 +120,6 @@ void CommandBufferAlgorithm::updateStatus(Arg arg, int* status) {
 			status[i] = ERASED;
 		}
 	}
-}
-
-bool CommandBufferAlgorithm::isErased(Arg arg, int* status) {
-	if (arg.commandType == WRITE) {
-		if (status[arg.index] == ERASED) {
-			return true;
-		}
-	}
-	else if (arg.commandType == ERASE) {
-		int startIdx = arg.index;
-		int endIdx = startIdx + stoi(arg.value);
-
-		for (int i = startIdx; i < endIdx; i++) {
-			if (status[i] != ERASED) {
-				return false;
-			}
-		}
-	}
-
-	return true;
-}
-
-bool CommandBufferAlgorithm::isErasedBigger(Arg arg) {
-	int startIdx = arg.index;
-	int endIdx = startIdx + stoi(arg.value);
-	int lowEnd = startIdx - 1;
-
-	for (int i = startIdx; i < endIdx; i++) {
-		if (status[i] != ERASED) {
-			return false;
-		}
-	}
-
-	if (lowEnd >= 0) {
-		if (status[lowEnd] == ERASED) {
-			return true;
-		}
-	}
-
-	if (endIdx < 100) {
-		if (status[endIdx] == ERASED) {
-			return true;
-		}
-	}
-
-	return false;
 }
 
 bool CommandBufferAlgorithm::mergeAble(Arg a, Arg b) {
