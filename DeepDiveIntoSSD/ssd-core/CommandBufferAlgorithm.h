@@ -8,24 +8,24 @@ enum STATUS { CLEAN = 0, ERASED, MODIFIED };
 class CommandBufferAlgorithm {
 public:
 	void initStatus();
-	void getCurrentStatus(std::vector<Arg>& buffer);
+	void getCurrentStatus(std::vector<Command>& buffer);
 	
-	int getCommandCount(std::vector<Arg>& buffer);
+	int getCommandCount(std::vector<Command>& buffer);
 	int getStatus(int index);
-	void setStatusWithEraseCommand(Arg arg);
-	void setStatusWithWriteCommand(Arg arg);
+	void setStatusWithEraseCommand(Command arg);
+	void setStatusWithWriteCommand(Command arg);
 
-	std::vector<Arg> ignoreCommand(std::vector<Arg> buffer);
+	std::vector<Command> ignoreCommand(std::vector<Command> buffer);
 
-	bool mergeAble(Arg a, Arg b);
-	bool isContinuousEraseRange(Arg a, Arg b);
-	bool isAllErased(Arg a, Arg b);
+	bool mergeAble(Command a, Command b);
+	bool isContinuousEraseRange(Command a, Command b);
+	bool isAllErased(Command a, Command b);
 
-	int mergedRange(Arg a, Arg b);
-	Arg mergeTwoCommand(Arg a, Arg b);
-	std::vector<Arg> merge(const std::vector<Arg> &buffer);
+	int mergedRange(Command a, Command b);
+	Command mergeTwoCommand(Command a, Command b);
+	std::vector<Command> merge(const std::vector<Command> &buffer);
 
-	Arg fastRead(std::vector<Arg> buffer);
+	Command fastRead(std::vector<Command> buffer);
 
 	void updateStatus(Arg arg, int* status);
 	bool isErased(Arg arg, int* status);
@@ -33,6 +33,5 @@ public:
 	void setEmpty(std::vector<Arg>& buffer);
 	void modifyEraseCommand(Arg& eraseArg, const Arg& latestArg);
 private:
-	std::vector<Arg> ret;
 	int status[100] = { CLEAN, };
 };

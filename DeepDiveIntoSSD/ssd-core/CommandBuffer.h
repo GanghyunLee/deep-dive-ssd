@@ -10,17 +10,17 @@ public:
 	void resetBuffer();
 	void createBuffer();
 	void loadBuffer();
-	Arg parseBufferNameToArg(const std::string& fileName);
+	Command parseBufferNameToCommand(const std::string& fileName);
 	bool isBufferFull();
-	std::vector<Arg> getBuffer();
-	void pushBuffer(Arg arg);
-	std::string makeBufferNameFromArg(Arg arg, int index);
-	void updateBuffers(std::vector<Arg> b);
-	int checkValueFromBuffer(int index);
+	std::vector<Command> getBuffer();
+	void pushCommand(Command arg);
+	std::string makeBufferNameFromCommand(Command command, int index);
+	void updateBuffers(std::vector<Command> b);
+	int checkBufferStatus(int index);
 	int fastRead(int index);
 private:
 	FileIO fileIO;
 	ArgManager argManager;
 	CommandBufferAlgorithm algo;
-	std::vector<Arg> buffers;
+	std::vector<Command> buffer;
 };
