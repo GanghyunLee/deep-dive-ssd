@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="CommandBuffer.cpp" />
     <ClCompile Include="CommandBufferAlgorithm.cpp" />
+    <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="ArgManager.cpp" />
     <ClCompile Include="Ssd.cpp" />
@@ -176,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="CommandBuffer.h" />
     <ClInclude Include="CommandBufferAlgorithm.h" />
+    <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Memory.h" />
   </ItemGroup>
